@@ -11,6 +11,8 @@
 		8E4C20A929819EEB006917D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* ContentView.swift */; };
 		8E4C20AB29819EEB006917D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AA29819EEB006917D0 /* Assets.xcassets */; };
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
+		8E4C20B62981A60D006917D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B52981A60D006917D0 /* Network.swift */; };
+		8E4C20B82981A67C006917D0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B72981A67C006917D0 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		8E4C20AA29819EEB006917D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bangerify.entitlements; sourceTree = "<group>"; };
 		8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8E4C20B52981A60D006917D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8E4C20B72981A67C006917D0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				8E4C20AA29819EEB006917D0 /* Assets.xcassets */,
 				8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */,
 				8E4C20AD29819EEB006917D0 /* Preview Content */,
+				8E4C20B52981A60D006917D0 /* Network.swift */,
+				8E4C20B72981A67C006917D0 /* Post.swift */,
 			);
 			path = Bangerify;
 			sourceTree = "<group>";
@@ -141,6 +147,8 @@
 			files = (
 				8E4C20A929819EEB006917D0 /* ContentView.swift in Sources */,
 				8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */,
+				8E4C20B62981A60D006917D0 /* Network.swift in Sources */,
+				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

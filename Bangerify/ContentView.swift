@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var network: Network
     var body: some View {
         NavigationView {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
+            List {
                 Text("Hello, world!")
             }
-            .padding()
             .navigationTitle("Bangerify")
         }
         
@@ -26,5 +23,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(Network())
     }
 }

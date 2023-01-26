@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct Post: Identifiable, Decodable {
-    var id: Int
-    var text: String
-    var date: Date
-    var userId: Int
-    var username: String
-    var visible_name: String
-    var profilePictureUrl: URL
+struct Post {
+    let id: Int
+    let text: String
+    let date: String
+    let userId: Int
+    let username: String
+    let visibleName: String
+    let profilePictureUrl: String
 }
+

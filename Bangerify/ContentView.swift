@@ -9,21 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var network: Network
+    
     var body: some View {
         NavigationView {
-            List {
+            List(network.posts) { post in
                 VStack {
                     HStack {
-                        AsyncImage(url: URL(string: "https://media2.giphy.com/media/wW95fEq09hOI8/200w.gif?cid=6c09b9523v6rshbaqtwf38cnivpg155eci9jhqm71ptobvnu&rid=200w.gif&ct=g")) { image in image
+                        AsyncImage(url: URL(string: post.profilePictureUrl)) { image in image
                                 .resizable()
                         } placeholder: {
-                            Color.red
+                            Color.gray
                         }
                             .clipShape(Circle())
                             .frame(width: 50, height: 50)
                         VStack (alignment: .leading){
                             HStack {
-                                Text("wojciehc")
+                                Text(post.visibleName)
                                     .font(.headline)
                                 Spacer()
                                 Image(systemName: "ellipsis")
@@ -31,17 +32,19 @@ struct ContentView: View {
                                     .foregroundColor(.secondary)
                             }
                             HStack {
-                                Text("@wojciech").font(.caption)
+                                Text("@" + post.username).font(.caption)
                                 Spacer()
-                                Text("24.01.2023 / 23:34")                    .font(.caption)
+                                Text(post.date)                    .font(.caption)
                                     .fontWeight(.light)
                                     .foregroundColor(.secondary)
                                 
                             }.frame(maxWidth: .infinity, alignment: .leading)
-                            
                         }
                     } .padding(5)
-                    Text("Jak cos bedzie nowa baza danych jutro wiec czesc postów bedzie przeniesiona")
+                    
+                    Text(post.text)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     HStack {
                         Image(systemName: "heart")
                             .font(Font.system(.title3))
@@ -53,9 +56,13 @@ struct ContentView: View {
                     } .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(5)
                 }
+                
             }
             .navigationTitle("Bangerify")
             .onAppear{
+                network.getPosts()
+            }
+            .refreshable {
                 network.getPosts()
             }
         }

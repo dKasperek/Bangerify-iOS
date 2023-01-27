@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post {
+struct Post: Identifiable{
     let id: Int
     let text: String
     let date: String

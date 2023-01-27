@@ -9,22 +9,30 @@
 /* Begin PBXBuildFile section */
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
 		8E4C20A929819EEB006917D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* ContentView.swift */; };
-		8E4C20AB29819EEB006917D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AA29819EEB006917D0 /* Assets.xcassets */; };
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
 		8E4C20B62981A60D006917D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B52981A60D006917D0 /* Network.swift */; };
 		8E4C20B82981A67C006917D0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B72981A67C006917D0 /* Post.swift */; };
 		8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8E4C20BB29829F59006917D0 /* SwiftyJSON */; };
+		8EDA1792298331FD0038F888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AA29819EEB006917D0 /* Assets.xcassets */; };
+		8EDA17972983CA250038F888 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17932983CA250038F888 /* icon.png */; };
+		8EDA17982983CA250038F888 /* bangerifyfavicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17942983CA250038F888 /* bangerifyfavicon.png */; };
+		8EDA17992983CA250038F888 /* bangerifyLogo.d17d1dad.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17952983CA250038F888 /* bangerifyLogo.d17d1dad.svg */; };
+		8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17962983CA250038F888 /* user_placeholder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C20A629819EEB006917D0 /* BangerifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangerifyApp.swift; sourceTree = "<group>"; };
 		8E4C20A829819EEB006917D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8E4C20AA29819EEB006917D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E4C20AA29819EEB006917D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Bangerify/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bangerify.entitlements; sourceTree = "<group>"; };
 		8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4C20B52981A60D006917D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8E4C20B72981A67C006917D0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8EDA17932983CA250038F888 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		8EDA17942983CA250038F888 /* bangerifyfavicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bangerifyfavicon.png; sourceTree = "<group>"; };
+		8EDA17952983CA250038F888 /* bangerifyLogo.d17d1dad.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bangerifyLogo.d17d1dad.svg; sourceTree = "<group>"; };
+		8EDA17962983CA250038F888 /* user_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_placeholder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,10 @@
 				8E4C20A629819EEB006917D0 /* BangerifyApp.swift */,
 				8E4C20A829819EEB006917D0 /* ContentView.swift */,
 				8E4C20AA29819EEB006917D0 /* Assets.xcassets */,
+				8EDA17942983CA250038F888 /* bangerifyfavicon.png */,
+				8EDA17952983CA250038F888 /* bangerifyLogo.d17d1dad.svg */,
+				8EDA17932983CA250038F888 /* icon.png */,
+				8EDA17962983CA250038F888 /* user_placeholder.png */,
 				8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */,
 				8E4C20AD29819EEB006917D0 /* Preview Content */,
 				8E4C20B52981A60D006917D0 /* Network.swift */,
@@ -141,8 +153,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EDA17982983CA250038F888 /* bangerifyfavicon.png in Resources */,
+				8EDA1792298331FD0038F888 /* Assets.xcassets in Resources */,
+				8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */,
 				8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */,
-				8E4C20AB29819EEB006917D0 /* Assets.xcassets in Resources */,
+				8EDA17972983CA250038F888 /* icon.png in Resources */,
+				8EDA17992983CA250038F888 /* bangerifyLogo.d17d1dad.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +291,6 @@
 		8E4C20B329819EEB006917D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bangerify/Bangerify.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -285,6 +300,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Bangerify;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -295,7 +311,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -313,7 +329,6 @@
 		8E4C20B429819EEB006917D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bangerify/Bangerify.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -323,6 +338,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Bangerify;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -333,7 +349,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;

@@ -12,6 +12,7 @@ import Network
 public struct PostView: View {
     @EnvironmentObject var network: Network
     var post: Post
+    var commentCount: Int
     public var body: some View {
         VStack {
             HStack {
@@ -32,7 +33,7 @@ public struct PostView: View {
                             .foregroundColor(.secondary)
                     }
                     HStack {
-                        Text("@" + post.username).font(.caption)
+                        Text("@" + post.username).font(.subheadline)
                         Spacer()
                         Text(post.date)                    .font(.caption)
                             .fontWeight(.light)
@@ -52,7 +53,7 @@ public struct PostView: View {
                 Spacer()
                 Image(systemName: "bubble.left")
                     .font(Font.system(.title3))
-                Text("0").font(Font.system(.title3))
+                Text(String(commentCount)).font(Font.system(.title3))
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
         }

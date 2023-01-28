@@ -17,32 +17,8 @@ struct ContentView: View {
                 Section(){
                     PostView(post: post, commentCount: commentCount)
                     if commentCount != 0 {
-                        let comList = network.comments.first(where: {$0.0 == post.id})?.1
-                        ForEach(comList!, id: \.self) { comment in
-                            VStack{
-                                HStack{
-                                    AsyncImage(url: URL(string: comment.profilePictureUrl)) { image in image
-                                            .resizable()
-                                    } placeholder: {
-                                        Color.gray
-                                    }
-                                        .clipShape(Circle())
-                                        .frame(width: 30, height: 30)
-                                    Text(comment.visible_name)
-                                        .font(.subheadline)
-                                    Spacer()
-                                    Text(post.date)
-                                        .font(.caption)
-                                        .fontWeight(.light)
-                                        .foregroundColor(.secondary)
-                                    
-                                }
-                                Text(comment.text)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        }
+                        CommentView(post: post)
                     }
-                    
                 }
             }
             

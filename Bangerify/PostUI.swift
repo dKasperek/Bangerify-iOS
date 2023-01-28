@@ -35,7 +35,8 @@ public struct PostView: View {
                     HStack {
                         Text("@" + post.username).font(.subheadline)
                         Spacer()
-                        Text(post.date)                    .font(.caption)
+                        Text(formatDate(dateString: post.date))
+                            .font(.caption)
                             .fontWeight(.light)
                             .foregroundColor(.secondary)
                         
@@ -78,7 +79,7 @@ public struct CommentView: View {
                     Text(comment.visible_name)
                         .font(.subheadline)
                     Spacer()
-                    Text(post.date)
+                    Text(formatDate(dateString: comment.date))
                         .font(.caption)
                         .fontWeight(.light)
                         .foregroundColor(.secondary)
@@ -89,4 +90,12 @@ public struct CommentView: View {
             }
         }
     }
+}
+
+func formatDate(dateString: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    let date = dateFormatter.date(from: dateString)
+    dateFormatter.dateFormat = "dd.MM.yyyy / HH:mm"
+    return dateFormatter.string(from: date!)
 }

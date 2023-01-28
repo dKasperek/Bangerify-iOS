@@ -15,5 +15,10 @@ struct Post: Identifiable{
     let username: String
     let visibleName: String
     let profilePictureUrl: String
+    var likes: Int = 0
+}
+
+struct Likes: Codable {
+    let likes: Int
 }
 

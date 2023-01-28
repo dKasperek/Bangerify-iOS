@@ -13,7 +13,6 @@
 		8E4C20B62981A60D006917D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B52981A60D006917D0 /* Network.swift */; };
 		8E4C20B82981A67C006917D0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B72981A67C006917D0 /* Post.swift */; };
 		8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8E4C20BB29829F59006917D0 /* SwiftyJSON */; };
-		8EDA1792298331FD0038F888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AA29819EEB006917D0 /* Assets.xcassets */; };
 		8EDA17972983CA250038F888 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17932983CA250038F888 /* icon.png */; };
 		8EDA17982983CA250038F888 /* bangerifyfavicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17942983CA250038F888 /* bangerifyfavicon.png */; };
 		8EDA17992983CA250038F888 /* bangerifyLogo.d17d1dad.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17952983CA250038F888 /* bangerifyLogo.d17d1dad.svg */; };
@@ -24,7 +23,6 @@
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C20A629819EEB006917D0 /* BangerifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangerifyApp.swift; sourceTree = "<group>"; };
 		8E4C20A829819EEB006917D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8E4C20AA29819EEB006917D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Bangerify/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bangerify.entitlements; sourceTree = "<group>"; };
 		8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4C20B52981A60D006917D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 			children = (
 				8E4C20A629819EEB006917D0 /* BangerifyApp.swift */,
 				8E4C20A829819EEB006917D0 /* ContentView.swift */,
-				8E4C20AA29819EEB006917D0 /* Assets.xcassets */,
 				8EDA17942983CA250038F888 /* bangerifyfavicon.png */,
 				8EDA17952983CA250038F888 /* bangerifyLogo.d17d1dad.svg */,
 				8EDA17932983CA250038F888 /* icon.png */,
@@ -154,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDA17982983CA250038F888 /* bangerifyfavicon.png in Resources */,
-				8EDA1792298331FD0038F888 /* Assets.xcassets in Resources */,
 				8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */,
 				8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */,
 				8EDA17972983CA250038F888 /* icon.png in Resources */,

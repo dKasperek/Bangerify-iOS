@@ -48,7 +48,7 @@ struct ContentView: View {
                     HStack {
                         Image(systemName: "heart")
                             .font(Font.system(.title3))
-                        Text("1").font(Font.system(.title3))
+                        Text(String(network.getLikeCount(postId: post.id)))
                         Spacer()
                         Image(systemName: "bubble.left")
                             .font(Font.system(.title3))

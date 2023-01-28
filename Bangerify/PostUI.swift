@@ -8,11 +8,13 @@
 import Foundation
 import SwiftUI
 import Network
+import MarkdownUI
 
 public struct PostView: View {
     @EnvironmentObject var network: Network
     var post: Post
     var commentCount: Int
+    
     public var body: some View {
         VStack {
             HStack {
@@ -44,7 +46,7 @@ public struct PostView: View {
                 }
             } .padding(5)
             
-            Text(post.text)
+            Markdown(post.text)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
@@ -85,7 +87,7 @@ public struct CommentView: View {
                         .foregroundColor(.secondary)
                     
                 }
-                Text(comment.text)
+                Markdown(comment.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }

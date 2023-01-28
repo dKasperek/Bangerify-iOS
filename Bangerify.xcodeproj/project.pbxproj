@@ -18,6 +18,7 @@
 		8EDA17992983CA250038F888 /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17952983CA250038F888 /* logo.svg */; };
 		8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17962983CA250038F888 /* user_placeholder.png */; };
 		8EDA179F2985783A0038F888 /* PostUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA179E2985783A0038F888 /* PostUI.swift */; };
+		8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17A62985D8620038F888 /* MarkdownUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */,
+				8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +109,7 @@
 			name = Bangerify;
 			packageProductDependencies = (
 				8E4C20BB29829F59006917D0 /* SwiftyJSON */,
+				8EDA17A62985D8620038F888 /* MarkdownUI */,
 			);
 			productName = Bangerify;
 			productReference = 8E4C20A329819EEB006917D0 /* Bangerify.app */;
@@ -138,6 +141,7 @@
 			mainGroup = 8E4C209A29819EEA006917D0;
 			packageReferences = (
 				8E4C20BA29829F59006917D0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 8E4C20A429819EEB006917D0 /* Products */;
 			projectDirPath = "";
@@ -398,6 +402,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -405,6 +417,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E4C20BA29829F59006917D0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		8EDA17A62985D8620038F888 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

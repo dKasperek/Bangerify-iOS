@@ -11,12 +11,15 @@ struct ContentView: View {
     @EnvironmentObject var network: Network
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(network.posts) { post in
-                PostView(post: post)
+                Section(){
+                    PostView(post: post)
+                }
             }
             
             .navigationTitle("Bangerify")
+            
             .onAppear{
                 network.getPosts()
             }

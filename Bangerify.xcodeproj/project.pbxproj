@@ -19,6 +19,7 @@
 		8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17962983CA250038F888 /* user_placeholder.png */; };
 		8EDA179F2985783A0038F888 /* PostUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA179E2985783A0038F888 /* PostUI.swift */; };
 		8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17A62985D8620038F888 /* MarkdownUI */; };
+		8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17AC2985E1980038F888 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */,
 				8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */,
 				8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */,
 			);
@@ -110,6 +112,7 @@
 			packageProductDependencies = (
 				8E4C20BB29829F59006917D0 /* SwiftyJSON */,
 				8EDA17A62985D8620038F888 /* MarkdownUI */,
+				8EDA17AC2985E1980038F888 /* Kingfisher */,
 			);
 			productName = Bangerify;
 			productReference = 8E4C20A329819EEB006917D0 /* Bangerify.app */;
@@ -142,6 +145,7 @@
 			packageReferences = (
 				8E4C20BA29829F59006917D0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 8E4C20A429819EEB006917D0 /* Products */;
 			projectDirPath = "";
@@ -410,6 +414,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -422,6 +434,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
+		};
+		8EDA17AC2985E1980038F888 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

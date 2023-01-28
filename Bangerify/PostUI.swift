@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Network
 import MarkdownUI
+import Kingfisher
 
 public struct PostView: View {
     @EnvironmentObject var network: Network
@@ -18,11 +19,8 @@ public struct PostView: View {
     public var body: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: post.profilePictureUrl)) { image in image
-                        .resizable()
-                } placeholder: {
-                    Color.gray
-                }
+                KFImage(URL(string: post.profilePictureUrl))
+                    .resizable()
                     .clipShape(Circle())
                     .frame(width: 50, height: 50)
                 VStack (alignment: .leading){
@@ -71,11 +69,8 @@ public struct CommentView: View {
         ForEach(comList!, id: \.self) { comment in
             VStack{
                 HStack{
-                    AsyncImage(url: URL(string: comment.profilePictureUrl)) { image in image
-                            .resizable()
-                    } placeholder: {
-                        Color.gray
-                    }
+                    KFImage(URL(string: comment.profilePictureUrl))
+                        .resizable()
                         .clipShape(Circle())
                         .frame(width: 30, height: 30)
                     Text(comment.visible_name)

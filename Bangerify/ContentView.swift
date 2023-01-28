@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ContentView: View {
     @EnvironmentObject var network: Network

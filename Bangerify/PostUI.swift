@@ -20,6 +20,7 @@ public struct PostView: View {
         VStack {
             HStack {
                 KFImage(URL(string: post.profilePictureUrl))
+                    .cancelOnDisappear(true)
                     .resizable()
                     .clipShape(Circle())
                     .frame(width: 50, height: 50)
@@ -70,6 +71,7 @@ public struct CommentView: View {
             VStack{
                 HStack{
                     KFImage(URL(string: comment.profilePictureUrl))
+                        .cancelOnDisappear(true)
                         .resizable()
                         .clipShape(Circle())
                         .frame(width: 30, height: 30)
@@ -82,7 +84,7 @@ public struct CommentView: View {
                         .foregroundColor(.secondary)
                     
                 }
-                Markdown(comment.text)
+                Text(comment.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }

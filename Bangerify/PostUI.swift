@@ -18,32 +18,38 @@ public struct PostView: View {
     
     public var body: some View {
         VStack {
-            HStack {
-                KFImage(URL(string: post.profilePictureUrl))
-                    .cancelOnDisappear(true)
-                    .resizable()
-                    .clipShape(Circle())
-                    .frame(width: 50, height: 50)
-                VStack (alignment: .leading){
-                    HStack {
-                        Text(post.visibleName)
-                            .font(.headline)
-                        Spacer()
-                        Image(systemName: "ellipsis")
-                            .font(Font.system(.caption))
-                            .foregroundColor(.secondary)
+            ZStack {
+                HStack {
+                    KFImage(URL(string: post.profilePictureUrl))
+                        .cancelOnDisappear(true)
+                        .resizable()
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                    
+                    VStack (alignment: .leading){
+                        HStack {
+                            Text(post.visibleName)
+                                .font(.headline)
+                            Spacer()
+                            Image(systemName: "ellipsis")
+                                .font(Font.system(.caption))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Text("@" + post.username).font(.subheadline)
+                            Spacer()
+                            Text(formatDate(dateString: post.date))
+                                .font(.caption)
+                                .fontWeight(.light)
+                                .foregroundColor(.secondary)
+                            
+                        }.frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    HStack {
-                        Text("@" + post.username).font(.subheadline)
-                        Spacer()
-                        Text(formatDate(dateString: post.date))
-                            .font(.caption)
-                            .fontWeight(.light)
-                            .foregroundColor(.secondary)
-                        
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                }
-            } .padding(5)
+                } .padding(5)
+                NavigationLink (destination: ProfileView(username: post.username)) {
+                    EmptyView()
+                }.frame(width: 0).opacity(0)
+            }
             
             Markdown(post.text)
                 .frame(maxWidth: .infinity, alignment: .leading)

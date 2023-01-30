@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var network: Network
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             List(network.posts) { post in
                 let commentCount = network.getCommentCount(postId: post.id)
                 Section(){
@@ -23,7 +23,7 @@ struct ContentView: View {
                 }
             }
             
-            .navigationTitle("Bangerify")
+            .navigationTitle("Mainboard")
             
             .onAppear{
                 network.getPosts()

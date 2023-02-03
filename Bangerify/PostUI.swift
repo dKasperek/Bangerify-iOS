@@ -51,8 +51,21 @@ public struct PostView: View {
                 }.frame(width: 0).opacity(0)
             }
             
-            Markdown(post.text)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            ForEach(divideToArray(rawString: post.text), id: \.self) { item in
+                if item.hasPrefix("!["){
+                    let startIndex = item.firstIndex(of: "(")
+                    let url = String(item[startIndex!...])
+                    KFImage(URL(string: String(url.dropFirst())))
+                        .cancelOnDisappear(true)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                else {
+                    Markdown(item)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
             
             HStack {
                 Image(systemName: "heart")

@@ -21,6 +21,10 @@ public struct PostView: View {
             ZStack {
                 HStack {
                     KFImage(URL(string: post.profilePictureUrl))
+                        .placeholder {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.gray)
+                        }
                         .cancelOnDisappear(true)
                         .resizable()
                         .clipShape(Circle())
@@ -56,6 +60,10 @@ public struct PostView: View {
                     let startIndex = item.firstIndex(of: "(")
                     let url = String(item[startIndex!...])
                     KFImage(URL(string: String(url.dropFirst())))
+                        .placeholder {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.gray)
+                        }
                         .cancelOnDisappear(true)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -90,6 +98,10 @@ public struct CommentView: View {
             VStack{
                 HStack{
                     KFImage(URL(string: comment.profilePictureUrl))
+                        .placeholder {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.gray)
+                        }
                         .cancelOnDisappear(true)
                         .resizable()
                         .clipShape(Circle())

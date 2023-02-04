@@ -12,10 +12,10 @@ public func divideToArray(rawString: String) -> [String] {
     var markupList: [String] = []
 
     for (index, element) in componentsOfString.enumerated() {
-        if index == 0 {
+        if index == 0 && componentsOfString.count > 1 {
             markupList.append(String(element))
         }
-        if index != 0 {
+        else {
             let newElement = "![" + element
             if let index = newElement.firstIndex(of: ")") {
                 markupList.append(String(newElement[..<index]))

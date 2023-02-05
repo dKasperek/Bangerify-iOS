@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
-		8E4C20A929819EEB006917D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* ContentView.swift */; };
+		8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* MainboardView.swift */; };
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
 		8E4C20B62981A60D006917D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B52981A60D006917D0 /* Network.swift */; };
 		8E4C20B82981A67C006917D0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B72981A67C006917D0 /* Post.swift */; };
@@ -16,11 +16,11 @@
 		8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9404F1298710BD00F647C8 /* ProfileView.swift */; };
 		8E9404F42987113F00F647C8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9404F32987113F00F647C8 /* Profile.swift */; };
 		8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */; };
-		8EDA17972983CA250038F888 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17932983CA250038F888 /* icon.png */; };
-		8EDA17982983CA250038F888 /* bangerifyfavicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17942983CA250038F888 /* bangerifyfavicon.png */; };
-		8EDA17992983CA250038F888 /* logo.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17952983CA250038F888 /* logo.svg */; };
-		8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA17962983CA250038F888 /* user_placeholder.png */; };
-		8EDA179F2985783A0038F888 /* PostUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA179E2985783A0038F888 /* PostUI.swift */; };
+		8ECB358C2990278100D0D3D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECB358B2990278100D0D3D8 /* Images.xcassets */; };
+		8ECB358E2990295B00D0D3D8 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB358D2990295B00D0D3D8 /* CommentView.swift */; };
+		8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */; };
+		8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB359429902AE100D0D3D8 /* Comment.swift */; };
+		8EDA179F2985783A0038F888 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA179E2985783A0038F888 /* PostView.swift */; };
 		8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17A62985D8620038F888 /* MarkdownUI */; };
 		8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17AC2985E1980038F888 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C20A629819EEB006917D0 /* BangerifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangerifyApp.swift; sourceTree = "<group>"; };
-		8E4C20A829819EEB006917D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8E4C20A829819EEB006917D0 /* MainboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainboardView.swift; sourceTree = "<group>"; };
 		8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bangerify.entitlements; sourceTree = "<group>"; };
 		8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4C20B52981A60D006917D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -36,11 +36,11 @@
 		8E9404F1298710BD00F647C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8E9404F32987113F00F647C8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownHelper.swift; sourceTree = "<group>"; };
-		8EDA17932983CA250038F888 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		8EDA17942983CA250038F888 /* bangerifyfavicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bangerifyfavicon.png; sourceTree = "<group>"; };
-		8EDA17952983CA250038F888 /* logo.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logo.svg; sourceTree = "<group>"; };
-		8EDA17962983CA250038F888 /* user_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_placeholder.png; sourceTree = "<group>"; };
-		8EDA179E2985783A0038F888 /* PostUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUI.swift; sourceTree = "<group>"; };
+		8ECB358B2990278100D0D3D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8ECB358D2990295B00D0D3D8 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		8ECB359429902AE100D0D3D8 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8EDA179E2985783A0038F888 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,20 +76,16 @@
 		8E4C20A529819EEB006917D0 /* Bangerify */ = {
 			isa = PBXGroup;
 			children = (
-				8E4C20A629819EEB006917D0 /* BangerifyApp.swift */,
-				8E4C20A829819EEB006917D0 /* ContentView.swift */,
-				8E9404F1298710BD00F647C8 /* ProfileView.swift */,
-				8E9404F32987113F00F647C8 /* Profile.swift */,
-				8EDA17942983CA250038F888 /* bangerifyfavicon.png */,
-				8EDA17952983CA250038F888 /* logo.svg */,
-				8EDA17932983CA250038F888 /* icon.png */,
-				8EDA17962983CA250038F888 /* user_placeholder.png */,
 				8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */,
-				8E4C20AD29819EEB006917D0 /* Preview Content */,
+				8E4C20A629819EEB006917D0 /* BangerifyApp.swift */,
+				8ECB359129902A1900D0D3D8 /* Views */,
+				8ECB359229902A3800D0D3D8 /* View Components */,
+				8ECB359329902A6100D0D3D8 /* Structures */,
 				8E4C20B52981A60D006917D0 /* Network.swift */,
-				8E4C20B72981A67C006917D0 /* Post.swift */,
-				8EDA179E2985783A0038F888 /* PostUI.swift */,
 				8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */,
+				8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */,
+				8ECB358B2990278100D0D3D8 /* Images.xcassets */,
+				8E4C20AD29819EEB006917D0 /* Preview Content */,
 			);
 			path = Bangerify;
 			sourceTree = "<group>";
@@ -100,6 +96,34 @@
 				8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8ECB359129902A1900D0D3D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E4C20A829819EEB006917D0 /* MainboardView.swift */,
+				8E9404F1298710BD00F647C8 /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8ECB359229902A3800D0D3D8 /* View Components */ = {
+			isa = PBXGroup;
+			children = (
+				8EDA179E2985783A0038F888 /* PostView.swift */,
+				8ECB358D2990295B00D0D3D8 /* CommentView.swift */,
+			);
+			path = "View Components";
+			sourceTree = "<group>";
+		};
+		8ECB359329902A6100D0D3D8 /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				8E4C20B72981A67C006917D0 /* Post.swift */,
+				8ECB359429902AE100D0D3D8 /* Comment.swift */,
+				8E9404F32987113F00F647C8 /* Profile.swift */,
+			);
+			path = Structures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,11 +194,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EDA17982983CA250038F888 /* bangerifyfavicon.png in Resources */,
-				8EDA179A2983CA250038F888 /* user_placeholder.png in Resources */,
 				8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */,
-				8EDA17972983CA250038F888 /* icon.png in Resources */,
-				8EDA17992983CA250038F888 /* logo.svg in Resources */,
+				8ECB358C2990278100D0D3D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,14 +206,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E4C20A929819EEB006917D0 /* ContentView.swift in Sources */,
+				8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */,
+				8ECB358E2990295B00D0D3D8 /* CommentView.swift in Sources */,
+				8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */,
 				8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */,
 				8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */,
 				8E4C20B62981A60D006917D0 /* Network.swift in Sources */,
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,
 				8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */,
-				8EDA179F2985783A0038F888 /* PostUI.swift in Sources */,
+				8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */,
+				8EDA179F2985783A0038F888 /* PostView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

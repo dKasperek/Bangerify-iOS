@@ -9,10 +9,10 @@ import Foundation
 
 struct Profile: Codable {
     var visibleName: String
-    var bio: String
+    var bio: String?
     var grade: Int
     var creationDate: String
-    var profilePictureUrl: String
+    var profilePictureUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case visibleName = "visible_name"

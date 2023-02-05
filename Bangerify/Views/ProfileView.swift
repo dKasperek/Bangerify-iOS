@@ -12,63 +12,69 @@ import Network
 
 
 struct ProfileView: View {
-    var username: String
-    @EnvironmentObject var network: Network
+    let username: String
+    
+    @State private var profile: Profile?
+    
     
     var body: some View {
         List {
-            VStack {
-                HStack {
-                    KFImage(URL(string: network.profile.profilePictureUrl))
-                        .cancelOnDisappear(true)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 75, height: 75)
-                    VStack (alignment: .leading){
-                        HStack {
-                            Text(network.profile.visibleName)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Spacer()
-                            Image(systemName: "ellipsis")
-                                .font(Font.system(.body))
-                                .foregroundColor(.secondary)
+            if let profile = profile {
+                VStack {
+                    HStack {
+                        KFImage(URL(string: profile.profilePictureUrl ?? ""))
+                            .placeholder {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.gray)
+                            }
+                            .cancelOnDisappear(true)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 75, height: 75)
+                        VStack (alignment: .leading){
+                            HStack {
+                                Text(profile.visibleName)
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                Image(systemName: "ellipsis")
+                                    .font(Font.system(.body))
+                                    .foregroundColor(.secondary)
+                            }
+                            HStack {
+                                Text("@" + username)
+                                    .font(.headline)
+                                    .fontWeight(.light)
+                                
+                            }.frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        HStack {
-                            Text("@" + username)
-                                .font(.headline)
-                                .fontWeight(.light)
-                            
-                        }.frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                } .padding(5)
+                    } .padding(5)
+                    
+                    Markdown(profile.bio ?? "Empty bio")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(10)
+                    
+                }
                 
-                Markdown(network.profile.bio)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(10)
-                
+                Section {
+                    Text("TU BĘDĄ POSTY").font(.headline)
+                }
+            } else {
+                Text("Loading...")
             }
-            
-            Section {
-                Text("TU BĘDĄ POSTY").font(.headline)
-            }
-            
-            .onAppear {
-                network.getProfile(username: username)
-            }
-            .refreshable {
-                network.getProfile(username: username)
-            }
-            .onDisappear {
-                network.profile = Profile(
-                    visibleName: "",
-                    bio: "",
-                    grade: 0,
-                    creationDate: "",
-                    profilePictureUrl: ""
-                )
-            }
-            
+        }
+        .onAppear {
+            self.loadProfile()
+        }
+        .refreshable {
+            self.loadProfile()
+        }
+    }
+    
+    private func loadProfile() {
+        let profileService = ProfileService()
+        profileService.loadProfile(username: self.username) { profile in
+            self.profile = profile
         }
     }
     
@@ -78,4 +84,5 @@ struct ProfileView: View {
                 .environmentObject(Network())
         }
     }
+
 }

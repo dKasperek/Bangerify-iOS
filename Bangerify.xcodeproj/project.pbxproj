@@ -20,6 +20,7 @@
 		8ECB358E2990295B00D0D3D8 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB358D2990295B00D0D3D8 /* CommentView.swift */; };
 		8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */; };
 		8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB359429902AE100D0D3D8 /* Comment.swift */; };
+		8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB359629902C9100D0D3D8 /* ProfileService.swift */; };
 		8EDA179F2985783A0038F888 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA179E2985783A0038F888 /* PostView.swift */; };
 		8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17A62985D8620038F888 /* MarkdownUI */; };
 		8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17AC2985E1980038F888 /* Kingfisher */; };
@@ -40,6 +41,7 @@
 		8ECB358D2990295B00D0D3D8 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		8ECB359429902AE100D0D3D8 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8ECB359629902C9100D0D3D8 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		8EDA179E2985783A0038F888 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				8E4C20A629819EEB006917D0 /* BangerifyApp.swift */,
 				8ECB359129902A1900D0D3D8 /* Views */,
 				8ECB359229902A3800D0D3D8 /* View Components */,
+				8ECB359829902C9700D0D3D8 /* Services */,
 				8ECB359329902A6100D0D3D8 /* Structures */,
 				8E4C20B52981A60D006917D0 /* Network.swift */,
 				8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */,
@@ -124,6 +127,14 @@
 				8E9404F32987113F00F647C8 /* Profile.swift */,
 			);
 			path = Structures;
+			sourceTree = "<group>";
+		};
+		8ECB359829902C9700D0D3D8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8ECB359629902C9100D0D3D8 /* ProfileService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +222,7 @@
 				8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */,
 				8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */,
 				8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */,
+				8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */,
 				8E4C20B62981A60D006917D0 /* Network.swift in Sources */,
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,

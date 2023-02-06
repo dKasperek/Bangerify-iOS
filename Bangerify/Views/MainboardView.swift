@@ -9,36 +9,45 @@ import SwiftUI
 import Kingfisher
 
 struct ContentView: View {
-    @EnvironmentObject var network: Network
+    @State private var posts: [Post]?
     
     var body: some View {
         NavigationView {
-            List(network.posts) { post in
-                let commentCount = network.getCommentCount(postId: post.id)
-                Section(){
-                    PostView(post: post, commentCount: commentCount)
-                    if commentCount != 0 {
-                        CommentView(post: post)
+            if let posts = posts {
+                List(posts) { post in
+//                    let commentCount = network.getCommentCount(postId: post.id)
+                    let commentCount = 0
+                    Section(){
+                        PostView(post: post, commentCount: commentCount)
+                        if commentCount != 0 {
+                            CommentView(post: post)
+                        }
                     }
                 }
-            }
-            
-            .navigationTitle("Mainboard")
-            
-            .onAppear{
-                network.getPosts()
-            }
-            .refreshable {
-                network.getPosts()
+            } else {
+                ProgressView()
             }
         }
+        .navigationTitle("Mainboard")
         
+        .onAppear{
+            self.loadPosts()
+        }
+        .refreshable {
+            self.loadPosts()
+        }
+    }
+    
+    private func loadPosts() {
+        let postService = PostService()
+        postService.loadPosts() { posts in
+            self.posts = posts
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(Network())
     }
 }

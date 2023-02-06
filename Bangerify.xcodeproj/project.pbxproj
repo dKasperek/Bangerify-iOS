@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E15099D29919D8F008EEE43 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099C29919D8F008EEE43 /* PostService.swift */; };
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
 		8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* MainboardView.swift */; };
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E15099C29919D8F008EEE43 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C20A629819EEB006917D0 /* BangerifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangerifyApp.swift; sourceTree = "<group>"; };
 		8E4C20A829819EEB006917D0 /* MainboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainboardView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				8ECB359629902C9100D0D3D8 /* ProfileService.swift */,
+				8E15099C29919D8F008EEE43 /* PostService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,
 				8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */,
+				8E15099D29919D8F008EEE43 /* PostService.swift in Sources */,
 				8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */,
 				8EDA179F2985783A0038F888 /* PostView.swift in Sources */,
 			);

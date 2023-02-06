@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ProfileService { // TODO: Check if could be improved - after using closures
+class ProfileService {
     
     static let shared = ProfileService()
     

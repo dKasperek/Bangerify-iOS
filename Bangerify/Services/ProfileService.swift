@@ -23,20 +23,18 @@ class ProfileService { // TODO: Check if could be improved - after using closure
                 print("Request error: ", error)
                 return
             }
-
-            guard let response = response as? HTTPURLResponse else { return }
-
-            if response.statusCode == 200 {
-                guard let data = data else { return }
-                DispatchQueue.main.async {
-                    do {
-                        let profileArray = try JSONDecoder().decode([Profile].self, from: data)
-                        let profile = profileArray.first!
-                        completion(profile)
-                    } catch let error {
-                        print("Error decoding: ", error)
-                    }
-                }
+            
+            guard let data = data else {
+                print("Invalid data from request: ", url)
+                return
+            }
+            
+            do {
+                let profileArray = try JSONDecoder().decode([Profile].self, from: data)
+                let profile = profileArray.first!
+                completion(profile)
+            } catch let error {
+                print("Error decoding: ", error)
             }
         }
         dataTask.resume()

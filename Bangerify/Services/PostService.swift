@@ -32,22 +32,59 @@ class PostService {
             do {
                 let json = try JSON(data: data)
                 var decodedPosts: [Post] = []
+                let group = DispatchGroup()
                 
                 if let postArray = json.array {
                     for postJSON in postArray {
-                        let post = Post(id: postJSON["id"].intValue,
+                        var post = Post(id: postJSON["id"].intValue,
                                         text: postJSON["text"].stringValue,
                                         date: postJSON["date"].stringValue,
                                         userId: postJSON["userId"].intValue,
                                         username: postJSON["username"].stringValue,
                                         visibleName: postJSON["visible_name"].stringValue,
                                         profilePictureUrl: postJSON["profilePictureUrl"].stringValue) // TODO: Nil
-                        decodedPosts.append(post)
-//                        self.getLikes(postId: postJSON["id"].intValue)
-//                        self.getComments(postId: postJSON["id"].intValue)
+                        group.enter()
+                        self.getLikeCount(for: postJSON["id"].intValue) { likeCount in
+                            post.likes = likeCount
+                            decodedPosts.append(post)
+                            group.leave()
+                        }
                     }
                 }
-                completion(decodedPosts)
+                group.notify(queue: .main) {
+                    completion(decodedPosts)
+                }
+            } catch let error {
+                print("Error decoding: ", error)
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func getLikeCount(for postId: Int, completion: @escaping (Int) -> Void) {
+        guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikes") else { fatalError("Missing URL") }
+                
+        var bodyData = URLComponents()
+        bodyData.queryItems = [URLQueryItem(name: "postId", value: String(postId))]
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = bodyData.query?.data(using: .utf8)
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                print("Request error: ", error)
+                return
+            }
+            
+            guard let data = data else {
+                print("Invalid data from request: ", url)
+                return
+            }
+            
+            do {
+                let likes = try JSONDecoder().decode(Likes.self, from: data)
+                completion(likes.likes)
             } catch let error {
                 print("Error decoding: ", error)
             }

@@ -19,9 +19,9 @@ struct ContentView: View {
                     let commentCount = 0
                     Section(){
                         PostView(post: post, commentCount: commentCount)
-                        if commentCount != 0 {
-                            CommentView(post: post)
-                        }
+//                        if commentCount != 0 {
+//                            CommentView(post: post)
+//                        }
                     }
                 }
             } else {

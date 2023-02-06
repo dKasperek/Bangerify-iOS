@@ -12,9 +12,9 @@ import MarkdownUI
 import Kingfisher
 
 public struct PostView: View {
-    @EnvironmentObject var network: Network
-    var post: Post
-    var commentCount: Int
+    
+    let post: Post
+    let commentCount: Int
     
     public var body: some View {
         VStack {
@@ -78,7 +78,7 @@ public struct PostView: View {
             HStack {
                 Image(systemName: "heart")
                     .font(Font.system(.title3))
-                Text(String(network.getLikeCount(postId: post.id)))
+                Text(String(post.likes))
                 Spacer()
                 Image(systemName: "bubble.left")
                     .font(Font.system(.title3))

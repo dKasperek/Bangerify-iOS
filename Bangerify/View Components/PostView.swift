@@ -73,7 +73,7 @@ public struct PostView: View {
                     Markdown(item)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-            }
+            }.id(post.id)
             
             HStack {
                 Image(systemName: "heart")

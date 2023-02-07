@@ -24,11 +24,11 @@ struct ContentView: View {
 //                        }
                     }
                 }
+                .navigationTitle("Mainboard")
             } else {
                 ProgressView()
             }
         }
-        .navigationTitle("Mainboard")
         
         .onAppear{
             self.loadPosts()

@@ -52,6 +52,7 @@ class PostService {
                     }
                 }
                 group.notify(queue: .main) {
+                    decodedPosts.sort(by: { $0.id > $1.id })
                     completion(decodedPosts)
                 }
             } catch let error {

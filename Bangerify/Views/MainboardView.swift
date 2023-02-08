@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             if let posts = posts {
-                List(posts) { post in
+                List(posts, id: \.id) { post in
 //                    let commentCount = network.getCommentCount(postId: post.id)
                     let commentCount = 0
                     Section(){

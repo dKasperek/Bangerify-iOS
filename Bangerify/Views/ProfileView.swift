@@ -15,52 +15,23 @@ struct ProfileView: View {
     let username: String
     
     @State private var profile: Profile?
+    @State private var posts: [Post]?
     
     
     var body: some View {
         List {
-            if let profile = profile {
-                VStack {
-                    HStack {
-                        KFImage(URL(string: profile.profilePictureUrl ?? ""))
-                            .placeholder {
-                                Image(systemName: "hourglass")
-                                    .foregroundColor(.gray)
-                            }
-                            .cancelOnDisappear(true)
-                            .resizable()
-                            .clipShape(Circle())
-                            .frame(width: 75, height: 75)
-                        VStack (alignment: .leading){
-                            HStack {
-                                Text(profile.visibleName)
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                Spacer()
-                                Image(systemName: "ellipsis")
-                                    .font(Font.system(.body))
-                                    .foregroundColor(.secondary)
-                            }
-                            HStack {
-                                Text("@" + username)
-                                    .font(.headline)
-                                    .fontWeight(.light)
+            if let profile = profile, let posts = posts {
+                
+                ProfileHeaderComponent(profile: profile, username: username)
                                 
-                            }.frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    } .padding(5)
-                    
-                    Markdown(profile.bio ?? "Empty bio")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(10)
-                    
+                ForEach(posts, id: \.id) { post in
+                    Section{
+                        PostView(post: post, commentCount: 0)
+                    }
                 }
                 
-                Section {
-                    Text("TU BĘDĄ POSTY").font(.headline)
-                }
             } else {
-                Text("Loading...")
+                ProgressView()
             }
         }
         .onAppear {
@@ -76,12 +47,18 @@ struct ProfileView: View {
         profileService.loadProfile(username: self.username) { profile in
             self.profile = profile
         }
+            
+        let postService = PostService()
+        postService.loadUserPosts(author: self.username) { posts in
+        self.posts = posts
+        }
     }
+    
+    
     
     struct ProfileView_Previews: PreviewProvider {
         static var previews: some View {
             ProfileView(username: "wojciehc")
-                .environmentObject(Network())
         }
     }
 

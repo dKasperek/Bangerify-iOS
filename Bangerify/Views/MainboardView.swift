@@ -28,7 +28,7 @@ struct ContentView: View {
                                 }
                             }
                             .padding(.horizontal)
-                            .background(Color(.systemBackground))
+                            .background(Color(.secondarySystemGroupedBackground))
                             .cornerRadius(10)
                             .shadow(radius: 1)
                             .padding(.vertical, 8)
@@ -36,7 +36,7 @@ struct ContentView: View {
                     }
                 }
                 .padding(.horizontal)
-                .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.bottom))
+                .background(Color(.systemGroupedBackground))
                 .navigationTitle("Mainboard")
                 .refreshable {
                     postService.loadPosts(completion: { [weak postService] posts in

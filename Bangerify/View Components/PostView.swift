@@ -74,6 +74,7 @@ public struct PostView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }.id(post.id)
+                .padding(5)
             
             HStack {
                 Image(systemName: "heart")
@@ -86,5 +87,25 @@ public struct PostView: View {
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
         }
+        .padding(5)
+        .padding(.top, 10)
+    }
+}
+
+struct PostView_Previews: PreviewProvider {
+    static var post = Post(
+        id: 156,
+        text: "Really cool korean project\n\n[link <<<](https://www.youtube.com/watch?v=AE6Xyv-yEiA)",
+        date: "2023-03-07T09:04:00.000Z",
+        userId: 5,
+        username: "wojciehc",
+        visibleName: "wojciech",
+        profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
+        likes: 4
+    )
+    
+    static var previews: some View {
+        
+        PostView(post: post, commentCount: 0)
     }
 }

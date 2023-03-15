@@ -8,7 +8,15 @@
 import Foundation
 import SwiftyJSON
 
-class PostService {
+class PostService: ObservableObject {
+    @Published var posts: [Post]?
+    
+    init() {
+        loadPosts(completion: { [weak self] posts in
+            self?.posts = posts
+        })
+    }
+
     
     static let shared = PostService()
     

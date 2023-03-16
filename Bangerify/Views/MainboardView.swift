@@ -10,6 +10,7 @@ import Kingfisher
 
 struct ContentView: View {
     @ObservedObject var postService = PostService()
+    @EnvironmentObject var authenticationService: AuthenticationService
 
     var body: some View {
         NavigationView {
@@ -29,6 +30,10 @@ struct ContentView: View {
                             .padding(.vertical, 8)
                         }
                     }
+                    Button("Logout") {
+                        authenticationService.clearToken()
+                    }
+                    .padding()
                 }
                 .padding(.horizontal)
                 .background(Color(.systemGroupedBackground))

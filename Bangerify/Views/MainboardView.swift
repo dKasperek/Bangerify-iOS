@@ -11,7 +11,7 @@ import Kingfisher
 struct ContentView: View {
     @ObservedObject var postService = PostService()
     @EnvironmentObject var authenticationService: AuthenticationService
-
+    
     var body: some View {
         NavigationView {
             if let posts = postService.posts {
@@ -47,7 +47,13 @@ struct ContentView: View {
                     })
                 }
             } else {
-                ProgressView()
+                VStack {
+                    Image("icon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100)
+                        .padding(.bottom, 25)
+                    ProgressView()}
             }
         }
     }

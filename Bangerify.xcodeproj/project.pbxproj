@@ -27,6 +27,7 @@
 		8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17A62985D8620038F888 /* MarkdownUI */; };
 		8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17AC2985E1980038F888 /* Kingfisher */; };
 		8EE9CEEC29C35521004F5A42 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEEB29C35521004F5A42 /* CommentService.swift */; };
+		8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		8ECB359629902C9100D0D3D8 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		8EDA179E2985783A0038F888 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		8EE9CEEB29C35521004F5A42 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				8E4C20A829819EEB006917D0 /* MainboardView.swift */,
 				8E9404F1298710BD00F647C8 /* ProfileView.swift */,
+				8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,
 				8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */,
+				8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */,
 				8E15099D29919D8F008EEE43 /* PostService.swift in Sources */,
 				8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */,
 				8EE9CEEC29C35521004F5A42 /* CommentService.swift in Sources */,

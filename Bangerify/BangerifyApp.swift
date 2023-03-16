@@ -13,7 +13,7 @@ struct BangerifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginRegisterView()
                 .environmentObject(network)
         }
     }

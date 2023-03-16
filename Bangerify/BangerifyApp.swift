@@ -9,12 +9,18 @@ import SwiftUI
 
 @main
 struct BangerifyApp: App {
-    var network = Network()
+    @StateObject private var authenticationService = AuthenticationService()
     
     var body: some Scene {
         WindowGroup {
-            LoginRegisterView()
-                .environmentObject(network)
+            Group {
+                if authenticationService.isAuthenticated {
+                    ContentView()
+                } else {
+                    LoginRegisterView()
+                }
+            }
+            .environmentObject(authenticationService)
         }
     }
 }

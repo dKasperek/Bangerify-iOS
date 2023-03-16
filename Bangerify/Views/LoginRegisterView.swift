@@ -11,6 +11,10 @@ struct LoginRegisterView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showAlert: Bool = false
+    @State private var errorMessage: String? = nil
+    @StateObject private var authService = AuthenticationService()
+    @EnvironmentObject var authenticationService: AuthenticationService
     
     var body: some View {
         ZStack {
@@ -25,13 +29,29 @@ struct LoginRegisterView: View {
                 TextField("Username or Email", text: $email)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
                 
                 SecureField("Password", text: $password)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button("Login") {
-                    
+                    if email.isEmpty || password.isEmpty {
+                        errorMessage = "Email or password field is empty!"
+                        showAlert = true
+                    } else {
+                        authService.login(username: email, password: password) { result in
+                            switch result {
+                            case .success(let refreshToken):
+                                authenticationService.storeRefreshToken(refreshToken)
+                                
+                            case .failure(let error):
+                                print("Login failed: \(error.localizedDescription)")
+                                errorMessage = error.localizedDescription
+                                showAlert = true
+                            }
+                        }
+                    }
                 }
                 .padding()
                 
@@ -49,7 +69,11 @@ struct LoginRegisterView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)
         .background(Color(.systemGroupedBackground))
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
+        }
     }
+    
 }
 
 struct LoginRegisterView_Previews: PreviewProvider {

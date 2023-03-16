@@ -28,6 +28,8 @@
 		8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17AC2985E1980038F888 /* Kingfisher */; };
 		8EE9CEEC29C35521004F5A42 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEEB29C35521004F5A42 /* CommentService.swift */; };
 		8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */; };
+		8EE9CEF229C3B863004F5A42 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */; };
+		8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		8EDA179E2985783A0038F888 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		8EE9CEEB29C35521004F5A42 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterView.swift; sourceTree = "<group>"; };
+		8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,7 @@
 			files = (
 				8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */,
 				8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */,
+				8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */,
 				8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +149,7 @@
 				8ECB359629902C9100D0D3D8 /* ProfileService.swift */,
 				8E15099C29919D8F008EEE43 /* PostService.swift */,
 				8EE9CEEB29C35521004F5A42 /* CommentService.swift */,
+				8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				8E4C20BB29829F59006917D0 /* SwiftyJSON */,
 				8EDA17A62985D8620038F888 /* MarkdownUI */,
 				8EDA17AC2985E1980038F888 /* Kingfisher */,
+				8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */,
 			);
 			productName = Bangerify;
 			productReference = 8E4C20A329819EEB006917D0 /* Bangerify.app */;
@@ -202,6 +208,7 @@
 				8E4C20BA29829F59006917D0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				8EE9CEF429C3C22A004F5A42 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 8E4C20A429819EEB006917D0 /* Products */;
 			projectDirPath = "";
@@ -242,6 +249,7 @@
 				8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */,
 				8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */,
 				8E15099D29919D8F008EEE43 /* PostService.swift in Sources */,
+				8EE9CEF229C3B863004F5A42 /* AuthenticationService.swift in Sources */,
 				8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */,
 				8EE9CEEC29C35521004F5A42 /* CommentService.swift in Sources */,
 				8EDA179F2985783A0038F888 /* PostView.swift in Sources */,
@@ -492,6 +500,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		8EE9CEF429C3C22A004F5A42 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -509,6 +525,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8EE9CEF429C3C22A004F5A42 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

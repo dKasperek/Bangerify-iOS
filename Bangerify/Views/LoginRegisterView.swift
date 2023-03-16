@@ -30,10 +30,12 @@ struct LoginRegisterView: View {
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
+                    .textContentType(.emailAddress)
                 
                 SecureField("Password", text: $password)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textContentType(.password)
                 
                 Button("Login") {
                     if email.isEmpty || password.isEmpty {

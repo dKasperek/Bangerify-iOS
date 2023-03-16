@@ -16,7 +16,7 @@ class PostService: ObservableObject {
             self?.posts = posts
         })
     }
-
+    
     
     static let shared = PostService()
     
@@ -72,7 +72,7 @@ class PostService: ObservableObject {
     
     func getLikeCount(for postId: Int, completion: @escaping (Int) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikes") else { fatalError("Missing URL") }
-                
+        
         var bodyData = URLComponents()
         bodyData.queryItems = [URLQueryItem(name: "postId", value: String(postId))]
         

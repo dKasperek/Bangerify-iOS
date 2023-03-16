@@ -8,16 +8,12 @@
 
 import Foundation
 
-struct Comments: Codable {
-    let comments: [Comment]
-}
-
 struct Comment: Codable, Hashable {
     let text: String
     let date: String
     let grade: Int
     let username: String
-    let visible_name: String
+    let visibleName: String
     let id: Int
     let profilePictureUrl: String
     let userId: Int

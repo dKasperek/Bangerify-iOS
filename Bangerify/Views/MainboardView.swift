@@ -18,13 +18,8 @@ struct ContentView: View {
                     LazyVStack {
                         ForEach(posts, id: \.id) { post in
                             VStack(alignment: .leading) {
-                                let commentCount = 0 // Replace with actual comment count when available
                                 Section() {
-                                    PostView(post: post, commentCount: commentCount)
-                                    // Uncomment when you want to show comments
-                                    // if commentCount != 0 {
-                                    //     CommentView(post: post)
-                                    // }
+                                    PostView(post: post)
                                 }
                             }
                             .padding(.horizontal)

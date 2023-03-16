@@ -12,11 +12,12 @@ import MarkdownUI
 import Kingfisher
 
 public struct CommentView: View {
-    @EnvironmentObject var network: Network
-    var post: Post
+    
+    let comList: [Comment]
+    
     public var body: some View {
-        let comList = network.comments.first(where: {$0.0 == post.id})?.1
-        ForEach(comList!, id: \.self) { comment in
+        ForEach(comList, id: \.self) { comment in
+            Divider()
             VStack{
                 HStack{
                     KFImage(URL(string: comment.profilePictureUrl))
@@ -28,7 +29,7 @@ public struct CommentView: View {
                         .resizable()
                         .clipShape(Circle())
                         .frame(width: 30, height: 30)
-                    Text(comment.visible_name)
+                    Text(comment.visibleName)
                         .font(.subheadline)
                     Spacer()
                     Text(formatDate(dateString: comment.date))
@@ -40,6 +41,7 @@ public struct CommentView: View {
                 Text(comment.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            
         }
     }
 }

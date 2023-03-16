@@ -26,7 +26,7 @@ struct ProfileView: View {
                                 
                 ForEach(posts, id: \.id) { post in
                     Section{
-                        PostView(post: post, commentCount: 0)
+                        PostView(post: post)
                     }
                 }
                 

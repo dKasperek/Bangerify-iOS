@@ -14,7 +14,7 @@ import Kingfisher
 public struct PostView: View {
     
     let post: Post
-    let commentCount: Int
+    @State private var comments: [Comment]?
     
     public var body: some View {
         VStack {
@@ -81,31 +81,51 @@ public struct PostView: View {
                     .font(Font.system(.title3))
                 Text(String(post.likes))
                 Spacer()
-                Image(systemName: "bubble.left")
-                    .font(Font.system(.title3))
-                Text(String(commentCount)).font(Font.system(.title3))
+                if (comments?.isEmpty == false) {
+                    Image(systemName: "bubble.left.fill")
+                        .font(Font.system(.title3))
+                    Text(String(comments!.count)).font(Font.system(.title3))
+                } else {
+                    Image(systemName: "bubble.left")
+                        .font(Font.system(.title3))
+                    Text(String(0)).font(Font.system(.title3))
+                }
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
+            if comments != nil {
+                CommentView(comList: comments!)
+                    .padding(.bottom, 5)
+            }
         }
         .padding(5)
         .padding(.top, 10)
+        .onAppear {
+            self.loadComments()
+        }
+    }
+    
+    private func loadComments() {
+        let commentService = CommentService()
+        commentService.loadComments(for: post.id)
+        { comments in
+            self.comments = comments
+        }
     }
 }
 
 struct PostView_Previews: PreviewProvider {
     static var post = Post(
-        id: 156,
-        text: "Really cool korean project\n\n[link <<<](https://www.youtube.com/watch?v=AE6Xyv-yEiA)",
-        date: "2023-03-07T09:04:00.000Z",
+        id: 138,
+        text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
+        date: "2023-01-30T13:11:23.000Z",
         userId: 5,
         username: "wojciehc",
         visibleName: "wojciech",
         profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
-        likes: 4
+        likes: 3
     )
     
     static var previews: some View {
-        
-        PostView(post: post, commentCount: 0)
+        PostView(post: post)
     }
 }

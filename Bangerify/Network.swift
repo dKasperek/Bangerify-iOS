@@ -134,7 +134,7 @@ class Network: ObservableObject {
                                                              date: comment["date"].stringValue,
                                                              grade: comment["grade"].intValue,
                                                              username: comment["username"].stringValue,
-                                                             visible_name: comment["visible_name"].stringValue,
+                                                             visibleName: comment["visible_name"].stringValue,
                                                              id: comment["id"].intValue,
                                                              profilePictureUrl: comment["profilePictureUrl"].stringValue,
                                                              userId: comment["userId"].intValue)

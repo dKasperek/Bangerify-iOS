@@ -30,14 +30,17 @@ struct ContentView: View {
                             .padding(.vertical, 8)
                         }
                     }
-                    Button("Logout") {
-                        authenticationService.clearToken()
-                    }
-                    .padding()
                 }
                 .padding(.horizontal)
                 .background(Color(.systemGroupedBackground))
                 .navigationTitle("Mainboard")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Logout") {
+                            authenticationService.clearToken()
+                        }
+                    }
+                }
                 .refreshable {
                     postService.loadPosts(completion: { [weak postService] posts in
                         postService?.posts = posts

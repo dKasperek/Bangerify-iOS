@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct ContentView: View {
+struct MainboardView: View {
     @ObservedObject var postService = PostService()
     @EnvironmentObject var authenticationService: AuthenticationService
     
@@ -61,6 +61,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainboardView()
     }
 }

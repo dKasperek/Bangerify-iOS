@@ -15,7 +15,7 @@ struct BangerifyApp: App {
         WindowGroup {
             Group {
                 if authenticationService.isAuthenticated {
-                    ContentView()
+                    MainboardView()
                 } else {
                     LoginRegisterView()
                 }

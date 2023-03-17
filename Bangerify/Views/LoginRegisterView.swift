@@ -55,18 +55,31 @@ struct LoginRegisterView: View {
                         }
                     }
                 }
-                .padding()
+                .font(.custom("LondrinaSolid-Regular", size: 17).bold())
+                .padding(8)
+                .background(Color(.black))
+                .foregroundColor(.white)
+                .cornerRadius(8)
+                
+                Spacer().frame(height: 20)
                 
                 Button("Register instead") {
                     
                 }
-                .padding()
+                .font(.custom("LondrinaSolid-Regular", size: 17))
+                .padding(8)
+                .background(Color(.black))
+                .foregroundColor(.white)
+                .cornerRadius(8)
+                
+                Spacer().frame(height: 20)
             }
             .padding(.horizontal)
             .background(Color(.secondarySystemGroupedBackground))
             .cornerRadius(10)
             .shadow(radius: 3)
             .padding(.vertical, 8)
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)

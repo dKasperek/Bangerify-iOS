@@ -30,6 +30,7 @@
 		8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */; };
 		8EE9CEF229C3B863004F5A42 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */; };
 		8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */; };
+		8EE9CEF829C4902F004F5A42 /* LondrinaSolid-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		8EE9CEEB29C35521004F5A42 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterView.swift; sourceTree = "<group>"; };
 		8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Regular.ttf"; sourceTree = "<group>"; };
+		8EE9CEFE29C494C3004F5A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 		8E4C20A529819EEB006917D0 /* Bangerify */ = {
 			isa = PBXGroup;
 			children = (
+				8EE9CEFE29C494C3004F5A42 /* Info.plist */,
 				8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */,
 				8E4C20A629819EEB006917D0 /* BangerifyApp.swift */,
 				8ECB359129902A1900D0D3D8 /* Views */,
@@ -100,6 +104,7 @@
 				8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */,
 				8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */,
 				8ECB358B2990278100D0D3D8 /* Images.xcassets */,
+				8EE9CEFB29C490B4004F5A42 /* Fonts */,
 				8E4C20AD29819EEB006917D0 /* Preview Content */,
 			);
 			path = Bangerify;
@@ -152,6 +157,14 @@
 				8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		8EE9CEFB29C490B4004F5A42 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */,
+				8EE9CEF829C4902F004F5A42 /* LondrinaSolid-Regular.ttf in Resources */,
 				8ECB358C2990278100D0D3D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +398,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bangerify/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Bangerify;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -425,6 +440,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bangerify/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Bangerify;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

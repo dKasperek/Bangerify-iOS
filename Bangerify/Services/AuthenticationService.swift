@@ -62,10 +62,9 @@ class AuthenticationService: ObservableObject {
                     do {
                         let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
                         DispatchQueue.main.async {
-                            print(tokenResponse)
                             self.accessToken = tokenResponse.accessToken
                             self.storeRefreshToken(tokenResponse.refreshToken)
-                            completion(.success(tokenResponse.refreshToken))
+                            completion(.success(tokenResponse.accessToken))
                         }
                     } catch {
                         DispatchQueue.main.async {
@@ -132,7 +131,6 @@ class AuthenticationService: ObservableObject {
     
     func storeRefreshToken(_ token: String) {
         keychain.set(token, forKey: "refreshToken")
-        isAuthenticated = true
     }
     
     func getRefreshToken() -> String? {

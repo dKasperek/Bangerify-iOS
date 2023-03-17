@@ -45,8 +45,8 @@ struct LoginRegisterView: View {
                         } else {
                             authService.login(username: email, password: password) { result in
                                 switch result {
-                                case .success(let refreshToken):
-                                    authenticationService.storeRefreshToken(refreshToken)
+                                case .success(_):
+                                    authenticationService.isAuthenticated = true
                                     
                                 case .failure(let error):
                                     print("Login failed: \(error.localizedDescription)")

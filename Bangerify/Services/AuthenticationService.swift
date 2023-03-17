@@ -10,6 +10,7 @@ import Combine
 import SwiftKeychainWrapper
 
 struct TokenResponse: Codable {
+    let accessToken: String
     let refreshToken: String
 }
 
@@ -24,6 +25,7 @@ class AuthenticationService: ObservableObject {
     @Published var isAuthenticated: Bool = false
     private let keychain = KeychainWrapper.standard
     private var cancellables = Set<AnyCancellable>()
+    private var accessToken: String?
     
     init() {
         isAuthenticated = keychain.string(forKey: "refreshToken") != nil
@@ -61,6 +63,8 @@ class AuthenticationService: ObservableObject {
                         let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
                         DispatchQueue.main.async {
                             print(tokenResponse)
+                            self.accessToken = tokenResponse.accessToken
+                            self.storeRefreshToken(tokenResponse.refreshToken)
                             completion(.success(tokenResponse.refreshToken))
                         }
                     } catch {
@@ -122,6 +126,9 @@ class AuthenticationService: ObservableObject {
         }
     }
     
+    func getAccessToken() -> String? {
+        return accessToken
+    }
     
     func storeRefreshToken(_ token: String) {
         keychain.set(token, forKey: "refreshToken")

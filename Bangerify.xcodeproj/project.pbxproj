@@ -31,6 +31,7 @@
 		8EE9CEF229C3B863004F5A42 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */; };
 		8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */; };
 		8EE9CEF829C4902F004F5A42 /* LondrinaSolid-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */; };
+		8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		8EE9CEF129C3B863004F5A42 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Regular.ttf"; sourceTree = "<group>"; };
 		8EE9CEFE29C494C3004F5A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				8E4C20A829819EEB006917D0 /* MainboardView.swift */,
 				8E9404F1298710BD00F647C8 /* ProfileView.swift */,
 				8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */,
+				8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */,
 				8E4C20B62981A60D006917D0 /* Network.swift in Sources */,
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
+				8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,
 				8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */,
 				8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */,

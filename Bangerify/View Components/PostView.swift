@@ -20,7 +20,7 @@ public struct PostView: View {
         VStack {
             ZStack {
                 HStack {
-                    if let url = URL(string: post.profilePictureUrl) {
+                    if let url = URL(string: post.profilePictureUrl ?? "") {
                         KFImage(url)
                             .placeholder {
                                 Image(systemName: "hourglass")

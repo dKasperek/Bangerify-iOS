@@ -25,7 +25,6 @@ class AuthenticationService: ObservableObject {
     @Published var isAuthenticated: Bool = false
     private let keychain = KeychainWrapper.standard
     private var cancellables = Set<AnyCancellable>()
-    private var accessToken: String?
     
     init() {
         isAuthenticated = keychain.string(forKey: "refreshToken") != nil
@@ -62,7 +61,7 @@ class AuthenticationService: ObservableObject {
                     do {
                         let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
                         DispatchQueue.main.async {
-                            self.accessToken = tokenResponse.accessToken
+                            self.storeAccessToken(tokenResponse.accessToken)
                             self.storeRefreshToken(tokenResponse.refreshToken)
                             completion(.success(tokenResponse.accessToken))
                         }
@@ -125,8 +124,13 @@ class AuthenticationService: ObservableObject {
         }
     }
     
+    
+    func storeAccessToken(_ token: String) {
+        keychain.set(token, forKey: "accessToken")
+    }
+    
     func getAccessToken() -> String? {
-        return accessToken
+        return keychain.string(forKey: "accessToken")
     }
     
     func storeRefreshToken(_ token: String) {
@@ -138,7 +142,7 @@ class AuthenticationService: ObservableObject {
     }
     
     func clearToken() {
-        keychain.removeObject(forKey: "refreshToken")
+        keychain.removeAllKeys()
         isAuthenticated = false
     }
 }

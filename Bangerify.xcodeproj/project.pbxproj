@@ -32,6 +32,8 @@
 		8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */; };
 		8EE9CEF829C4902F004F5A42 /* LondrinaSolid-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */; };
 		8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */; };
+		8EE9CF0329C65B90004F5A42 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CF0229C65B90004F5A42 /* Alamofire */; };
+		8EE9CF0629C65BBD004F5A42 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CF0529C65BBD004F5A42 /* JWTDecode */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EE9CF0329C65B90004F5A42 /* Alamofire in Frameworks */,
 				8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */,
+				8EE9CF0629C65BBD004F5A42 /* JWTDecode in Frameworks */,
 				8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */,
 				8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */,
 				8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */,
@@ -191,6 +195,8 @@
 				8EDA17A62985D8620038F888 /* MarkdownUI */,
 				8EDA17AC2985E1980038F888 /* Kingfisher */,
 				8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */,
+				8EE9CF0229C65B90004F5A42 /* Alamofire */,
+				8EE9CF0529C65BBD004F5A42 /* JWTDecode */,
 			);
 			productName = Bangerify;
 			productReference = 8E4C20A329819EEB006917D0 /* Bangerify.app */;
@@ -225,6 +231,8 @@
 				8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8EE9CEF429C3C22A004F5A42 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				8EE9CF0129C65B90004F5A42 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				8EE9CF0429C65BBD004F5A42 /* XCRemoteSwiftPackageReference "JWTDecode" */,
 			);
 			productRefGroup = 8E4C20A429819EEB006917D0 /* Products */;
 			projectDirPath = "";
@@ -528,6 +536,22 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		8EE9CF0129C65B90004F5A42 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8EE9CF0429C65BBD004F5A42 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -550,6 +574,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8EE9CEF429C3C22A004F5A42 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		8EE9CF0229C65B90004F5A42 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8EE9CF0129C65B90004F5A42 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8EE9CF0529C65BBD004F5A42 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8EE9CF0429C65BBD004F5A42 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

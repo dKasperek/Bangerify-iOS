@@ -77,10 +77,18 @@ public struct PostView: View {
                 .padding(5)
             
             HStack {
-                Image(systemName: "heart")
-                    .font(Font.system(.title3))
+                if (post.liked == 1) {
+                    Image(systemName: "heart.fill")
+                        .font(Font.system(.title3))
+                } else {
+                    Image(systemName: "heart")
+                        .font(Font.system(.title3))
+                }
+                
                 Text(String(post.likes))
+                
                 Spacer()
+                
                 if (comments?.isEmpty == false) {
                     Image(systemName: "bubble.left.fill")
                         .font(Font.system(.title3))
@@ -90,6 +98,7 @@ public struct PostView: View {
                         .font(Font.system(.title3))
                     Text(String(0)).font(Font.system(.title3))
                 }
+                
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
             if comments != nil {
@@ -122,7 +131,8 @@ struct PostView_Previews: PreviewProvider {
         username: "wojciehc",
         visibleName: "wojciech",
         profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
-        likes: 3
+        likes: 3,
+        liked: 1
     )
     
     static var previews: some View {

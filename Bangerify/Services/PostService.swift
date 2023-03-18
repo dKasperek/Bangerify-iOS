@@ -51,7 +51,7 @@ class PostService: ObservableObject {
                                         userId: postJSON["userId"].intValue,
                                         username: postJSON["username"].stringValue,
                                         visibleName: postJSON["visible_name"].stringValue,
-                                        profilePictureUrl: postJSON["profilePictureUrl"].stringValue) // TODO: Nil
+                                        profilePictureUrl: postJSON["profilePictureUrl"].stringValue)
                         group.enter()
                         self.getLikeCountAuth(for: postJSON["id"].intValue) { likeAuth in
                             post.likes = likeAuth.likes

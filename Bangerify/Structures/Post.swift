@@ -15,7 +15,7 @@ struct Post: Identifiable{
     let userId: Int
     let username: String
     let visibleName: String
-    let profilePictureUrl: String
+    var profilePictureUrl: String = ""
     var likes: Int = 0
     var liked: Int = 0
 }

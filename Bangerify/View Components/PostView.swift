@@ -20,15 +20,23 @@ public struct PostView: View {
         VStack {
             ZStack {
                 HStack {
-                    KFImage(URL(string: post.profilePictureUrl))
-                        .placeholder {
-                            Image(systemName: "hourglass")
-                                .foregroundColor(.gray)
-                        }
-                        .cancelOnDisappear(true)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50)
+                    if let url = URL(string: post.profilePictureUrl) {
+                        KFImage(url)
+                            .placeholder {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.gray)
+                            }
+                            .cancelOnDisappear(true)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
+                    } else {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .foregroundColor(.gray)
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
+                    }
                     
                     VStack (alignment: .leading){
                         HStack {

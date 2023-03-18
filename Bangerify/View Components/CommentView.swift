@@ -20,18 +20,29 @@ public struct CommentView: View {
             Divider()
             VStack{
                 HStack{
-                    KFImage(URL(string: comment.profilePictureUrl))
-                        .placeholder {
-                            Image(systemName: "hourglass")
-                                .foregroundColor(.gray)
-                        }
-                        .cancelOnDisappear(true)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 30, height: 30)
+                    if let url = URL(string: comment.profilePictureUrl) {
+                        KFImage(url)
+                            .placeholder {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.gray)
+                            }
+                            .cancelOnDisappear(true)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 30, height: 30)
+                    } else {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .foregroundColor(.gray)
+                            .clipShape(Circle())
+                            .frame(width: 30, height: 30)
+                    }
+                    
                     Text(comment.visibleName)
                         .font(.subheadline)
+                    
                     Spacer()
+                    
                     Text(formatDate(dateString: comment.date))
                         .font(.caption)
                         .fontWeight(.light)

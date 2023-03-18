@@ -34,6 +34,7 @@
 		8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */; };
 		8EE9CF0329C65B90004F5A42 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CF0229C65B90004F5A42 /* Alamofire */; };
 		8EE9CF0629C65BBD004F5A42 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 8EE9CF0529C65BBD004F5A42 /* JWTDecode */; };
+		8EE9CF0A29C666B0004F5A42 /* Likes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CF0929C666B0004F5A42 /* Likes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		8EE9CEF729C4902F004F5A42 /* LondrinaSolid-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LondrinaSolid-Regular.ttf"; sourceTree = "<group>"; };
 		8EE9CEFE29C494C3004F5A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		8EE9CF0929C666B0004F5A42 /* Likes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Likes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				8E4C20B72981A67C006917D0 /* Post.swift */,
 				8ECB359429902AE100D0D3D8 /* Comment.swift */,
 				8E9404F32987113F00F647C8 /* Profile.swift */,
+				8EE9CF0929C666B0004F5A42 /* Likes.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */,
 				8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */,
 				8E4C20B62981A60D006917D0 /* Network.swift in Sources */,
+				8EE9CF0A29C666B0004F5A42 /* Likes.swift in Sources */,
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
 				8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,

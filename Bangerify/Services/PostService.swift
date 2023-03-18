@@ -7,16 +7,17 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class PostService: ObservableObject {
     @Published var posts: [Post]?
+    let authenticationService = AuthenticationService()
     
     init() {
         loadPosts(completion: { [weak self] posts in
             self?.posts = posts
         })
     }
-    
     
     static let shared = PostService()
     
@@ -52,8 +53,9 @@ class PostService: ObservableObject {
                                         visibleName: postJSON["visible_name"].stringValue,
                                         profilePictureUrl: postJSON["profilePictureUrl"].stringValue) // TODO: Nil
                         group.enter()
-                        self.getLikeCount(for: postJSON["id"].intValue) { likeCount in
-                            post.likes = likeCount
+                        self.getLikeCountAuth(for: postJSON["id"].intValue) { likeAuth in
+                            post.likes = likeAuth.likes
+                            post.liked = likeAuth.liked
                             decodedPosts.append(post)
                             group.leave()
                         }
@@ -99,6 +101,34 @@ class PostService: ObservableObject {
             }
         }
         dataTask.resume()
+    }
+    
+    func getLikeCountAuth(for postId: Int, completion: @escaping (AuthenticatedLikes) -> Void) {
+        guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikesAuth") else { fatalError("Missing URL") }
+        
+        authenticationService.getValidAccessToken { accessToken in
+            guard let accessToken = accessToken else {
+                print("Error getting valid access token")
+                return
+            }
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(accessToken)"
+            ]
+            
+            let parameters: Parameters = [
+                "postId": postId
+            ]
+            
+            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: AuthenticatedLikes.self) { response in
+                switch response.result {
+                case .success(let authenticatedLikes):
+                    completion(authenticatedLikes)
+                case .failure(let error):
+                    print("Request error: ", error)
+                }
+            }
+        }
     }
     
     func loadUserPosts(author: String, completion: @escaping ([Post]?) -> Void) {

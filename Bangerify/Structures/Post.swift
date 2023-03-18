@@ -17,9 +17,6 @@ struct Post: Identifiable{
     let visibleName: String
     let profilePictureUrl: String
     var likes: Int = 0
-}
-
-struct Likes: Codable {
-    let likes: Int
+    var liked: Int = 0
 }
 

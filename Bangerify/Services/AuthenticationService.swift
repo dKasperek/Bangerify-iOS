@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 import SwiftKeychainWrapper
+import Alamofire
+import JWTDecode
 
 struct TokenResponse: Codable {
     let accessToken: String
@@ -124,6 +126,50 @@ class AuthenticationService: ObservableObject {
         }
     }
     
+    func isAccessTokenValid() -> Bool {
+        do {
+            let jwt = try decode(jwt: getAccessToken() ?? "")
+            let expirationDate = jwt.expiresAt
+            return expirationDate?.compare(Date()) == .orderedDescending
+        } catch {
+            return false
+        }
+    }
+    
+    func refreshAccessToken(completion: @escaping (String?) -> Void) {
+        if let refreshToken = getRefreshToken() {
+            let parameters = ["token": refreshToken]
+            AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: TokenResponse.self) { response in
+                switch response.result {
+                case .success(let tokenResponse):
+                    self.storeAccessToken(tokenResponse.accessToken)
+                    self.storeRefreshToken(tokenResponse.refreshToken)
+                    completion(tokenResponse.accessToken)
+                    
+                case .failure(let error):
+                    print("Error refreshing access token: \(error.localizedDescription)")
+                    completion(nil)
+                }
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    
+    func getValidAccessToken(completion: @escaping (String?) -> Void) {
+        if let accessToken = getAccessToken() {
+            do {
+                let _ = try decode(jwt: accessToken)
+                completion(accessToken)
+            } catch {
+                refreshAccessToken { refreshedAccessToken in
+                    completion(refreshedAccessToken)
+                }
+            }
+        } else {
+            completion(nil)
+        }
+    }
     
     func storeAccessToken(_ token: String) {
         keychain.set(token, forKey: "accessToken")

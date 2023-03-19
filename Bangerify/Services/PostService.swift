@@ -125,6 +125,8 @@ class PostService: ObservableObject {
                 case .success(let authenticatedLikes):
                     completion(authenticatedLikes)
                 case .failure(let error):
+                    print(self.authenticationService.getAccessToken())
+                    print(self.authenticationService.getRefreshToken())
                     print("Request error: ", error)
                 }
             }

@@ -11,9 +11,9 @@ import SwiftUI
 struct BangerifyApp: App {
     @StateObject private var authenticationService = AuthenticationService()
     
-    init() {
-        authenticationService.clearToken()
-    }
+//    init() {
+//        authenticationService.clearToken()
+//    }
     
     var body: some Scene {
         WindowGroup {

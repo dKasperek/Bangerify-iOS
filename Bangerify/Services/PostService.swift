@@ -23,54 +23,36 @@ class PostService: ObservableObject {
     
     func loadPosts(completion: @escaping ([Post]?) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/getPosts") else { fatalError("Missing URL") }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print("Request error: ", error)
-                return
-            }
-            
-            guard let data = data else {
-                print("Invalid data from request: ", url)
-                return
-            }
-            
-            do {
-                let json = try JSON(data: data)
+
+        AF.request(url, method: .post).responseDecodable(of: [Post].self) { response in
+            switch response.result {
+            case .success(let posts):
                 var decodedPosts: [Post] = []
                 let group = DispatchGroup()
-                
-                if let postArray = json.array {
-                    for postJSON in postArray {
-                        var post = Post(id: postJSON["id"].intValue,
-                                        text: postJSON["text"].stringValue,
-                                        date: postJSON["date"].stringValue,
-                                        userId: postJSON["userId"].intValue,
-                                        username: postJSON["username"].stringValue,
-                                        visibleName: postJSON["visible_name"].stringValue,
-                                        profilePictureUrl: postJSON["profilePictureUrl"].stringValue)
-                        group.enter()
-                        self.getLikeCountAuth(for: postJSON["id"].intValue) { likeAuth in
-                            post.likes = likeAuth.likes
-                            post.liked = likeAuth.liked
-                            decodedPosts.append(post)
-                            group.leave()
-                        }
+
+                for post in posts {
+                    var postWithLikes = post
+                    group.enter()
+                    self.getLikeCountAuth(for: post.id) { likeAuth in
+                        postWithLikes.likes = likeAuth.likes
+                        postWithLikes.liked = likeAuth.liked
+                        decodedPosts.append(postWithLikes)
+                        group.leave()
                     }
                 }
                 group.notify(queue: .main) {
                     decodedPosts.sort(by: { $0.id > $1.id })
                     completion(decodedPosts)
                 }
-            } catch let error {
-                print("Error decoding: ", error)
+                
+            case .failure(let error):
+                print("Request error: ", error)
+                completion(nil)
             }
         }
-        dataTask.resume()
     }
+
+
     
     func getLikeCount(for postId: Int, completion: @escaping (Int) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikes") else { fatalError("Missing URL") }
@@ -125,8 +107,6 @@ class PostService: ObservableObject {
                 case .success(let authenticatedLikes):
                     completion(authenticatedLikes)
                 case .failure(let error):
-                    print(self.authenticationService.getAccessToken())
-                    print(self.authenticationService.getRefreshToken())
                     print("Request error: ", error)
                 }
             }
@@ -159,23 +139,25 @@ class PostService: ObservableObject {
                 var decodedPosts: [Post] = []
                 let group = DispatchGroup()
                 
-                if let postArray = json.array {
-                    for postJSON in postArray {
-                        var post = Post(id: postJSON["id"].intValue,
-                                        text: postJSON["text"].stringValue,
-                                        date: postJSON["date"].stringValue,
-                                        userId: postJSON["userId"].intValue,
-                                        username: postJSON["username"].stringValue,
-                                        visibleName: postJSON["visible_name"].stringValue,
-                                        profilePictureUrl: postJSON["profilePictureUrl"].stringValue) // TODO: Nil
-                        group.enter()
-                        self.getLikeCount(for: postJSON["id"].intValue) { likeCount in
-                            post.likes = likeCount
-                            decodedPosts.append(post)
-                            group.leave()
-                        }
-                    }
-                }
+//                if let postArray = json.array {
+//                    for postJSON in postArray {
+//                        let imagesArray: [URL]? = postJSON["images"].string?.components(separatedBy: "\", \"").compactMap { URL(string: $0.replacingOccurrences(of: "[\"", with: "").replacingOccurrences(of: "\"]", with: "")) }
+//                        var post = Post(id: postJSON["id"].intValue,
+//                                        text: postJSON["text"].stringValue,
+//                                        date: postJSON["date"].stringValue,
+//                                        images: imagesArray,
+//                                        userId: postJSON["userId"].intValue,
+//                                        username: postJSON["username"].stringValue,
+//                                        visibleName: postJSON["visible_name"].stringValue,
+//                                        profilePictureUrl: postJSON["profilePictureUrl"].stringValue) // TODO: Nil
+//                        group.enter()
+//                        self.getLikeCount(for: postJSON["id"].intValue) { likeCount in
+//                            post.likes = likeCount
+//                            decodedPosts.append(post)
+//                            group.leave()
+//                        }
+//                    }
+//                }
                 group.notify(queue: .main) {
                     decodedPosts.sort(by: { $0.id > $1.id })
                     completion(decodedPosts)

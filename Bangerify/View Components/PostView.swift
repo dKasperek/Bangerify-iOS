@@ -10,11 +10,13 @@ import SwiftUI
 import Network
 import MarkdownUI
 import Kingfisher
+import Combine
 
 public struct PostView: View {
     
     let post: Post
     @State private var comments: [Comment]?
+    @State private var index = 0
     
     public var body: some View {
         VStack {
@@ -40,7 +42,7 @@ public struct PostView: View {
                     
                     VStack (alignment: .leading){
                         HStack {
-                            Text(post.visibleName)
+                            Text(post.visible_name)
                                 .font(.headline)
                             Spacer()
                             Image(systemName: "ellipsis")
@@ -83,6 +85,25 @@ public struct PostView: View {
                 }
             }.id(post.id)
                 .padding(5)
+            
+            if let images = post.images, !images.isEmpty {
+                if (post.images?.count == 1) {
+                    KFImage(post.images?.first)
+                        .placeholder {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.gray)
+                        }
+                        .cancelOnDisappear(true)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                } else {
+                    let firstImageAspectRatio: CGFloat = 1.5 // Replace this value with the actual aspect ratio of the first image
+                    let carouselHeight = UIScreen.main.bounds.width / firstImageAspectRatio
+                    
+                    MultiImageView(images: images, height: carouselHeight, index: $index)
+                }
+            }
             
             HStack {
                 if (post.liked == 1) {
@@ -135,6 +156,7 @@ struct PostView_Previews: PreviewProvider {
         id: 138,
         text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
         date: "2023-01-30T13:11:23.000Z",
+        images: [URL(string: "https://bangerify-media.s3.eu-central-1.amazonaws.com/8543f960fd209be3389357a9e36e80f4")!, URL(string: "https://bangerify-media.s3.eu-central-1.amazonaws.com/8543f960fd209be3389357a9e36e80f4")!],
         userId: 5,
         username: "wojciehc",
         visibleName: "wojciech",

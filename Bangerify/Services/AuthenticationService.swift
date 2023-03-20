@@ -28,6 +28,9 @@ class AuthenticationService: ObservableObject {
     private let keychain = KeychainWrapper.standard
     private var cancellables = Set<AnyCancellable>()
     
+    private let tokenRefreshQueue = DispatchQueue(label: "tokenRefreshQueue")
+    private let tokenRefreshSemaphore = DispatchSemaphore(value: 1)
+    
     init() {
         isAuthenticated = keychain.string(forKey: "refreshToken") != nil
     }
@@ -137,36 +140,44 @@ class AuthenticationService: ObservableObject {
     }
     
     func refreshAccessToken(completion: @escaping (String?) -> Void) {
-        if let refreshToken = getRefreshToken() {
-            let parameters = ["token": refreshToken]
-            AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
-                .responseData { response in
-                    switch response.result {
-                    case .success(let data):
-                        print("Raw response data: \(String(data: data, encoding: .utf8) ?? "Unable to convert data to string")")
-                        
-                        do {
-                            let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
-                            print("Old refresh token:", refreshToken)
-                            print("New refresh token:", tokenResponse.refreshToken)
-                            print("New access token:", tokenResponse.accessToken)
-                            self.storeAccessToken(tokenResponse.accessToken)
-                            self.storeRefreshToken(tokenResponse.refreshToken)
-                            completion(tokenResponse.accessToken)
-                        } catch let decodingError {
-                            print("Decoding error: \(decodingError.localizedDescription)")
+        tokenRefreshQueue.async {
+            self.tokenRefreshSemaphore.wait()
+            
+            if let refreshToken = self.getRefreshToken() {
+                let parameters = ["token": refreshToken]
+                AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                    .responseData { response in
+                        switch response.result {
+                        case .success(let data):
+                            print("Raw response data: \(String(data: data, encoding: .utf8) ?? "Unable to convert data to string")")
+                            
+                            do {
+                                let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
+                                print("Old refresh token:", refreshToken)
+                                print("New refresh token:", tokenResponse.refreshToken)
+                                print("New access token:", tokenResponse.accessToken)
+                                self.storeAccessToken(tokenResponse.accessToken)
+                                self.storeRefreshToken(tokenResponse.refreshToken)
+                                completion(tokenResponse.accessToken)
+                            } catch let decodingError {
+                                print("Decoding error: \(decodingError.localizedDescription)")
+                                completion(nil)
+                            }
+                            
+                        case .failure(let error):
+                            print("Error refreshing access token: \(error.localizedDescription)")
                             completion(nil)
                         }
                         
-                    case .failure(let error):
-                        print("Error refreshing access token: \(error.localizedDescription)")
-                        completion(nil)
+                        self.tokenRefreshSemaphore.signal()
                     }
-                }
-        } else {
-            completion(nil)
+            } else {
+                self.tokenRefreshSemaphore.signal()
+                completion(nil)
+            }
         }
     }
+
 
     
     func getValidAccessToken(completion: @escaping (String?) -> Void) {

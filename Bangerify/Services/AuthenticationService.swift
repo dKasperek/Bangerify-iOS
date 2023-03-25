@@ -25,6 +25,7 @@ struct RegisterResponse: Decodable {
 class AuthenticationService: ObservableObject {
     
     @Published var isAuthenticated: Bool = false
+    static let shared = AuthenticationService()
     private let keychain = KeychainWrapper.standard
     private var cancellables = Set<AnyCancellable>()
     
@@ -140,69 +141,62 @@ class AuthenticationService: ObservableObject {
     }
     
     func refreshAccessToken(completion: @escaping (String?) -> Void) {
-        tokenRefreshQueue.async {
-            self.tokenRefreshSemaphore.wait()
-            
-            if let refreshToken = self.getRefreshToken() {
-                let parameters = ["token": refreshToken]
-                AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
-                    .responseData { response in
-                        switch response.result {
-                        case .success(let data):
-                            print("Raw response data: \(String(data: data, encoding: .utf8) ?? "Unable to convert data to string")")
-                            
-                            do {
-                                let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
-                                print("Old refresh token:", refreshToken)
-                                print("New refresh token:", tokenResponse.refreshToken)
-                                print("New access token:", tokenResponse.accessToken)
-                                self.storeAccessToken(tokenResponse.accessToken)
-                                self.storeRefreshToken(tokenResponse.refreshToken)
-                                completion(tokenResponse.accessToken)
-                            } catch let decodingError {
-                                print("Decoding error: \(decodingError.localizedDescription)")
-                                completion(nil)
-                            }
-                            
-                        case .failure(let error):
-                            print("Error refreshing access token: \(error.localizedDescription)")
+        if let refreshToken = self.getRefreshToken() {
+            let parameters = ["token": refreshToken]
+            AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            let tokenResponse = try JSONDecoder().decode(TokenResponse.self, from: data)
+                            self.storeAccessToken(tokenResponse.accessToken)
+                            self.storeRefreshToken(tokenResponse.refreshToken)
+                            print("Tokens refreshed")
+                            completion(tokenResponse.accessToken)
+                        } catch let decodingError {
+                            print("Decoding error: \(decodingError.localizedDescription)")
                             completion(nil)
                         }
                         
-                        self.tokenRefreshSemaphore.signal()
+                    case .failure(let error):
+                        print("Error refreshing access token: \(error.localizedDescription)")
+                        self.clearToken()
+                        completion(nil)
                     }
-            } else {
-                self.tokenRefreshSemaphore.signal()
-                completion(nil)
-            }
+                }
+        } else {
+            completion(nil)
         }
     }
-
-
+    
+    
     
     func getValidAccessToken(completion: @escaping (String?) -> Void) {
-        if let accessToken = getAccessToken() {
-            do {
-                let jwt = try decode(jwt: accessToken)
-                let expirationDate = jwt.expiresAt
-                
-                if let expirationDate = expirationDate, expirationDate.compare(Date()) == .orderedDescending {
-                    print("No need to refresh")
-                    completion(accessToken)
-                } else {
-                    print("Starting refresh")
-                    refreshAccessToken { refreshedAccessToken in
+        tokenRefreshQueue.async {
+            self.tokenRefreshSemaphore.wait()
+            if let accessToken = self.getAccessToken() {
+                do {
+                    let jwt = try decode(jwt: accessToken)
+                    let expirationDate = jwt.expiresAt
+                    
+                    if let expirationDate = expirationDate, expirationDate.compare(Date()) == .orderedDescending {
+                        self.tokenRefreshSemaphore.signal()
+                        completion(accessToken)
+                    } else {
+                        self.refreshAccessToken { refreshedAccessToken in
+                            self.tokenRefreshSemaphore.signal()
+                            completion(refreshedAccessToken)
+                        }
+                    }
+                } catch {
+                    self.refreshAccessToken { refreshedAccessToken in
+                        self.tokenRefreshSemaphore.signal()
                         completion(refreshedAccessToken)
                     }
                 }
-            } catch {
-                print("Starting refresh")
-                refreshAccessToken { refreshedAccessToken in
-                    completion(refreshedAccessToken)
-                }
+            } else {
+                completion(nil)
             }
-        } else {
-            completion(nil)
         }
     }
     

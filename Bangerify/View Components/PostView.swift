@@ -15,10 +15,13 @@ import Combine
 public struct PostView: View {
     
     var post: Post
-    @State private var likes: Int = 0
-    @State private var liked: Int = 0
-    @State private var comments: [Comment]?
+    @ObservedObject var viewModel: PostViewModel
     @State private var index = 0
+    
+    public init(post: Post) {
+        self.post = post
+        self.viewModel = PostViewModel(post: post)
+    }
     
     public var body: some View {
         VStack {
@@ -108,7 +111,7 @@ public struct PostView: View {
             }
             
             HStack {
-                if (liked == 1) {
+                if (viewModel.liked == 1) {
                     Image(systemName: "heart.fill")
                         .font(Font.system(.title3))
                 } else {
@@ -116,14 +119,14 @@ public struct PostView: View {
                         .font(Font.system(.title3))
                 }
                 
-                Text(String(likes))
+                Text(String(viewModel.likes))
                 
                 Spacer()
                 
-                if (comments?.isEmpty == false) {
+                if (viewModel.comments?.isEmpty == false) {
                     Image(systemName: "bubble.left.fill")
                         .font(Font.system(.title3))
-                    Text(String(comments!.count)).font(Font.system(.title3))
+                    Text(String(viewModel.comments!.count)).font(Font.system(.title3))
                 } else {
                     Image(systemName: "bubble.left")
                         .font(Font.system(.title3))
@@ -132,33 +135,18 @@ public struct PostView: View {
                 
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
-            if comments != nil {
-                CommentView(comList: comments!)
+            if viewModel.comments != nil {
+                CommentView(comList: viewModel.comments!)
                     .padding(.bottom, 5)
             }
         }
         .padding(5)
         .padding(.top, 10)
-        .onAppear {
-            self.loadComments()
-            self.loadLikes()
+        .onReceive(viewModel.$post) { _ in
+            viewModel.loadData()
         }
     }
     
-    private func loadComments() {
-        let commentService = CommentService()
-        commentService.loadComments(for: post.id)
-        { comments in
-            self.comments = comments
-        }
-    }
-    
-    private func loadLikes() {
-        LikeService.shared.getLikeCountAuth(for: post.id) { likeObject in
-            self.likes = likeObject.likes
-            self.liked = likeObject.liked
-        }
-    }
 }
 
 struct PostView_Previews: PreviewProvider {

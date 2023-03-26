@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct Post: Identifiable, Decodable{
-    let id: Int
-    let text: String
-    let date: String
-    let images: [URL]?
-    let userId: Int
-    let username: String
-    let visible_name: String
-    var profilePictureUrl: String? = nil
+public struct Post: Identifiable, Decodable{
+    public let id: Int
+    public let text: String
+    public let date: String
+    public let images: [URL]?
+    public let userId: Int
+    public let username: String
+    public let visible_name: String
+    public var profilePictureUrl: String? = nil
     
     private enum CodingKeys: String, CodingKey {
         case id, text, date, images, userId, username, visible_name, profilePictureUrl
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
         text = try container.decode(String.self, forKey: .text)

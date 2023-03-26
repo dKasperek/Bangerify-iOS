@@ -12,7 +12,6 @@
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
 		8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* MainboardView.swift */; };
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
-		8E4C20B62981A60D006917D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B52981A60D006917D0 /* Network.swift */; };
 		8E4C20B82981A67C006917D0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B72981A67C006917D0 /* Post.swift */; };
 		8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8E4C20BB29829F59006917D0 /* SwiftyJSON */; };
 		8E7793EF29D0D81F0016C66B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7793EE29D0D81F0016C66B /* PostViewModel.swift */; };
@@ -48,7 +47,6 @@
 		8E4C20A829819EEB006917D0 /* MainboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainboardView.swift; sourceTree = "<group>"; };
 		8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bangerify.entitlements; sourceTree = "<group>"; };
 		8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8E4C20B52981A60D006917D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8E4C20B72981A67C006917D0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8E7793EE29D0D81F0016C66B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		8E9404F1298710BD00F647C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				8ECB359229902A3800D0D3D8 /* View Components */,
 				8ECB359829902C9700D0D3D8 /* Services */,
 				8ECB359329902A6100D0D3D8 /* Structures */,
-				8E4C20B52981A60D006917D0 /* Network.swift */,
 				8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */,
 				8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */,
 				8ECB358B2990278100D0D3D8 /* Images.xcassets */,
@@ -281,7 +278,6 @@
 				8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */,
 				8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */,
 				8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */,
-				8E4C20B62981A60D006917D0 /* Network.swift in Sources */,
 				8EE9CF0A29C666B0004F5A42 /* Likes.swift in Sources */,
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
 				8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */,

@@ -14,7 +14,9 @@ import Combine
 
 public struct PostView: View {
     
-    let post: Post
+    var post: Post
+    @State private var likes: Int = 0
+    @State private var liked: Int = 0
     @State private var comments: [Comment]?
     @State private var index = 0
     
@@ -106,7 +108,7 @@ public struct PostView: View {
             }
             
             HStack {
-                if (post.liked == 1) {
+                if (liked == 1) {
                     Image(systemName: "heart.fill")
                         .font(Font.system(.title3))
                 } else {
@@ -114,7 +116,7 @@ public struct PostView: View {
                         .font(Font.system(.title3))
                 }
                 
-                Text(String(post.likes))
+                Text(String(likes))
                 
                 Spacer()
                 
@@ -139,6 +141,7 @@ public struct PostView: View {
         .padding(.top, 10)
         .onAppear {
             self.loadComments()
+            self.loadLikes()
         }
     }
     
@@ -147,6 +150,13 @@ public struct PostView: View {
         commentService.loadComments(for: post.id)
         { comments in
             self.comments = comments
+        }
+    }
+    
+    private func loadLikes() {
+        LikeService.shared.getLikeCountAuth(for: post.id) { likeObject in
+            self.likes = likeObject.likes
+            self.liked = likeObject.liked
         }
     }
 }

@@ -17,8 +17,6 @@ struct Post: Identifiable, Decodable{
     let username: String
     let visible_name: String
     var profilePictureUrl: String? = nil
-    var likes: Int = 0
-    var liked: Int = 0
     
     private enum CodingKeys: String, CodingKey {
         case id, text, date, images, userId, username, visible_name, profilePictureUrl
@@ -47,8 +45,6 @@ struct Post: Identifiable, Decodable{
         self.username = username
         self.visible_name = visibleName
         self.profilePictureUrl = profilePictureUrl
-        self.likes = likes
-        self.liked = liked
     }
 
 }

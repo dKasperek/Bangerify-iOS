@@ -27,23 +27,8 @@ class PostService: ObservableObject {
         AF.request(url, method: .post).responseDecodable(of: [Post].self) { response in
             switch response.result {
             case .success(let posts):
-                var decodedPosts: [Post] = []
-                let group = DispatchGroup()
-
-                for post in posts {
-                    var postWithLikes = post
-                    group.enter()
-                    LikeService.shared.getLikeCountAuth(for: post.id) { likeAuth in
-                        postWithLikes.likes = likeAuth.likes
-                        postWithLikes.liked = likeAuth.liked
-                        decodedPosts.append(postWithLikes)
-                        group.leave()
-                    }
-                }
-                group.notify(queue: .main) {
-                    decodedPosts.sort(by: { $0.id > $1.id })
-                    completion(decodedPosts)
-                }
+                let decodedPosts = posts.sorted(by: { $0.id > $1.id })
+                completion(decodedPosts)
                 
             case .failure(let error):
                 print("Request error: ", error)

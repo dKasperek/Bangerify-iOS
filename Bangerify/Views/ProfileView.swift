@@ -23,7 +23,7 @@ struct ProfileView: View {
             if let profile = profile, let posts = posts {
                 
                 ProfileHeaderComponent(profile: profile, username: username)
-                                
+                
                 ForEach(posts, id: \.id) { post in
                     Section{
                         PostView(post: post)
@@ -43,14 +43,18 @@ struct ProfileView: View {
     }
     
     private func loadProfile() {
-        let profileService = ProfileService()
-        profileService.loadProfile(username: self.username) { profile in
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        ProfileService.shared.loadProfile(username: self.username) { profile in
             self.profile = profile
+            dispatchGroup.leave()
         }
-            
-        let postService = PostService()
-        postService.loadUserPosts(author: self.username) { posts in
-        self.posts = posts
+        
+        dispatchGroup.enter()
+        PostService.shared.loadUserPosts(author: self.username) { posts in
+            self.posts = posts
+            dispatchGroup.leave()
         }
     }
     
@@ -61,5 +65,5 @@ struct ProfileView: View {
             ProfileView(username: "wojciehc")
         }
     }
-
+    
 }

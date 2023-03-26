@@ -19,21 +19,33 @@ struct ProfileView: View {
     
     
     var body: some View {
-        List {
+        NavigationView {
             if let profile = profile, let posts = posts {
-                
-                ProfileHeaderComponent(profile: profile, username: username)
-                
-                ForEach(posts, id: \.id) { post in
-                    Section{
-                        PostView(post: post)
+                ScrollView {
+                    ProfileHeaderComponent(profile: profile, username: username)
+                    
+                    LazyVStack {
+                        ForEach(posts, id: \.id) { post in
+                            VStack(alignment: .leading) {
+                                Section {
+                                    PostView(post: post)
+                                }
+                            }
+                            .padding(.horizontal)
+                            .background(Color(.secondarySystemGroupedBackground))
+                            .cornerRadius(10)
+                            .shadow(radius: 1)
+                            .padding(.vertical, 8)
+                        }
                     }
                 }
-                
+                .padding(.horizontal)
+                .background(Color(.systemGroupedBackground))
             } else {
                 ProgressView()
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             self.loadProfile()
         }

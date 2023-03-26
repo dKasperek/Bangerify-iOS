@@ -39,6 +39,7 @@ struct ProfileView: View {
                         }
                     }
                 }
+                .clipped()
                 .padding(.horizontal)
                 .background(Color(.systemGroupedBackground))
             } else {

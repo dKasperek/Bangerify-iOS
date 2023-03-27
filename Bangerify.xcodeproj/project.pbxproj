@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E0A82B929D211140094B6C3 /* SinglePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0A82B829D211140094B6C3 /* SinglePostView.swift */; };
 		8E15099D29919D8F008EEE43 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099C29919D8F008EEE43 /* PostService.swift */; };
 		8E15099F29944714008EEE43 /* ProfileHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */; };
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E0A82B829D211140094B6C3 /* SinglePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePostView.swift; sourceTree = "<group>"; };
 		8E15099C29919D8F008EEE43 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComponent.swift; sourceTree = "<group>"; };
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 				8E9404F1298710BD00F647C8 /* ProfileView.swift */,
 				8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */,
 				8EE9CEFF29C4B0FF004F5A42 /* RegisterView.swift */,
+				8E0A82B829D211140094B6C3 /* SinglePostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */,
 				8EE9CF0A29C666B0004F5A42 /* Likes.swift in Sources */,
 				8E9404F42987113F00F647C8 /* Profile.swift in Sources */,
+				8E0A82B929D211140094B6C3 /* SinglePostView.swift in Sources */,
 				8EE9CF0029C4B0FF004F5A42 /* RegisterView.swift in Sources */,
 				8E4C20B82981A67C006917D0 /* Post.swift in Sources */,
 				8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */,

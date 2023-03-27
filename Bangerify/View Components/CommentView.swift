@@ -40,6 +40,7 @@ public struct CommentView: View {
                     
                     Text(comment.visibleName)
                         .font(.subheadline)
+                        .foregroundColor(getGradeColor(grade: comment.grade))
                     
                     Spacer()
                     

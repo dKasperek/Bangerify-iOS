@@ -33,6 +33,7 @@ public struct ProfileHeaderComponent: View {
                         Text(profile.visibleName)
                             .font(.title2)
                             .fontWeight(.semibold)
+                            .foregroundColor(getGradeColor(grade: profile.grade))
                         Spacer()
                         Image(systemName: "ellipsis")
                             .font(Font.system(.body))

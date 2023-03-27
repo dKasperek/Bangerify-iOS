@@ -17,9 +17,10 @@ public struct Post: Identifiable, Decodable{
     public let username: String
     public let visible_name: String
     public var profilePictureUrl: String? = nil
+    public let grade: Int
     
     private enum CodingKeys: String, CodingKey {
-        case id, text, date, images, userId, username, visible_name, profilePictureUrl
+        case id, text, date, images, userId, username, visible_name, profilePictureUrl, grade
     }
     
     public init(from decoder: Decoder) throws {
@@ -40,10 +41,11 @@ public struct Post: Identifiable, Decodable{
         username = try container.decode(String.self, forKey: .username)
         visible_name = (try? container.decode(String.self, forKey: .visible_name)) ?? username
         profilePictureUrl = try container.decode(String?.self, forKey: .profilePictureUrl)
+        grade = try container.decode(Int.self, forKey: .grade)
     }
     
     // Old initialization method
-    init(id: Int, text: String, date: String, images: [URL]?, userId: Int, username: String, visibleName: String, profilePictureUrl: String?, likes: Int, liked: Int) {
+    init(id: Int, text: String, date: String, images: [URL]?, userId: Int, username: String, visibleName: String, profilePictureUrl: String?, likes: Int, liked: Int, grade: Int) {
         self.id = id
         self.text = text
         self.date = date
@@ -52,6 +54,7 @@ public struct Post: Identifiable, Decodable{
         self.username = username
         self.visible_name = visibleName
         self.profilePictureUrl = profilePictureUrl
+        self.grade = grade
     }
 
 }

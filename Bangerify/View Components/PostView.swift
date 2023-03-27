@@ -50,6 +50,7 @@ public struct PostView: View {
                             HStack {
                                 Text(post.visible_name)
                                     .font(.headline)
+                                    .foregroundColor(getGradeColor(grade: post.grade))
                                 Spacer()
                                 Image(systemName: "ellipsis")
                                     .font(Font.system(.caption))
@@ -159,7 +160,8 @@ struct PostView_Previews: PreviewProvider {
         visibleName: "wojciech",
         profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
         likes: 3,
-        liked: 1
+        liked: 1,
+        grade: 4
     )
     
     static var previews: some View {

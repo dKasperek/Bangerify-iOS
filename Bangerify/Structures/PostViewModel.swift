@@ -28,7 +28,7 @@ class PostViewModel: ObservableObject {
         }
     }
     
-    private func loadComments() {
+    func loadComments() {
         CommentService.shared.loadComments(for: post.id) { comments in
             DispatchQueue.main.async {
                 self.comments = comments

@@ -10,6 +10,7 @@ import SwiftUI
 struct SinglePostView: View {
     var post: Post
     @ObservedObject var viewModel: PostViewModel
+    @State private var showAddCommentView = false
     
     public init(post: Post) {
         self.post = post
@@ -28,6 +29,21 @@ struct SinglePostView: View {
             .cornerRadius(10)
             .shadow(radius: 1)
             .padding(.vertical, 8)
+            
+            Button(action: {
+                showAddCommentView.toggle()
+            }) {
+                Text("Add comment")
+                    .font(.custom("LondrinaSolid-Regular", size: 17))
+                    .padding(8)
+                    .background(Color(.black))
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            .sheet(isPresented: $showAddCommentView) {
+                AddCommentView(viewModel: viewModel)
+            }
+            
         }
         .clipped()
         .padding(.horizontal)

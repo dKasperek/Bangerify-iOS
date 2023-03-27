@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class CommentService {
     
+    let authenticationService = AuthenticationService.shared
     static let shared = CommentService()
     
     func loadComments(for postId: Int, completion: @escaping ([Comment]) -> Void) {
@@ -45,6 +47,36 @@ class CommentService {
             }
         }
         dataTask.resume()
+    }
+    
+    func sendComment(postId: Int, text: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "http://3.71.193.242:8080/api/commentPost") else { fatalError("Missing URL") }
+        
+        authenticationService.getValidAccessToken { accessToken in
+            guard let accessToken = accessToken else {
+                print("Error getting valid access token")
+                return
+            }
+            
+            let parameters: [String: Any] = [
+                "postId": postId,
+                "text": text
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(accessToken)"
+            ]
+            
+            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response { response in
+                switch response.result {
+                case .success:
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
     }
     
 }

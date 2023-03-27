@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E0A82B929D211140094B6C3 /* SinglePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0A82B829D211140094B6C3 /* SinglePostView.swift */; };
+		8E0A82BB29D21B2D0094B6C3 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */; };
 		8E15099D29919D8F008EEE43 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099C29919D8F008EEE43 /* PostService.swift */; };
 		8E15099F29944714008EEE43 /* ProfileHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */; };
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		8E0A82B829D211140094B6C3 /* SinglePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePostView.swift; sourceTree = "<group>"; };
+		8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		8E15099C29919D8F008EEE43 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComponent.swift; sourceTree = "<group>"; };
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 				8ECB358D2990295B00D0D3D8 /* CommentView.swift */,
 				8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */,
 				8E94DF9629C905280090074C /* MulitImageView.swift */,
+				8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E94DF9729C905280090074C /* MulitImageView.swift in Sources */,
+				8E0A82BB29D21B2D0094B6C3 /* AddCommentView.swift in Sources */,
 				8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */,
 				8ECB358E2990295B00D0D3D8 /* CommentView.swift in Sources */,
 				8E15099F29944714008EEE43 /* ProfileHeaderComponent.swift in Sources */,

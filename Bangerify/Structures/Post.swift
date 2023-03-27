@@ -28,7 +28,14 @@ public struct Post: Identifiable, Decodable{
         text = try container.decode(String.self, forKey: .text)
         date = try container.decode(String.self, forKey: .date)
         let imagesString = try container.decode(String?.self, forKey: .images)
-        images = imagesString?.components(separatedBy: "\", \"").compactMap { URL(string: $0.replacingOccurrences(of: "[\"", with: "").replacingOccurrences(of: "\"]", with: "")) }
+        if let imagesString = imagesString, !imagesString.isEmpty, imagesString != "[]" {
+            images = imagesString.components(separatedBy: "\", \"").compactMap {
+                URL(string: $0.replacingOccurrences(of: "[\"", with: "").replacingOccurrences(of: "\"]", with: ""))
+            }
+        } else {
+            images = []
+        }
+
         userId = try container.decode(Int.self, forKey: .userId)
         username = try container.decode(String.self, forKey: .username)
         visible_name = (try? container.decode(String.self, forKey: .visible_name)) ?? username

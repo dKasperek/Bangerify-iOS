@@ -111,14 +111,17 @@ public struct PostView: View {
             }
             
             HStack {
-                if (viewModel.liked == 1) {
-                    Image(systemName: "heart.fill")
-                        .font(Font.system(.title3))
-                } else {
-                    Image(systemName: "heart")
-                        .font(Font.system(.title3))
+                Button(action: toggleLike) {
+                    if (viewModel.liked == 1) {
+                        Image(systemName: "heart.fill")
+                            .font(Font.system(.title3))
+                            .foregroundColor(.red)
+                    } else {
+                        Image(systemName: "heart")
+                            .font(Font.system(.title3))
+                            .foregroundColor(.primary)
+                    }
                 }
-                
                 Text(String(viewModel.likes))
                 
                 Spacer()
@@ -147,6 +150,17 @@ public struct PostView: View {
         }
     }
     
+    func toggleLike() {
+        LikeService.shared.setLike(for: post.id) {
+            if viewModel.liked == 1 {
+                viewModel.liked = 0
+                viewModel.likes -= 1
+            } else {
+                viewModel.liked = 1
+                viewModel.likes += 1
+            }
+        }
+    }
 }
 
 struct PostView_Previews: PreviewProvider {

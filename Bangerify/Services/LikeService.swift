@@ -71,4 +71,33 @@ class LikeService {
             }
         }
     }
+    
+    func setLike(for postId: Int, completion: @escaping () -> Void) {
+        guard let url = URL(string: "http://3.71.193.242:8080/api/setLike") else { fatalError("Missing URL") }
+        
+        authenticationService.getValidAccessToken { accessToken in
+            guard let accessToken = accessToken else {
+                print("Error getting valid access token")
+                return
+            }
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(accessToken)"
+            ]
+            
+            let parameters: Parameters = [
+                "postId": postId
+            ]
+            
+            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response { response in
+                switch response.result {
+                case .success:
+                    completion()
+                case .failure(let error):
+                    print("Request error: ", error)
+                }
+            }
+        }
+    }
+
 }

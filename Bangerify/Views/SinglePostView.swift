@@ -17,27 +17,21 @@ struct SinglePostView: View {
     }
     
     var body: some View {
-        NavigationView {
-            if let post = post {
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        Section {
-                            PostView(post: post)
-                        }
-                    }
-                    .padding(.horizontal)
-                    .background(Color(.secondarySystemGroupedBackground))
-                    .cornerRadius(10)
-                    .shadow(radius: 1)
-                    .padding(.vertical, 8)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Section {
+                    PostView(post: post)
                 }
-                .clipped()
-                .padding(.horizontal)
-                .background(Color(.systemGroupedBackground))
-            } else {
-                ProgressView()
             }
+            .padding(.horizontal)
+            .background(Color(.secondarySystemGroupedBackground))
+            .cornerRadius(10)
+            .shadow(radius: 1)
+            .padding(.vertical, 8)
         }
+        .clipped()
+        .padding(.horizontal)
+        .background(Color(.systemGroupedBackground))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

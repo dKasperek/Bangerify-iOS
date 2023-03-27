@@ -17,6 +17,7 @@ public struct PostView: View {
     var post: Post
     @ObservedObject var viewModel: PostViewModel
     @State private var index = 0
+    @State private var showAddCommentView = false
     
     public init(post: Post) {
         self.post = post
@@ -126,17 +127,27 @@ public struct PostView: View {
                     }
                 }
                 Text(String(viewModel.likes))
+                    .font(Font.system(.title3))
                 
                 Spacer()
                 
-                if (viewModel.comments?.isEmpty == false) {
-                    Image(systemName: "bubble.left.fill")
-                        .font(Font.system(.title3))
-                    Text(String(viewModel.comments!.count)).font(Font.system(.title3))
-                } else {
-                    Image(systemName: "bubble.left")
-                        .font(Font.system(.title3))
-                    Text(String(0)).font(Font.system(.title3))
+                Text(String(viewModel.comments?.count ?? 0)).font(Font.system(.title3))
+                    .foregroundColor(.primary)
+                Button(action: {
+                    showAddCommentView.toggle()
+                }) {
+                    if (viewModel.comments?.isEmpty == false) {
+                        Image(systemName: "bubble.left.fill")
+                            .font(Font.system(.title3))
+                            .foregroundColor(Color(.systemBlue))
+                    } else {
+                        Image(systemName: "bubble.left")
+                            .font(Font.system(.title3))
+                            .foregroundColor(.primary)
+                    }
+                }
+                .sheet(isPresented: $showAddCommentView) {
+                    AddCommentView(viewModel: viewModel)
                 }
                 
             } .frame(maxWidth: .infinity, alignment: .leading)

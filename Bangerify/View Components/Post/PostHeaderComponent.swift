@@ -10,40 +10,73 @@ import Kingfisher
 
 struct PostHeaderComponent: View {
     var post: Post
+    var username = AuthenticationService.shared.getUsername()
+    @State private var showingEditPostView = false
     
     var body: some View {
         HStack {
-            if let url = URL(string: post.profilePictureUrl ?? "") {
-                KFImage(url)
-                    .placeholder {
-                        Image(systemName: "hourglass")
-                            .foregroundColor(.gray)
-                    }
-                    .cancelOnDisappear(true)
-                    .resizable()
-                    .clipShape(Circle())
-                    .frame(width: 50, height: 50)
-            } else {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .foregroundColor(.gray)
-                    .clipShape(Circle())
-                    .frame(width: 50, height: 50)
+            NavigationLink(destination: ProfileView(username: post.username)) {
+                if let url = URL(string: post.profilePictureUrl ?? "") {
+                    KFImage(url)
+                        .placeholder {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.gray)
+                        }
+                        .cancelOnDisappear(true)
+                        .resizable()
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                } else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .foregroundColor(.gray)
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                }
             }
+            .buttonStyle(PlainButtonStyle())
             
             VStack (alignment: .leading){
                 HStack {
-                    Text(post.visible_name)
-                        .font(.headline)
-                        .foregroundColor(getGradeColor(grade: post.grade))
+                    NavigationLink(destination: ProfileView(username: post.username)) {
+                        Text(post.visible_name)
+                            .font(.headline)
+                            .foregroundColor(getGradeColor(grade: post.grade))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
                     Spacer()
-                    Image(systemName: "ellipsis")
-                        .font(Font.system(.caption))
-                        .foregroundColor(.secondary)
+                    
+                    if post.username == username {
+                        Menu {
+                            Button(action: {
+                                showingEditPostView = true
+                            }) {
+                                Label("Edit post", systemImage: "pencil")
+                            }
+                            Button(role: .destructive, action: {
+                                // Add action for deleting post
+                            }) {
+                                Label("Delete post", systemImage: "trash")
+                                    .foregroundColor(.red)
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
                 HStack {
-                    Text("@" + post.username).font(.subheadline)
+                    NavigationLink(destination: ProfileView(username: post.username)) {
+                        Text("@" + post.username)
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
                     Spacer()
+                    
                     Text(formatDate(dateString: post.date))
                         .font(.caption)
                         .fontWeight(.light)
@@ -52,5 +85,10 @@ struct PostHeaderComponent: View {
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
         } .padding(5)
+            .sheet(isPresented: $showingEditPostView) {
+                        EditPostView(post: post, onPostEdited: {
+                            // You can add any additional actions here when the post is edited
+                        })
+                    }
     }
 }

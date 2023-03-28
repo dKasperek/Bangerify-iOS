@@ -12,6 +12,7 @@ class PostViewModel: ObservableObject {
     @Published var likes: Int = 0
     @Published var liked: Int = 0
     @Published var comments: [Comment]?
+    var onPostTextChanged: (() -> Void)?
     
     private var hasLoadedData: Bool = false
     
@@ -43,5 +44,10 @@ class PostViewModel: ObservableObject {
                 self.liked = likeObject.liked
             }
         }
+    }
+    
+    func updatePostText(newText: String) {
+        post.text = newText
+        onPostTextChanged?()
     }
 }

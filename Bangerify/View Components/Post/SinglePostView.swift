@@ -24,9 +24,7 @@ public struct SinglePostView: View {
     
     public var body: some View {
         VStack {
-            NavigationLink(destination: ProfileView(username: post.username)) {
-               PostHeaderComponent(post: post)
-            }.buttonStyle(PlainButtonStyle())
+            PostHeaderComponent(post: post)
             
             NavigationLink(destination: DetailPostView(post: post)) {
                 VStack {

@@ -10,7 +10,7 @@ import Foundation
 
 public struct Post: Identifiable, Decodable{
     public let id: Int
-    public let text: String
+    public var text: String
     public let date: String
     public let images: [URL]?
     public let userId: Int

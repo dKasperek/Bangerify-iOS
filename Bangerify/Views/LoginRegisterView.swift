@@ -38,6 +38,8 @@ struct LoginRegisterView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .textContentType(.password)
                     
+                    Spacer().frame(height: 20)
+                    
                     Button("Login") {
                         if email.isEmpty || password.isEmpty {
                             errorMessage = "Email or password field is empty!"
@@ -56,35 +58,22 @@ struct LoginRegisterView: View {
                             }
                         }
                     }
-                    .font(.custom("LondrinaSolid-Regular", size: 17).bold())
-                    .padding(8)
-                    .background(Color(.black))
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                    .sentButtonStyle()
                     
                     Spacer().frame(height: 20)
                     
                     NavigationLink(destination: RegisterView()) {
                         Text("Register instead")
-                            .font(.custom("LondrinaSolid-Regular", size: 17))
-                            .padding(8)
-                            .background(Color(.black))
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .cancelButtonStyle()
                     }
                     
                     Spacer().frame(height: 20)
                 }
-                .padding(.horizontal)
-                .background(Color(.secondarySystemGroupedBackground))
-                .cornerRadius(10)
-                .shadow(radius: 3)
-                .padding(.vertical, 8)
+                .cardboardStyle()
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal)
-            .background(Color(.systemGroupedBackground))
+            .backgroundStyle()
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
             }

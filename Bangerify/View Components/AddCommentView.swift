@@ -20,11 +20,7 @@ struct AddCommentView: View {
                 Spacer().frame(height: 60)
                 
                 Text("Add a COMMENT")
-                    .font(.custom("LondrinaSolid-Regular", size: 30))
-                    .padding(12)
-                    .background(Color(.black))
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .headerTitleStyle()
                 
                 Spacer().frame(height: 30)
                 
@@ -53,11 +49,7 @@ struct AddCommentView: View {
                         }
                     }
                 }
-                .font(.custom("LondrinaSolid-Regular", size: 30).bold())
-                .padding(8)
-                .background(Color(.black))
-                .foregroundColor(.white)
-                .cornerRadius(8)
+                .sentButtonStyle()
                 
                 Spacer()
                 
@@ -68,12 +60,10 @@ struct AddCommentView: View {
                     }, label: {
                         VStack {
                             Text("Cancel")
-                                .font(.custom("LondrinaSolid-Regular", size: 17).bold())
-                                .padding(8)
-                                .background(Color(.black))
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                                .cancelButtonStyle()
+                            
                             Spacer().frame(height: 20)
+                            
                             Image(systemName: "arrow.down")
                                 .foregroundColor(.primary)
                         }
@@ -83,10 +73,7 @@ struct AddCommentView: View {
                 }
                 
             }
-            .padding(.horizontal)
-            .background(Color(.secondarySystemGroupedBackground))
-            .cornerRadius(10)
-            .padding(.vertical, 8)
+            .padding()
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
             }

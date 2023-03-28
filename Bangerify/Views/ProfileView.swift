@@ -31,17 +31,13 @@ struct ProfileView: View {
                                     SinglePostView(post: post)
                                 }
                             }
-                            .padding(.horizontal)
-                            .background(Color(.secondarySystemGroupedBackground))
-                            .cornerRadius(10)
-                            .shadow(radius: 1)
-                            .padding(.vertical, 8)
+                            .cardboardStyle()
                         }
                     }
                 }
                 .clipped()
-                .padding(.horizontal)
-                .background(Color(.systemGroupedBackground))
+                .backgroundStyle()
+                
             } else {
                 ProgressView()
             }

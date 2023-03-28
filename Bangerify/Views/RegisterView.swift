@@ -25,11 +25,7 @@ struct RegisterView: View {
                     Spacer().frame(height: 30)
                     
                     Text("Register to BANGERIFY")
-                        .font(.custom("LondrinaSolid-Regular", size: 30))
-                        .padding(12)
-                        .background(Color(.black))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .headerTitleStyle()
                     
                     Spacer().frame(height: 20)
                     
@@ -80,22 +76,12 @@ struct RegisterView: View {
                             }
                         }
                     }
-                    
-                    
-                    .font(.custom("LondrinaSolid-Regular", size: 17).bold())
-                    .padding(8)
-                    .background(Color(.black))
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                    .sentButtonStyle()
                     
                     Spacer().frame(height: 20)
                     
                 }
-                .padding(.horizontal)
-                .background(Color(.secondarySystemGroupedBackground))
-                .cornerRadius(10)
-                .shadow(radius: 3)
-                .padding(.vertical, 8)
+                .cardboardStyle()
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

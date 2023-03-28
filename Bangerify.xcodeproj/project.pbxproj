@@ -25,6 +25,7 @@
 		8E9BBA0D29D3476000183ED1 /* MarkdownContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9BBA0C29D3476000183ED1 /* MarkdownContentView.swift */; };
 		8E9BBA0F29D3485500183ED1 /* ImageViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9BBA0E29D3485500183ED1 /* ImageViewComponent.swift */; };
 		8E9BBA1229D34A6200183ED1 /* SingleCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9BBA1129D34A6200183ED1 /* SingleCommentView.swift */; };
+		8E9BBA1529D3500700183ED1 /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9BBA1429D3500700183ED1 /* AddPostView.swift */; };
 		8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */; };
 		8ECB358C2990278100D0D3D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECB358B2990278100D0D3D8 /* Images.xcassets */; };
 		8ECB358E2990295B00D0D3D8 /* CommentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB358D2990295B00D0D3D8 /* CommentListView.swift */; };
@@ -65,6 +66,7 @@
 		8E9BBA0C29D3476000183ED1 /* MarkdownContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownContentView.swift; sourceTree = "<group>"; };
 		8E9BBA0E29D3485500183ED1 /* ImageViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewComponent.swift; sourceTree = "<group>"; };
 		8E9BBA1129D34A6200183ED1 /* SingleCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommentView.swift; sourceTree = "<group>"; };
+		8E9BBA1429D3500700183ED1 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 		8ECB3589298DC8ED00D0D3D8 /* MarkdownHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownHelper.swift; sourceTree = "<group>"; };
 		8ECB358B2990278100D0D3D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8ECB358D2990295B00D0D3D8 /* CommentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				8E9BBA1029D349E200183ED1 /* Post */,
 				8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */,
 				8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */,
+				8E9BBA1429D3500700183ED1 /* AddPostView.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				8E9BBA0F29D3485500183ED1 /* ImageViewComponent.swift in Sources */,
 				8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */,
 				8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */,
+				8E9BBA1529D3500700183ED1 /* AddPostView.swift in Sources */,
 				8ECB358A298DC8ED00D0D3D8 /* MarkdownHelper.swift in Sources */,
 				8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */,
 				8EE9CF0A29C666B0004F5A42 /* Likes.swift in Sources */,

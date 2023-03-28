@@ -23,16 +23,11 @@ struct MainboardView: View {
                                     SinglePostView(post: post)
                                 }
                             }
-                            .padding(.horizontal)
-                            .background(Color(.secondarySystemGroupedBackground))
-                            .cornerRadius(10)
-                            .shadow(radius: 1)
-                            .padding(.vertical, 8)
+                            .cardboardStyle()
                         }
                     }
                 }
-                .padding(.horizontal)
-                .background(Color(.systemGroupedBackground))
+                .backgroundStyle()
                 .navigationTitle("Mainboard")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

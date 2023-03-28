@@ -24,21 +24,13 @@ struct DetailPostView: View {
                     SinglePostView(post: post)
                 }
             }
-            .padding(.horizontal)
-            .background(Color(.secondarySystemGroupedBackground))
-            .cornerRadius(10)
-            .shadow(radius: 1)
-            .padding(.vertical, 8)
+            .cardboardStyle()
             
             Button(action: {
                 showAddCommentView.toggle()
             }) {
                 Text("Add comment")
-                    .font(.custom("LondrinaSolid-Regular", size: 17))
-                    .padding(8)
-                    .background(Color(.black))
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                    .cancelButtonStyle()
             }
             .sheet(isPresented: $showAddCommentView) {
                 AddCommentView(viewModel: viewModel)
@@ -46,8 +38,7 @@ struct DetailPostView: View {
             
         }
         .clipped()
-        .padding(.horizontal)
-        .background(Color(.systemGroupedBackground))
+        .backgroundStyle()
         .navigationBarTitleDisplayMode(.inline)
     }
 }

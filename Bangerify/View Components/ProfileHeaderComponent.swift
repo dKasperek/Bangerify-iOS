@@ -28,6 +28,7 @@ public struct ProfileHeaderComponent: View {
                     .resizable()
                     .clipShape(Circle())
                     .frame(width: 75, height: 75)
+                
                 VStack (alignment: .leading){
                     HStack {
                         Text(profile.visibleName)

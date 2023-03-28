@@ -59,3 +59,7 @@ public struct Post: Identifiable, Decodable{
 
 }
 
+struct PostData: Encodable {
+    let post: String
+}
+

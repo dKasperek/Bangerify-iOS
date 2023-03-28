@@ -13,6 +13,8 @@ struct AddPostView: View {
     @State private var errorMessage: String? = nil
     @Environment(\.presentationMode) var presentationMode
     
+    let onPostCreated: () -> Void
+    
     var body: some View {
         VStack {
             Spacer().frame(height: 10)
@@ -50,18 +52,19 @@ struct AddPostView: View {
                     errorMessage = "The content of the post can't be empty!"
                     showAlert = true
                 } else {
-                    //                    CommentService.shared.sendComment(postId: viewModel.post.id, text: commentContent) { result in
-                    //                        switch result {
-                    //                        case .success:
-                    //                            DispatchQueue.main.async {
-                    //                                viewModel.loadComments()
-                    //                                self.presentationMode.wrappedValue.dismiss()
-                    //                            }
-                    //                        case .failure(let error):
-                    //                            errorMessage = error.localizedDescription
-                    //                            showAlert = true
-                    //                        }
-                    //                    }
+                    let images: [String] = []
+                    PostService.shared.createPost(postData: postContent, images: images) { result in
+                        switch result {
+                        case .success:
+                            DispatchQueue.main.async {
+                                onPostCreated()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        case .failure(let error):
+                            errorMessage = error.localizedDescription
+                            showAlert = true
+                        }
+                    }
                 }
             }
             .sentButtonStyle()
@@ -78,9 +81,10 @@ struct AddPostView: View {
 
 struct AddPostView_Previews: PreviewProvider {
     static var previews: some View {
-        AddPostView()
+        AddPostView(onPostCreated: {})
             .sheet(isPresented: .constant(true)) {
-                AddPostView()
+                AddPostView(onPostCreated: {})
             }
     }
 }
+

@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct MainboardView: View {
+    @State private var showAddPostView = false
     @ObservedObject var postService = PostService()
     @EnvironmentObject var authenticationService: AuthenticationService
     
@@ -17,6 +18,28 @@ struct MainboardView: View {
             if let posts = postService.posts {
                 ScrollView {
                     LazyVStack {
+                        HStack {
+                            Button(action: {
+                                showAddPostView.toggle()
+                            }) {
+                                Image(systemName: "square.and.pencil")
+                                    .foregroundColor(.primary)
+                                Text("Add a new post...")
+                                
+                            }
+                            .sheet(isPresented: $showAddPostView) {
+                                AddPostView {
+                                    postService.loadPosts(completion: { [weak postService] posts in
+                                        postService?.posts = posts
+                                    })
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(5)
+                        .padding(.vertical, 10)
+                        .cardboardStyle()
+                        
                         ForEach(posts, id: \.id) { post in
                             VStack(alignment: .leading) {
                                 Section() {

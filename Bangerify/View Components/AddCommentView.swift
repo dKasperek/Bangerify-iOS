@@ -17,7 +17,20 @@ struct AddCommentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Spacer().frame(height: 60)
+                Spacer().frame(height: 10)
+                
+                HStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Cancel")
+                            .cancelButtonStyle()
+                    })
+                    
+                    Spacer()
+                }
+                
+                Spacer().frame(height: 50)
                 
                 Text("Add a COMMENT")
                     .headerTitleStyle()
@@ -53,25 +66,6 @@ struct AddCommentView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Spacer().frame(width: 30)
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        VStack {
-                            Text("Cancel")
-                                .cancelButtonStyle()
-                            
-                            Spacer().frame(height: 20)
-                            
-                            Image(systemName: "arrow.down")
-                                .foregroundColor(.primary)
-                        }
-                    })
-                    
-                    Spacer()
-                }
-                
             }
             .padding()
             .alert(isPresented: $showAlert) {
@@ -98,7 +92,7 @@ struct AddCommentView_Previews: PreviewProvider {
             grade: 4
         )
         let viewModel = PostViewModel(post: post)
-
+        
         AddCommentView(viewModel: viewModel)
             .sheet(isPresented: .constant(true)) {
                 AddCommentView(viewModel: viewModel)

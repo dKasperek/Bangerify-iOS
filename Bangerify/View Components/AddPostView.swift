@@ -15,7 +15,20 @@ struct AddPostView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 60)
+            Spacer().frame(height: 10)
+            
+            HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Cancel")
+                        .cancelButtonStyle()
+                })
+                
+                Spacer()
+            }
+            
+            Spacer().frame(height: 50)
             
             Text("Add a POST")
                 .headerTitleStyle()
@@ -54,24 +67,6 @@ struct AddPostView: View {
             .sentButtonStyle()
             
             Spacer()
-            
-            HStack {
-                Spacer().frame(width: 30)
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    VStack {
-                        Text("Cancel")
-                            .cancelButtonStyle()
-                        
-                        Spacer().frame(height: 20)
-                        Image(systemName: "arrow.down")
-                            .foregroundColor(.primary)
-                    }
-                })
-                
-                Spacer()
-            }
             
         }
         .padding()

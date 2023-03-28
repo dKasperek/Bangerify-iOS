@@ -20,7 +20,7 @@ struct MainboardView: View {
                         ForEach(posts, id: \.id) { post in
                             VStack(alignment: .leading) {
                                 Section() {
-                                    PostView(post: post)
+                                    SinglePostView(post: post)
                                 }
                             }
                             .padding(.horizontal)

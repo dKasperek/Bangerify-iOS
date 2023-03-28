@@ -7,7 +7,7 @@
 
 import Foundation
 
-public func divideToArray(rawString: String) -> [String] {
+public func divideMarkdownTextToArray(rawString: String) -> [String] {
     var markupList: [String] = []
     
     if rawString.contains("!["){

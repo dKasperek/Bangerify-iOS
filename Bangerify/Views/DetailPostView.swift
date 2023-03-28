@@ -1,5 +1,5 @@
 //
-//  SinglePostView.swift
+//  DetailPostView.swift
 //  Bangerify
 //
 //  Created by David Kasperek on 27/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SinglePostView: View {
+struct DetailPostView: View {
     var post: Post
     @ObservedObject var viewModel: PostViewModel
     @State private var showAddCommentView = false
@@ -21,7 +21,7 @@ struct SinglePostView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 Section {
-                    PostView(post: post)
+                    SinglePostView(post: post)
                 }
             }
             .padding(.horizontal)
@@ -68,6 +68,6 @@ struct SinglePostView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        SinglePostView(post: post)
+        DetailPostView(post: post)
     }
 }

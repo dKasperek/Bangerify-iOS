@@ -17,24 +17,7 @@ struct AddCommentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Spacer().frame(height: 10)
-                
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Text("Cancel")
-                            .font(.custom("LondrinaSolid-Regular", size: 17).bold())
-                            .padding(8)
-                            .background(Color(.black))
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    })
-                    
-                    Spacer()
-                }
-                
-                Spacer().frame(height: 100)
+                Spacer().frame(height: 60)
                 
                 Text("Add a COMMENT")
                     .font(.custom("LondrinaSolid-Regular", size: 30))
@@ -70,13 +53,34 @@ struct AddCommentView: View {
                         }
                     }
                 }
-                .font(.custom("LondrinaSolid-Regular", size: 17).bold())
+                .font(.custom("LondrinaSolid-Regular", size: 30).bold())
                 .padding(8)
                 .background(Color(.black))
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 
                 Spacer()
+                
+                HStack {
+                    Spacer().frame(width: 30)
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        VStack {
+                            Text("Cancel")
+                                .font(.custom("LondrinaSolid-Regular", size: 17).bold())
+                                .padding(8)
+                                .background(Color(.black))
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                            Spacer().frame(height: 20)
+                            Image(systemName: "arrow.down")
+                                .foregroundColor(.primary)
+                        }
+                    })
+                    
+                    Spacer()
+                }
                 
             }
             .padding(.horizontal)

@@ -69,7 +69,18 @@ class AuthenticationService: ObservableObject {
                         DispatchQueue.main.async {
                             self.storeAccessToken(tokenResponse.accessToken)
                             self.storeRefreshToken(tokenResponse.refreshToken)
-                            completion(.success(tokenResponse.accessToken))
+                            self.fetchUsername { fetchResult in
+                                switch fetchResult {
+                                case .success(let username):
+                                    print("Fetched username: \(username)")
+                                    self.isAuthenticated = true
+                                    completion(.success(tokenResponse.accessToken))
+                                case .failure(let fetchError):
+                                    print("Failed to fetch username: \(fetchError.localizedDescription)")
+                                    self.clearToken()
+                                    completion(.failure(fetchError))
+                                }
+                            }
                         }
                     } catch {
                         DispatchQueue.main.async {
@@ -219,5 +230,41 @@ class AuthenticationService: ObservableObject {
     func clearToken() {
         keychain.removeAllKeys()
         isAuthenticated = false
+    }
+    
+    func fetchUsername(completion: @escaping (Result<String, Error>) -> Void) {
+        getValidAccessToken { accessToken in
+            guard let accessToken = accessToken else {
+                print("Error getting valid access token")
+                return
+            }
+
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(accessToken)"
+            ]
+
+            AF.request("http://3.71.193.242:8080/api/auth/isLogged", method: .get, headers: headers).responseDecodable(of: IsLoggedResponse.self) { response in
+                switch response.result {
+                case .success(let data):
+                    if data.isLogged {
+                        self.storeUsername(data.username)
+                        completion(.success(data.username))
+                    } else {
+                        completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch username"])))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func storeUsername(_ username: String) {
+        keychain.set(username, forKey: "username")
+    }
+    
+    func getUsername() -> String? {
+        return keychain.string(forKey: "username") ?? ""
     }
 }

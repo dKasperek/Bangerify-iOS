@@ -13,9 +13,11 @@ import Combine
 
 public struct SinglePostView: View {
     
-    var post: Post
+    @State var post: Post
+    var username = AuthenticationService.shared.getUsername()
     @ObservedObject var viewModel: PostViewModel
     @State private var showAddCommentView = false
+    @State private var showingEditPostView = false
     
     public init(post: Post) {
         self.post = post
@@ -24,7 +26,86 @@ public struct SinglePostView: View {
     
     public var body: some View {
         VStack {
-            PostHeaderComponent(post: post)
+            // Post header
+            HStack {
+                NavigationLink(destination: ProfileView(username: post.username)) {
+                    if let url = URL(string: post.profilePictureUrl ?? "") {
+                        KFImage(url)
+                            .placeholder {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.gray)
+                            }
+                            .cancelOnDisappear(true)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
+                    } else {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .foregroundColor(.gray)
+                            .clipShape(Circle())
+                            .frame(width: 50, height: 50)
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                VStack (alignment: .leading){
+                    HStack {
+                        NavigationLink(destination: ProfileView(username: post.username)) {
+                            Text(post.visible_name)
+                                .font(.headline)
+                                .foregroundColor(getGradeColor(grade: post.grade))
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Spacer()
+                        
+                        if post.username == username {
+                            Menu {
+                                Button(action: {
+                                    showingEditPostView = true
+                                }) {
+                                    Label("Edit post", systemImage: "pencil")
+                                }
+                                Button(role: .destructive, action: {
+                                    // Add action for deleting post
+                                }) {
+                                    Label("Delete post", systemImage: "trash")
+                                        .foregroundColor(.red)
+                                }
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.headline)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    HStack {
+                        NavigationLink(destination: ProfileView(username: post.username)) {
+                            Text("@" + post.username)
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Spacer()
+                        
+                        Text(formatDate(dateString: post.date))
+                            .font(.caption)
+                            .fontWeight(.light)
+                            .foregroundColor(.secondary)
+                        
+                    }.frame(maxWidth: .infinity, alignment: .leading)
+                }
+            } .padding(5)
+                .sheet(isPresented: $showingEditPostView) {
+                    EditPostView(post: post, onPostEdited: { text in
+                        self.post.text = text
+                        self.viewModel.post.text = text
+                    })
+            }
+            
+            // Post content
             
             NavigationLink(destination: DetailPostView(post: post)) {
                 VStack {
@@ -36,8 +117,8 @@ public struct SinglePostView: View {
                 }
             }.buttonStyle(PlainButtonStyle())
             
-            
             HStack {
+                // Post footer
                 Button(action: toggleLike) {
                     if (viewModel.liked == 1) {
                         Image(systemName: "heart.fill")
@@ -75,6 +156,8 @@ public struct SinglePostView: View {
                 
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
+            
+            // Post Comments
             if viewModel.comments != nil {
                 CommentListView(comList: viewModel.comments!)
                     .padding(.bottom, 5)

@@ -14,7 +14,7 @@ struct EditPostView: View {
     @State private var errorMessage: String? = nil
     @Environment(\.presentationMode) var presentationMode
     
-    let onPostEdited: () -> Void
+    let onPostEdited: (String) -> Void
     
     var body: some View {
         VStack {
@@ -60,7 +60,7 @@ struct EditPostView: View {
                            switch result {
                            case .success:
                                DispatchQueue.main.async {
-                                   onPostEdited()
+                                   onPostEdited(postContent)
                                    self.presentationMode.wrappedValue.dismiss()
                                }
                            case .failure(let error):
@@ -85,9 +85,9 @@ struct EditPostView: View {
 struct EditPostView_Previews: PreviewProvider {
     static var previews: some View {
         let samplePost = Post(id: 169, text: "# Hello (again)!", date: "2023-03-28T19:35:19.000Z", images: [], userId: 24, username: "dkaspersky", visibleName: "dkaspersky", profilePictureUrl: "https://bangerify-media.s3.eu-central-1.amazonaws.com/cb20909195147611afd97de1210a3e5f", likes: 0, liked: 1, grade: 1)
-        EditPostView(post: samplePost, onPostEdited: {})
+        EditPostView(post: samplePost, onPostEdited: {_ in })
             .sheet(isPresented: .constant(true)) {
-                EditPostView(post: samplePost, onPostEdited: {})
+                EditPostView(post: samplePost, onPostEdited: {_ in })
             }
     }
 }

@@ -28,8 +28,11 @@ struct ProfileView: View {
                         ForEach(posts, id: \.id) { post in
                             VStack(alignment: .leading) {
                                 Section {
-                                    SinglePostView(post: post)
-                                }
+                                    SinglePostView(post: post, onPostDeleted: {
+                                        if let index = self.posts?.firstIndex(where: { $0.id == post.id }) {
+                                            self.posts?.remove(at: index)
+                                        }
+                                    })                                }
                             }
                             .cardboardStyle()
                         }

@@ -11,6 +11,8 @@ struct DetailPostView: View {
     var post: Post
     @ObservedObject var viewModel: PostViewModel
     @State private var showAddCommentView = false
+    @Environment(\.presentationMode) var presentationMode
+    
     
     public init(post: Post) {
         self.post = post
@@ -21,7 +23,9 @@ struct DetailPostView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 Section {
-                    SinglePostView(post: post)
+                    SinglePostView(post: post, onPostDeleted: {
+                        presentationMode.wrappedValue.dismiss()
+                    })
                 }
             }
             .cardboardStyle()

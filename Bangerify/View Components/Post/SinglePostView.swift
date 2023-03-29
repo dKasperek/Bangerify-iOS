@@ -19,9 +19,12 @@ public struct SinglePostView: View {
     @State private var showAddCommentView = false
     @State private var showingEditPostView = false
     
-    public init(post: Post) {
+    let onPostDeleted: () -> Void
+    
+    public init(post: Post, onPostDeleted: @escaping () -> Void) {
         self.post = post
         self.viewModel = PostViewModel(post: post)
+        self.onPostDeleted = onPostDeleted
     }
     
     public var body: some View {
@@ -68,7 +71,9 @@ public struct SinglePostView: View {
                                     Label("Edit post", systemImage: "pencil")
                                 }
                                 Button(role: .destructive, action: {
-                                    // Add action for deleting post
+                                    deletePost {
+                                        onPostDeleted()
+                                    }
                                 }) {
                                     Label("Delete post", systemImage: "trash")
                                         .foregroundColor(.red)
@@ -103,7 +108,7 @@ public struct SinglePostView: View {
                         self.post.text = text
                         self.viewModel.post.text = text
                     })
-            }
+                }
             
             // Post content
             
@@ -181,6 +186,18 @@ public struct SinglePostView: View {
             }
         }
     }
+    
+    func deletePost(completion: @escaping () -> Void) {
+        PostService.shared.deletePost(postId: post.id) { result in
+            switch result {
+            case .success:
+                print("Post deleted successfully")
+                completion()
+            case .failure(let error):
+                print("Error deleting post: \(error)")
+            }
+        }
+    }
 }
 
 struct PostView_Previews: PreviewProvider {
@@ -199,6 +216,6 @@ struct PostView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        SinglePostView(post: post)
+        SinglePostView(post: post, onPostDeleted: {})
     }
 }

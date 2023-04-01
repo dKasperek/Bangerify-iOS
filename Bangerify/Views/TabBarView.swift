@@ -10,6 +10,17 @@ import SwiftUI
 struct TabBarView: View {
     @State private var selectedTab = 1
     
+    private func onSwipeEnded(drag: DragGesture.Value) {
+        let swipeThreshold: CGFloat = 50
+        if drag.predictedEndTranslation.width > swipeThreshold {
+            // Swipe right detected
+            selectedTab = max(selectedTab - 1, 0)
+        } else if drag.predictedEndTranslation.width < -swipeThreshold {
+            // Swipe left detected
+            selectedTab = min(selectedTab + 1, 2)
+        }
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             AddPostView {
@@ -37,6 +48,10 @@ struct TabBarView: View {
                 }
                 .tag(2)
         }
+        .gesture(DragGesture()
+             .onEnded(onSwipeEnded(drag:))
+         )
+        .animation(.easeOut(duration: 0.2), value: selectedTab)
     }
 }
 

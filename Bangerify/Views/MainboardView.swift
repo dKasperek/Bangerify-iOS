@@ -28,7 +28,7 @@ struct MainboardView: View {
                                 
                             }
                             .sheet(isPresented: $showAddPostView) {
-                                AddPostView {
+                                AddPostSheet {
                                     postService.loadPosts(completion: { [weak postService] posts in
                                         postService?.posts = posts
                                     })

@@ -1,16 +1,36 @@
+//
+//  AddPostView.swift
+//  Bangerify
+//
+//  Created by David Kasperek on 28/03/2023.
+//
+
 import SwiftUI
 
-struct AddPostView: View {
+struct AddPostSheet: View {
     @State private var postContent: String = ""
     @State private var showAlert: Bool = false
     @State private var errorMessage: String? = nil
+    @Environment(\.presentationMode) var presentationMode
     
     let onPostCreated: () -> Void
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 70)
-        
+            Spacer().frame(height: 10)
+            
+            HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Cancel")
+                        .cancelButtonStyle()
+                })
+                
+                Spacer()
+            }
+            
+            Spacer().frame(height: 50)
             
             Text("Add a POST")
                 .headerTitleStyle()
@@ -38,6 +58,7 @@ struct AddPostView: View {
                         case .success:
                             DispatchQueue.main.async {
                                 onPostCreated()
+                                self.presentationMode.wrappedValue.dismiss()
                             }
                         case .failure(let error):
                             errorMessage = error.localizedDescription
@@ -58,8 +79,12 @@ struct AddPostView: View {
     }
 }
 
-struct AddPostView_Previews: PreviewProvider {
+struct AddPostSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AddPostView(onPostCreated: {})
+        AddPostSheet(onPostCreated: {})
+            .sheet(isPresented: .constant(true)) {
+                AddPostSheet(onPostCreated: {})
+            }
     }
 }
+

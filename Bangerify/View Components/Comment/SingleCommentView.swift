@@ -15,27 +15,33 @@ public struct SingleCommentView: View {
     public var body: some View {
         VStack{
             HStack{
-                if let url = URL(string: comment.profilePictureUrl) {
-                    KFImage(url)
-                        .placeholder {
-                            Image(systemName: "hourglass")
-                                .foregroundColor(.gray)
-                        }
-                        .cancelOnDisappear(true)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 30, height: 30)
-                } else {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .foregroundColor(.gray)
-                        .clipShape(Circle())
-                        .frame(width: 30, height: 30)
+                NavigationLink(destination: ProfileView(username: comment.username)) {
+                    if let url = URL(string: comment.profilePictureUrl) {
+                        KFImage(url)
+                            .placeholder {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.gray)
+                            }
+                            .cancelOnDisappear(true)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 30, height: 30)
+                    } else {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .foregroundColor(.gray)
+                            .clipShape(Circle())
+                            .frame(width: 30, height: 30)
+                    }
                 }
+                .buttonStyle(PlainButtonStyle())
                 
-                Text(comment.visibleName)
-                    .font(.subheadline)
-                    .foregroundColor(getGradeColor(grade: comment.grade))
+                NavigationLink(destination: ProfileView(username: comment.username)) {
+                    Text(comment.visibleName)
+                        .font(.headline)
+                        .foregroundColor(getGradeColor(grade: comment.grade))
+                }
+                .buttonStyle(PlainButtonStyle())
                 
                 Spacer()
                 

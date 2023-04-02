@@ -10,7 +10,7 @@ import Kingfisher
 
 struct MainboardView: View {
     @State private var showAddPostView = false
-    @ObservedObject var postService = PostService()
+    @ObservedObject var postService: PostService
     @EnvironmentObject var authenticationService: AuthenticationService
     
     var body: some View {
@@ -84,6 +84,6 @@ struct MainboardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainboardView()
+        MainboardView(postService: PostService())
     }
 }

@@ -16,6 +16,7 @@ public struct SinglePostView: View {
     @State var post: Post
     var username = AuthenticationService.shared.getUsername()
     @ObservedObject var viewModel: PostViewModel
+    @EnvironmentObject var authenticationService: AuthenticationService
     @State private var showAddCommentView = false
     @State private var showingEditPostView = false
     
@@ -170,9 +171,11 @@ public struct SinglePostView: View {
         }
         .padding(5)
         .padding(.top, 10)
-        .onReceive(viewModel.$post) { _ in
-            viewModel.loadData()
-        }
+        .onReceive(authenticationService.$isAuthenticated, perform: { isAuthenticated in
+            if isAuthenticated {
+                viewModel.loadData()
+            }
+        })
     }
     
     func toggleLike() {

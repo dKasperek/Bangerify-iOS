@@ -153,11 +153,12 @@ class AuthenticationService: ObservableObject {
     
     func refreshAccessToken(completion: @escaping (String?) -> Void) {
         if let refreshToken = self.getRefreshToken() {
-            print("Access token: \(getAccessToken())")
-            print("Refresh token: \(getRefreshToken())")
             let parameters = ["token": refreshToken]
             AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                 .responseData { response in
+                    if let data = response.data, let string = String(data: data, encoding: .utf8) {
+                        print("Response content: \(string)")
+                    }
                     switch response.result {
                     case .success(let data):
                         do {

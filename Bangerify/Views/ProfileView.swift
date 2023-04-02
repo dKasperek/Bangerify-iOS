@@ -31,13 +31,16 @@ struct ProfileView: View {
                     HStack {
                         KFImage(URL(string: profile.profilePictureUrl ?? ""))
                             .placeholder {
-                                Image(systemName: "hourglass")
+                                Image(systemName: "person.circle")
+                                    .resizable()
                                     .foregroundColor(.gray)
+                                    .frame(width: 75, height: 75)
                             }
                             .cancelOnDisappear(true)
                             .resizable()
                             .clipShape(Circle())
                             .frame(width: 75, height: 75)
+
                         
                         VStack (alignment: .leading){
                             HStack {
@@ -47,9 +50,31 @@ struct ProfileView: View {
                                     .foregroundColor(getGradeColor(grade: profile.grade))
                                 Spacer()
                                 if isOwner {
-                                    Image(systemName: "ellipsis")
-                                        .font(Font.system(.body))
-                                        .foregroundColor(.secondary)
+                                    Menu {
+                                        Button(action: {
+                                            // Edut visible name
+                                        }) {
+                                            Label("Edit visible name", systemImage: "pencil.line")
+                                        }
+                                        
+                                        Button(action: {
+                                            // Edit profile picture
+                                        }) {
+                                            Label("Change profile picture", systemImage: "camera")
+                                        }
+                                        
+                                        Button(action: {
+                                            // Edit bio text
+                                        }) {
+                                            Label("Change BIO", systemImage: "square.and.pencil")
+                                        }
+                                        
+                                        
+                                    } label: {
+                                        Image(systemName: "ellipsis.circle")
+                                            .font(Font.system(.body))
+                                            .foregroundColor(.primary)
+                                    }
                                 }
                             }
                             HStack {

@@ -10,7 +10,6 @@
 		8E0A82B929D211140094B6C3 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0A82B829D211140094B6C3 /* DetailPostView.swift */; };
 		8E0A82BB29D21B2D0094B6C3 /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */; };
 		8E15099D29919D8F008EEE43 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099C29919D8F008EEE43 /* PostService.swift */; };
-		8E15099F29944714008EEE43 /* ProfileHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */; };
 		8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A629819EEB006917D0 /* BangerifyApp.swift */; };
 		8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20A829819EEB006917D0 /* MainboardView.swift */; };
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
@@ -53,7 +52,6 @@
 		8E0A82B829D211140094B6C3 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
 		8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		8E15099C29919D8F008EEE43 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
-		8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComponent.swift; sourceTree = "<group>"; };
 		8E4C20A329819EEB006917D0 /* Bangerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bangerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E4C20A629819EEB006917D0 /* BangerifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangerifyApp.swift; sourceTree = "<group>"; };
 		8E4C20A829819EEB006917D0 /* MainboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainboardView.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 			children = (
 				8E9BBA1329D34B8800183ED1 /* Comment */,
 				8E9BBA1029D349E200183ED1 /* Post */,
-				8E15099E29944714008EEE43 /* ProfileHeaderComponent.swift */,
 				8E0A82BA29D21B2D0094B6C3 /* AddCommentView.swift */,
 				8E9BBA1429D3500700183ED1 /* AddPostSheet.swift */,
 				8EB0E16D29D8C9D7001F65A6 /* AddPostView.swift */,
@@ -323,7 +320,6 @@
 				8E0A82BB29D21B2D0094B6C3 /* AddCommentView.swift in Sources */,
 				8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */,
 				8ECB358E2990295B00D0D3D8 /* CommentListView.swift in Sources */,
-				8E15099F29944714008EEE43 /* ProfileHeaderComponent.swift in Sources */,
 				8E9BBA0F29D3485500183ED1 /* ImageViewComponent.swift in Sources */,
 				8E4C20A929819EEB006917D0 /* MainboardView.swift in Sources */,
 				8E4C20A729819EEB006917D0 /* BangerifyApp.swift in Sources */,

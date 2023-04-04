@@ -10,9 +10,10 @@ import MarkdownUI
 import Kingfisher
 import Network
 
-
 struct ProfileView: View {
     let username: String
+    @State private var presentUsernameChange = false
+    @State private var newUsername: String = ""
     
     var isOwner: Bool
     @State private var profile: Profile?
@@ -22,7 +23,7 @@ struct ProfileView: View {
         self.username = username
         self.isOwner = (self.username == AuthenticationService.shared.getUsername())
     }
-
+    
     
     var body: some View {
         NavigationView {
@@ -42,7 +43,7 @@ struct ProfileView: View {
                                 .resizable()
                                 .clipShape(Circle())
                                 .frame(width: 75, height: 75)
-
+                            
                             
                             VStack (alignment: .leading){
                                 HStack {
@@ -54,7 +55,7 @@ struct ProfileView: View {
                                     if isOwner {
                                         Menu {
                                             Button(action: {
-                                                // Edut visible name
+                                                presentUsernameChange = true
                                             }) {
                                                 Label("Edit visible name", systemImage: "pencil.line")
                                             }
@@ -76,6 +77,39 @@ struct ProfileView: View {
                                             Image(systemName: "ellipsis.circle")
                                                 .font(Font.system(.body))
                                                 .foregroundColor(.primary)
+                                        }
+                                        .alert("Edit visible name", isPresented: $presentUsernameChange) {
+                                            TextField("New name", text: $newUsername)
+                                                .autocapitalization(.none)
+                                                .disableAutocorrection(true)
+                                                .onAppear {
+                                                    self.newUsername = profile.visibleName
+                                                }
+                                            
+                                            Button("Save", action:  {
+                                                if newUsername.isEmpty {
+                                                    guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                                          let rootViewController = scene.windows.first?.rootViewController else {
+                                                        return
+                                                    }
+                                                    
+                                                    let alert = UIAlertController(title: "Error", message: "Visible name cannot be empty", preferredStyle: .alert)
+                                                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                                    rootViewController.present(alert, animated: true, completion: nil)
+                                                    
+                                                } else {
+                                                    ProfileService.shared.changeVisibleName(newVisibleName: newUsername) { result in
+                                                        switch result {
+                                                        case .success:
+                                                            self.profile?.visibleName = newUsername
+                                                            self.presentUsernameChange = false
+                                                        case .failure(let error):
+                                                            print("Error changing visible name: \(error)")
+                                                        }
+                                                    }
+                                                }
+                                            })
+                                            Button("Cancel", role: .cancel, action: {})
                                         }
                                     }
                                 }

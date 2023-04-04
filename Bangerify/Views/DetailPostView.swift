@@ -47,7 +47,7 @@ struct DetailPostView: View {
     }
 }
 
-struct SinglePostView_Previews: PreviewProvider {
+struct DetailPostView_Previews: PreviewProvider {
     static var post = Post(
         id: 138,
         text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
@@ -63,6 +63,8 @@ struct SinglePostView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        DetailPostView(post: post)
+        let authenticationService = AuthenticationService()
+        return DetailPostView(post: post)
+            .environmentObject(authenticationService)
     }
 }

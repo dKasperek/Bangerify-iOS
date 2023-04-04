@@ -14,9 +14,9 @@ import Combine
 public struct SinglePostView: View {
     
     @State var post: Post
-    var username = AuthenticationService.shared.getUsername()
     @ObservedObject var viewModel: PostViewModel
     @EnvironmentObject var authenticationService: AuthenticationService
+    var username = AuthenticationService.shared.getUsername()
     @State private var showAddCommentView = false
     @State private var showingEditPostView = false
     
@@ -64,7 +64,7 @@ public struct SinglePostView: View {
                         
                         Spacer()
                         
-                        if post.username == username {
+                        if post.username == AuthenticationService.shared.getUsername() {
                             Menu {
                                 Button(action: {
                                     showingEditPostView = true
@@ -203,7 +203,7 @@ public struct SinglePostView: View {
     }
 }
 
-struct PostView_Previews: PreviewProvider {
+struct SinglePostView_Previews: PreviewProvider {
     static var post = Post(
         id: 138,
         text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
@@ -219,6 +219,9 @@ struct PostView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        SinglePostView(post: post, onPostDeleted: {})
+        let authenticationService = AuthenticationService()
+        return SinglePostView(post: post, onPostDeleted: {})
+            .environmentObject(authenticationService)
     }
 }
+

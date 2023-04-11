@@ -25,17 +25,34 @@ public class PostObject: ObservableObject {
     @Published var comments: [Comment]?
     
     init(id: Int, text: String, date: String, images: [URL]?, userId: Int, username: String, visibleName: String, profilePictureUrl: String?, grade: Int) {
-            self.id = id
-            self.text = text
-            self.date = date
-            self.images = images
-            self.userId = userId
-            self.username = username
-            self.visible_name = visibleName
-            self.profilePictureUrl = profilePictureUrl ?? ""
-            self.likes = nil
-            self.liked = nil
-            self.comments = nil
-            self.grade = grade
+        self.id = id
+        self.text = text
+        self.date = date
+        self.images = images
+        self.userId = userId
+        self.username = username
+        self.visible_name = visibleName
+        self.profilePictureUrl = profilePictureUrl ?? ""
+        self.likes = nil
+        self.liked = nil
+        self.comments = nil
+        self.grade = grade
+    }
+    
+    func updateLikes() {
+        LikeService.shared.getLikeCountAuth(for: self.id) { authenticatedLikes in
+            DispatchQueue.main.async {
+                self.likes = authenticatedLikes.likes
+                self.liked = authenticatedLikes.liked
+            }
         }
+    }
+    
+    func updateComments() {
+        CommentService.shared.loadComments(for: self.id) { comments in
+            DispatchQueue.main.async {
+                self.comments = comments
+            }
+        }
+    }
 }

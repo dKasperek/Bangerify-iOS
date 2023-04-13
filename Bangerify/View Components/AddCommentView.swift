@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddCommentView: View {
-    var viewModel: PostViewModel
+    var postObject: PostObject
     @State private var commentContent: String = ""
     @State private var showAlert: Bool = false
     @State private var errorMessage: String? = nil
@@ -48,11 +48,11 @@ struct AddCommentView: View {
                         errorMessage = "The content of the comment can't be empty!"
                         showAlert = true
                     } else {
-                        CommentService.shared.sendComment(postId: viewModel.post.id, text: commentContent) { result in
+                        CommentService.shared.sendComment(postId: postObject.id, text: commentContent) { result in
                             switch result {
                             case .success:
                                 DispatchQueue.main.async {
-                                    viewModel.loadComments()
+                                    postObject.updateComments()
                                     self.presentationMode.wrappedValue.dismiss()
                                 }
                             case .failure(let error):
@@ -78,7 +78,7 @@ struct AddCommentView: View {
 
 struct AddCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        let post = Post(
+        let post = PostObject(
             id: 138,
             text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
             date: "2023-01-30T13:11:23.000Z",
@@ -87,15 +87,14 @@ struct AddCommentView_Previews: PreviewProvider {
             username: "wojciehc",
             visibleName: "wojciech",
             profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
+            grade: 4,
             likes: 3,
-            liked: 1,
-            grade: 4
+            liked: 1
         )
-        let viewModel = PostViewModel(post: post)
         
-        AddCommentView(viewModel: viewModel)
+        AddCommentView(postObject: post)
             .sheet(isPresented: .constant(true)) {
-                AddCommentView(viewModel: viewModel)
+                AddCommentView(postObject: post)
             }
     }
 }

@@ -10,7 +10,7 @@ import SwiftyJSON
 import Alamofire
 
 class PostService: ObservableObject {
-    @Published var posts: [Post]?
+    @Published var posts: [PostObject]?
     let authenticationService = AuthenticationService.shared
     
     init() {
@@ -21,13 +21,32 @@ class PostService: ObservableObject {
     
     static let shared = PostService()
     
-    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+    func loadPosts(completion: @escaping ([PostObject]?) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/getPosts") else { fatalError("Missing URL") }
         
         AF.request(url, method: .post).responseDecodable(of: [Post].self) { response in
             switch response.result {
             case .success(let posts):
-                let decodedPosts = posts.sorted(by: { $0.id > $1.id })
+                let sortedPosts = posts.sorted(by: { $0.id > $1.id })
+                let postObjects = sortedPosts.map { PostObject(from: $0) }
+                completion(postObjects)
+                
+            case .failure(let error):
+                print("Request error: ", error)
+                completion(nil)
+            }
+        }
+    }
+    
+    func loadUserPosts(author: String, completion: @escaping ([PostObject]?) -> Void) {
+        guard let url = URL(string: "http://3.71.193.242:8080/api/getUserPosts") else { fatalError("Missing URL") }
+        
+        let parameters: [String: Any] = ["author": author]
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: [Post].self) { response in
+            switch response.result {
+            case .success(let posts):
+                let decodedPosts = posts.map { PostObject(from: $0) }
                 completion(decodedPosts)
                 
             case .failure(let error):
@@ -37,23 +56,6 @@ class PostService: ObservableObject {
         }
     }
     
-    func loadUserPosts(author: String, completion: @escaping ([Post]?) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/getUserPosts") else { fatalError("Missing URL") }
-        
-        let parameters: [String: Any] = ["author": author]
-        
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: [Post].self) { response in
-            switch response.result {
-            case .success(let posts):
-                let decodedPosts = posts.sorted(by: { $0.id > $1.id })
-                completion(decodedPosts)
-                
-            case .failure(let error):
-                print("Request error: ", error)
-                completion(nil)
-            }
-        }
-    }
     
     func createPost(postData: String, images: [String], completion: @escaping (Result<Void, Error>) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/createPost") else { fatalError("Missing URL") }

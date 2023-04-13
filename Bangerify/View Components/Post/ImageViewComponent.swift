@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct ImageViewComponent: View {
-    var post: Post
+    var post: PostObject
     var images: [URL]
     @State private var index = 0
     

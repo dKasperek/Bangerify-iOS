@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public class PostObject: ObservableObject {
+public class PostObject: ObservableObject{
     let id: Int
     @Published var text: String
     let date: String
@@ -37,6 +37,35 @@ public class PostObject: ObservableObject {
         self.liked = nil
         self.comments = nil
         self.grade = grade
+    }
+    
+    init(id: Int, text: String, date: String, images: [URL]?, userId: Int, username: String, visibleName: String, profilePictureUrl: String?, grade: Int, likes: Int, liked: Int) {
+        self.id = id
+        self.text = text
+        self.date = date
+        self.images = images
+        self.userId = userId
+        self.username = username
+        self.visible_name = visibleName
+        self.profilePictureUrl = profilePictureUrl ?? ""
+        self.likes = likes
+        self.liked = liked
+        self.comments = nil
+        self.grade = grade
+    }
+    
+    convenience init(from post: Post) {
+        self.init(
+            id: post.id,
+            text: post.text,
+            date: post.date,
+            images: post.images,
+            userId: post.userId,
+            username: post.username,
+            visibleName: post.visible_name,
+            profilePictureUrl: post.profilePictureUrl,
+            grade: post.grade
+        )
     }
     
     func updateLikes() {

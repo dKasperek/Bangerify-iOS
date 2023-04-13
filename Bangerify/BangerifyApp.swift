@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct BangerifyApp: App {
     @StateObject private var authenticationService = AuthenticationService()
+    @StateObject private var postService = PostService()
     
 //    init() {
 //        authenticationService.clearToken()
@@ -19,7 +20,8 @@ struct BangerifyApp: App {
         WindowGroup {
             Group {
                 if authenticationService.isAuthenticated {
-                    MainboardView() // TODO: TabBarView
+                    MainboardView()
+                        .environmentObject(postService)// TODO: TabBarView
                 } else {
                     LoginRegisterView()
                 }

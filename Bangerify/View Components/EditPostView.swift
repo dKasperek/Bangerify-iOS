@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct EditPostView: View {
-    var post: Post
+    @ObservedObject var post: PostObject
     @State private var postContent: String = ""
     @State private var showAlert: Bool = false
     @State private var errorMessage: String? = nil
     @Environment(\.presentationMode) var presentationMode
-    
-    let onPostEdited: (String) -> Void
-    
+        
     var body: some View {
         VStack {
             Spacer().frame(height: 10)
@@ -53,22 +51,22 @@ struct EditPostView: View {
             
             Button("SAVE changes") {
                 if postContent.isEmpty {
-                       errorMessage = "The content of the post can't be empty!"
-                       showAlert = true
-                   } else {
-                       PostService.shared.editPost(postId: post.id, newText: postContent) { result in
-                           switch result {
-                           case .success:
-                               DispatchQueue.main.async {
-                                   onPostEdited(postContent)
-                                   self.presentationMode.wrappedValue.dismiss()
-                               }
-                           case .failure(let error):
-                               errorMessage = error.localizedDescription
-                               showAlert = true
-                           }
-                       }
-                   }
+                    errorMessage = "The content of the post can't be empty!"
+                    showAlert = true
+                } else {
+                    PostService.shared.editPost(postId: post.id, newText: postContent) { result in
+                        switch result {
+                        case .success:
+                            DispatchQueue.main.async {
+                                post.text = postContent
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        case .failure(let error):
+                            errorMessage = error.localizedDescription
+                            showAlert = true
+                        }
+                    }
+                }
             }
             .sentButtonStyle()
             
@@ -84,10 +82,22 @@ struct EditPostView: View {
 
 struct EditPostView_Previews: PreviewProvider {
     static var previews: some View {
-        let samplePost = Post(id: 169, text: "# Hello (again)!", date: "2023-03-28T19:35:19.000Z", images: [], userId: 24, username: "dkaspersky", visibleName: "dkaspersky", profilePictureUrl: "https://bangerify-media.s3.eu-central-1.amazonaws.com/cb20909195147611afd97de1210a3e5f", likes: 0, liked: 1, grade: 1)
-        EditPostView(post: samplePost, onPostEdited: {_ in })
+        let post = PostObject(
+            id: 138,
+            text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
+            date: "2023-01-30T13:11:23.000Z",
+            images: [URL(string: "https://bangerify-media.s3.eu-central-1.amazonaws.com/8543f960fd209be3389357a9e36e80f4")!, URL(string: "https://bangerify-media.s3.eu-central-1.amazonaws.com/8543f960fd209be3389357a9e36e80f4")!],
+            userId: 5,
+            username: "wojciehc",
+            visibleName: "wojciech",
+            profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
+            grade: 4,
+            likes: 3,
+            liked: 1
+        )
+        EditPostView(post: post)
             .sheet(isPresented: .constant(true)) {
-                EditPostView(post: samplePost, onPostEdited: {_ in })
+                EditPostView(post: post)
             }
     }
 }

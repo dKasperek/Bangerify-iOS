@@ -13,8 +13,7 @@ import Combine
 
 public struct SinglePostView: View {
     
-    @State var post: Post
-    @ObservedObject var viewModel: PostViewModel
+    @State var post: PostObject
     @EnvironmentObject var authenticationService: AuthenticationService
     var username = AuthenticationService.shared.getUsername()
     @State private var showAddCommentView = false
@@ -22,9 +21,8 @@ public struct SinglePostView: View {
     
     let onPostDeleted: () -> Void
     
-    public init(post: Post, onPostDeleted: @escaping () -> Void) {
+    public init(post: PostObject, onPostDeleted: @escaping () -> Void) {
         self.post = post
-        self.viewModel = PostViewModel(post: post)
         self.onPostDeleted = onPostDeleted
     }
     
@@ -33,7 +31,7 @@ public struct SinglePostView: View {
             // Post header
             HStack {
                 NavigationLink(destination: ProfileView(username: post.username)) {
-                    if let url = URL(string: post.profilePictureUrl ?? "") {
+                    if let url = URL(string: post.profilePictureUrl ) {
                         KFImage(url)
                             .placeholder {
                                 Image(systemName: "hourglass")
@@ -105,10 +103,7 @@ public struct SinglePostView: View {
                 }
             } .padding(5)
                 .sheet(isPresented: $showingEditPostView) {
-                    EditPostView(post: post, onPostEdited: { text in
-                        self.post.text = text
-                        self.viewModel.post.text = text
-                    })
+                    EditPostView(post: post)
                 }
             
             // Post content
@@ -126,7 +121,7 @@ public struct SinglePostView: View {
             HStack {
                 // Post footer
                 Button(action: toggleLike) {
-                    if (viewModel.liked == 1) {
+                    if (post.liked == 1) {
                         Image(systemName: "heart.fill")
                             .font(Font.system(.title3))
                             .foregroundColor(.red)
@@ -136,17 +131,17 @@ public struct SinglePostView: View {
                             .foregroundColor(.primary)
                     }
                 }
-                Text(String(viewModel.likes))
+                Text(String(post.likes ?? 0))
                     .font(Font.system(.title3))
                 
                 Spacer()
                 
-                Text(String(viewModel.comments?.count ?? 0)).font(Font.system(.title3))
+                Text(String(post.comments?.count ?? 0)).font(Font.system(.title3))
                     .foregroundColor(.primary)
                 Button(action: {
                     showAddCommentView.toggle()
                 }) {
-                    if (viewModel.comments?.isEmpty == false) {
+                    if (post.comments?.isEmpty == false) {
                         Image(systemName: "bubble.left.fill")
                             .font(Font.system(.title3))
                             .foregroundColor(Color(.systemBlue))
@@ -157,15 +152,15 @@ public struct SinglePostView: View {
                     }
                 }
                 .sheet(isPresented: $showAddCommentView) {
-                    AddCommentView(viewModel: viewModel)
+                    AddCommentView(postObject: post)
                 }
                 
             } .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
             
             // Post Comments
-            if viewModel.comments != nil {
-                CommentListView(comList: viewModel.comments!)
+            if post.comments != nil {
+                CommentListView(comList: post.comments!)
                     .padding(.bottom, 5)
             }
         }
@@ -173,22 +168,28 @@ public struct SinglePostView: View {
         .padding(.top, 10)
         .onReceive(authenticationService.$isAuthenticated, perform: { isAuthenticated in
             if isAuthenticated {
-                viewModel.loadData()
+                if post.likes == nil {
+                    post.updateLikes()
+                }
+                if post.comments == nil {
+                    post.updateComments()
+                }
             }
         })
     }
     
     func toggleLike() {
         LikeService.shared.setLike(for: post.id) {
-            if viewModel.liked == 1 {
-                viewModel.liked = 0
-                viewModel.likes -= 1
+            if post.liked == 1 {
+                post.liked = 0
+                post.likes = (post.likes ?? 0) - 1
             } else {
-                viewModel.liked = 1
-                viewModel.likes += 1
+                post.liked = 1
+                post.likes = (post.likes ?? 0) + 1
             }
         }
     }
+    
     
     func deletePost(completion: @escaping () -> Void) {
         PostService.shared.deletePost(postId: post.id) { result in
@@ -204,7 +205,7 @@ public struct SinglePostView: View {
 }
 
 struct SinglePostView_Previews: PreviewProvider {
-    static var post = Post(
+    static var post = PostObject(
         id: 138,
         text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
         date: "2023-01-30T13:11:23.000Z",
@@ -213,10 +214,11 @@ struct SinglePostView_Previews: PreviewProvider {
         username: "wojciehc",
         visibleName: "wojciech",
         profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
+        grade: 4,
         likes: 3,
-        liked: 1,
-        grade: 4
+        liked: 1
     )
+    
     
     static var previews: some View {
         let authenticationService = AuthenticationService()

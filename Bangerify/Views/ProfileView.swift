@@ -17,7 +17,7 @@ struct ProfileView: View {
     
     var isOwner: Bool
     @State private var profile: Profile?
-    @State private var posts: [Post]?
+    @State private var posts: [PostObject]?
     
     init(username: String) {
         self.username = username

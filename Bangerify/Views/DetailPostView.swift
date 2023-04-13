@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct DetailPostView: View {
-    var post: Post
-    @ObservedObject var viewModel: PostViewModel
+    @ObservedObject var post: PostObject
     @State private var showAddCommentView = false
     @Environment(\.presentationMode) var presentationMode
     
     
-    public init(post: Post) {
+    public init(post: PostObject) {
         self.post = post
-        self.viewModel = PostViewModel(post: post)
     }
     
     var body: some View {
@@ -37,7 +35,7 @@ struct DetailPostView: View {
                     .cancelButtonStyle()
             }
             .sheet(isPresented: $showAddCommentView) {
-                AddCommentView(viewModel: viewModel)
+                AddCommentView(postObject: post)
             }
             
         }
@@ -48,7 +46,7 @@ struct DetailPostView: View {
 }
 
 struct DetailPostView_Previews: PreviewProvider {
-    static var post = Post(
+    static var post = PostObject(
         id: 138,
         text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
         date: "2023-01-30T13:11:23.000Z",
@@ -57,8 +55,6 @@ struct DetailPostView_Previews: PreviewProvider {
         username: "wojciehc",
         visibleName: "wojciech",
         profilePictureUrl: "https://f4.bcbits.com/img/a0340908479_7.jpg",
-        likes: 3,
-        liked: 1,
         grade: 4
     )
     

@@ -29,82 +29,7 @@ public struct SinglePostView: View {
     public var body: some View {
         VStack {
             // Post header
-            HStack {
-                NavigationLink(destination: ProfileView(username: post.username)) {
-                    if let url = URL(string: post.profilePictureUrl ) {
-                        KFImage(url)
-                            .placeholder {
-                                Image(systemName: "hourglass")
-                                    .foregroundColor(.gray)
-                            }
-                            .cancelOnDisappear(true)
-                            .resizable()
-                            .clipShape(Circle())
-                            .frame(width: 50, height: 50)
-                    } else {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .foregroundColor(.gray)
-                            .clipShape(Circle())
-                            .frame(width: 50, height: 50)
-                    }
-                }
-                .buttonStyle(PlainButtonStyle())
-                
-                VStack (alignment: .leading){
-                    HStack {
-                        NavigationLink(destination: ProfileView(username: post.username)) {
-                            Text(post.visible_name)
-                                .font(.headline)
-                                .foregroundColor(getGradeColor(grade: post.grade))
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        
-                        Spacer()
-                        
-                        if post.username == AuthenticationService.shared.getUsername() {
-                            Menu {
-                                Button(action: {
-                                    showingEditPostView = true
-                                }) {
-                                    Label("Edit post", systemImage: "pencil")
-                                }
-                                Button(role: .destructive, action: {
-                                    deletePost {
-                                        onPostDeleted()
-                                    }
-                                }) {
-                                    Label("Delete post", systemImage: "trash")
-                                        .foregroundColor(.red)
-                                }
-                            } label: {
-                                Image(systemName: "ellipsis.circle")
-                                    .font(.headline)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                    HStack {
-                        NavigationLink(destination: ProfileView(username: post.username)) {
-                            Text("@" + post.username)
-                                .font(.subheadline)
-                                .foregroundColor(.primary)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        
-                        Spacer()
-                        
-                        Text(formatDate(dateString: post.date))
-                            .font(.caption)
-                            .fontWeight(.light)
-                            .foregroundColor(.secondary)
-                        
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                }
-            } .padding(5)
-                .sheet(isPresented: $showingEditPostView) {
-                    EditPostView(post: post)
-                }
+            postHeader
             
             // Post content
             
@@ -118,45 +43,8 @@ public struct SinglePostView: View {
                 }
             }.buttonStyle(PlainButtonStyle())
             
-            HStack {
-                // Post footer
-                Button(action: toggleLike) {
-                    if (post.liked == 1) {
-                        Image(systemName: "heart.fill")
-                            .font(Font.system(.title3))
-                            .foregroundColor(.red)
-                    } else {
-                        Image(systemName: "heart")
-                            .font(Font.system(.title3))
-                            .foregroundColor(.primary)
-                    }
-                }
-                Text(String(post.likes ?? 0))
-                    .font(Font.system(.title3))
-                
-                Spacer()
-                
-                Text(String(post.comments?.count ?? 0)).font(Font.system(.title3))
-                    .foregroundColor(.primary)
-                Button(action: {
-                    showAddCommentView.toggle()
-                }) {
-                    if (post.comments?.isEmpty == false) {
-                        Image(systemName: "bubble.left.fill")
-                            .font(Font.system(.title3))
-                            .foregroundColor(Color(.systemBlue))
-                    } else {
-                        Image(systemName: "bubble.left")
-                            .font(Font.system(.title3))
-                            .foregroundColor(.primary)
-                    }
-                }
-                .sheet(isPresented: $showAddCommentView) {
-                    AddCommentView(postObject: post)
-                }
-                
-            } .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(5)
+            // Post footer
+            postFooter
             
             // Post Comments
             if post.comments != nil {
@@ -177,7 +65,132 @@ public struct SinglePostView: View {
             }
         })
     }
+}
+
+private extension SinglePostView {
+    var postHeader: some View {
+        HStack {
+            NavigationLink(destination: ProfileView(username: post.username)) {
+                if let url = URL(string: post.profilePictureUrl ) {
+                    KFImage(url)
+                        .placeholder {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.gray)
+                        }
+                        .cancelOnDisappear(true)
+                        .resizable()
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                } else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .foregroundColor(.gray)
+                        .clipShape(Circle())
+                        .frame(width: 50, height: 50)
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
+            
+            VStack (alignment: .leading){
+                HStack {
+                    NavigationLink(destination: ProfileView(username: post.username)) {
+                        Text(post.visible_name)
+                            .font(.headline)
+                            .foregroundColor(getGradeColor(grade: post.grade))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    Spacer()
+                    
+                    if post.username == AuthenticationService.shared.getUsername() {
+                        Menu {
+                            Button(action: {
+                                showingEditPostView = true
+                            }) {
+                                Label("Edit post", systemImage: "pencil")
+                            }
+                            Button(role: .destructive, action: {
+                                deletePost {
+                                    onPostDeleted()
+                                }
+                            }) {
+                                Label("Delete post", systemImage: "trash")
+                                    .foregroundColor(.red)
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+                HStack {
+                    NavigationLink(destination: ProfileView(username: post.username)) {
+                        Text("@" + post.username)
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    Spacer()
+                    
+                    Text(formatDate(dateString: post.date))
+                        .font(.caption)
+                        .fontWeight(.light)
+                        .foregroundColor(.secondary)
+                    
+                }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+        } .padding(5)
+            .sheet(isPresented: $showingEditPostView) {
+                EditPostView(post: post)
+            }
+    }
     
+    var postFooter: some View {
+        HStack {
+            // Post footer
+            Button(action: toggleLike) {
+                if (post.liked == 1) {
+                    Image(systemName: "heart.fill")
+                        .font(Font.system(.title3))
+                        .foregroundColor(.red)
+                } else {
+                    Image(systemName: "heart")
+                        .font(Font.system(.title3))
+                        .foregroundColor(.primary)
+                }
+            }
+            Text(String(post.likes ?? 0))
+                .font(Font.system(.title3))
+            
+            Spacer()
+            
+            Text(String(post.comments?.count ?? 0)).font(Font.system(.title3))
+                .foregroundColor(.primary)
+            Button(action: {
+                showAddCommentView.toggle()
+            }) {
+                if (post.comments?.isEmpty == false) {
+                    Image(systemName: "bubble.left.fill")
+                        .font(Font.system(.title3))
+                        .foregroundColor(Color(.systemBlue))
+                } else {
+                    Image(systemName: "bubble.left")
+                        .font(Font.system(.title3))
+                        .foregroundColor(.primary)
+                }
+            }
+            .sheet(isPresented: $showAddCommentView) {
+                AddCommentView(postObject: post)
+            }
+            
+        } .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(5)
+    }
+}
+
+private extension SinglePostView {
     func toggleLike() {
         LikeService.shared.setLike(for: post.id) {
             if post.liked == 1 {

@@ -44,10 +44,10 @@ class PostViewModel: ObservableObject {
     }
     
     private func loadLikes() {
-        LikeService.shared.getLikeCountAuth(for: post.id) { likeObject in
+        LikeService.shared.loadLikes(for: post.id) { likes, liked in
             DispatchQueue.main.async {
-                self.likes = likeObject.likes
-                self.liked = likeObject.liked
+                self.likes = likes
+                self.liked = liked ?? 0
             }
         }
     }

@@ -15,3 +15,9 @@ struct AuthenticatedLikes: Codable {
     let likes: Int
     let liked: Int
 }
+
+struct LikeResponse: Decodable {
+    let likes: Int
+    let liked: Int?
+}
+

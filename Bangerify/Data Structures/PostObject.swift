@@ -69,10 +69,10 @@ public class PostObject: ObservableObject{
     }
     
     func updateLikes() {
-        LikeService.shared.getLikeCountAuth(for: self.id) { authenticatedLikes in
+        LikeService.shared.loadLikes(for: self.id) { likes, liked in
             DispatchQueue.main.async {
-                self.likes = authenticatedLikes.likes
-                self.liked = authenticatedLikes.liked
+                self.likes = likes
+                self.liked = liked
             }
         }
     }

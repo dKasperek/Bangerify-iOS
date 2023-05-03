@@ -21,7 +21,6 @@ struct ImageViewComponent: View {
                         Image(systemName: "hourglass")
                             .foregroundColor(.gray)
                     }
-                    .cancelOnDisappear(true)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: .infinity, alignment: .center)

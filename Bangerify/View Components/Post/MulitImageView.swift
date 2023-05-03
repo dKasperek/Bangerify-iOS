@@ -22,7 +22,6 @@ struct MultiImageView: View {
                             Image(systemName: "hourglass")
                                 .foregroundColor(.gray)
                         }
-                        .cancelOnDisappear(true)
                         .resizable()
                         .scaledToFit()
                         .frame(width: UIScreen.main.bounds.width)

@@ -25,7 +25,6 @@ class LikeService {
             AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: LikeResponse.self) { response in
                 switch response.result {
                 case .success(let likeResponse):
-                    print(likeResponse)
                     completion(likeResponse.likes, likeResponse.liked)
                 case .failure(let error):
                     print("Request error: ", error)

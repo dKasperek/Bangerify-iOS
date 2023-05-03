@@ -13,7 +13,7 @@ import Combine
 
 public struct SinglePostView: View {
     
-    @State var post: PostObject
+    @StateObject var post: PostObject
     @EnvironmentObject var authenticationService: AuthenticationService
     var username = AuthenticationService.shared.getUsername()
     @State private var showAddCommentView = false
@@ -22,7 +22,8 @@ public struct SinglePostView: View {
     let onPostDeleted: () -> Void
     
     public init(post: PostObject, onPostDeleted: @escaping () -> Void) {
-        self.post = post
+//        self.post = post
+        _post = StateObject(wrappedValue: post)
         self.onPostDeleted = onPostDeleted
     }
     
@@ -54,16 +55,14 @@ public struct SinglePostView: View {
         }
         .padding(5)
         .padding(.top, 10)
-        .onReceive(authenticationService.$isAuthenticated, perform: { isAuthenticated in
-            if isAuthenticated {
-                if post.likes == nil {
-                    post.updateLikes()
-                }
-                if post.comments == nil {
-                    post.updateComments()
-                }
+        .onAppear {
+            if post.likes == nil {
+                post.updateLikes()
             }
-        })
+            if post.comments == nil {
+                post.updateComments()
+            }
+        }
     }
 }
 

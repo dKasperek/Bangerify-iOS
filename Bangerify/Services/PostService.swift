@@ -21,10 +21,12 @@ class PostService: ObservableObject {
     
     static let shared = PostService()
     
-    func loadPosts(completion: @escaping ([PostObject]?) -> Void) {
+    func loadPosts(lastPostId: Int? = nil, completion: @escaping ([PostObject]?) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/getPosts") else { fatalError("Missing URL") }
         
-        AF.request(url, method: .post).responseDecodable(of: [Post].self) { response in
+        let parameters: [String: Any] = lastPostId != nil ? ["lastPostId": lastPostId!] : [:]
+
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseDecodable(of: [Post].self) { response in
             switch response.result {
             case .success(let posts):
                 let sortedPosts = posts.sorted(by: { $0.id > $1.id })
@@ -37,6 +39,7 @@ class PostService: ObservableObject {
             }
         }
     }
+
     
     func loadUserPosts(author: String, completion: @escaping ([PostObject]?) -> Void) {
         guard let url = URL(string: "http://3.71.193.242:8080/api/getUserPosts") else { fatalError("Missing URL") }

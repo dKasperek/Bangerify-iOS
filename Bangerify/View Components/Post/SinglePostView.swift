@@ -17,12 +17,11 @@ public struct SinglePostView: View {
     @EnvironmentObject var authenticationService: AuthenticationService
     var username = AuthenticationService.shared.getUsername()
     @State private var showAddCommentView = false
-    @State private var showingEditPostView = false
+    @State private var showingEditPostSheet = false
     
     let onPostDeleted: () -> Void
     
     public init(post: PostObject, onPostDeleted: @escaping () -> Void) {
-//        self.post = post
         _post = StateObject(wrappedValue: post)
         self.onPostDeleted = onPostDeleted
     }
@@ -104,7 +103,7 @@ private extension SinglePostView {
                     if post.username == AuthenticationService.shared.getUsername() {
                         Menu {
                             Button(action: {
-                                showingEditPostView = true
+                                showingEditPostSheet = true
                             }) {
                                 Label("Edit post", systemImage: "pencil")
                             }
@@ -141,8 +140,8 @@ private extension SinglePostView {
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
         } .padding(5)
-            .sheet(isPresented: $showingEditPostView) {
-                EditPostView(post: post)
+            .sheet(isPresented: $showingEditPostSheet) {
+                EditPostSheet(post: post)
             }
     }
     

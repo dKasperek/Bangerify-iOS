@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct EditPostView: View {
+struct EditPostSheet: View {
     @ObservedObject var post: PostObject
     @State private var postContent: String = ""
     @State private var showAlert: Bool = false
     @State private var errorMessage: String? = nil
     @Environment(\.presentationMode) var presentationMode
-        
     var body: some View {
         VStack {
             Spacer().frame(height: 10)
@@ -95,9 +94,10 @@ struct EditPostView_Previews: PreviewProvider {
             likes: 3,
             liked: 1
         )
-        EditPostView(post: post)
+        
+        EditPostSheet(post: post)
             .sheet(isPresented: .constant(true)) {
-                EditPostView(post: post)
+                EditPostSheet(post: post)
             }
     }
 }

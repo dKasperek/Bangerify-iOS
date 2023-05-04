@@ -12,6 +12,7 @@ struct MainboardView: View {
     @State private var showAddPostView = false
     @EnvironmentObject var postService: PostService
     @EnvironmentObject var authenticationService: AuthenticationService
+    @State private var fetchMorePosts = false
     
     var body: some View {
         NavigationView {
@@ -51,6 +52,17 @@ struct MainboardView: View {
                                 }
                             }
                             .cardboardStyle()
+                            .onAppear {
+                                if post == posts.last {
+                                    loadMorePosts()
+                                }
+                            }
+                        }
+                        
+                        if fetchMorePosts {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .padding(.top, 10)
                         }
                         
                     }
@@ -80,6 +92,22 @@ struct MainboardView: View {
             }
         }
     }
+    
+    func loadMorePosts() {
+        guard !fetchMorePosts, let posts = postService.posts, let lastPostId = posts.last?.id else { return }
+        
+        fetchMorePosts = true
+        
+        postService.loadPosts(lastPostId: lastPostId) { newPosts in
+            DispatchQueue.main.async {
+                if let newPosts = newPosts {
+                    self.postService.posts?.append(contentsOf: newPosts)
+                }
+                self.fetchMorePosts = false
+            }
+        }
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

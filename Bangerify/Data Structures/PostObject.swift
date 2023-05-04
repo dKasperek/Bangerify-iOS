@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public class PostObject: ObservableObject{
+public class PostObject: ObservableObject, Equatable{
     let id: Int
     @Published var text: String
     let date: String
@@ -66,6 +66,10 @@ public class PostObject: ObservableObject{
             profilePictureUrl: post.profilePictureUrl,
             grade: post.grade
         )
+    }
+    
+    public static func ==(lhs: PostObject, rhs: PostObject) -> Bool {
+        lhs.id == rhs.id
     }
     
     func updateLikes() {

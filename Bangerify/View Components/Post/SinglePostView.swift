@@ -36,6 +36,7 @@ public struct SinglePostView: View {
             NavigationLink(destination: DetailPostView(post: post)) {
                 VStack {
                     MarkdownContentView(post: post)
+                        .environmentObject(post)
                     
                     if let images = post.images, !images.isEmpty {
                         ImageViewComponent(post: post, images: images)
@@ -120,6 +121,9 @@ private extension SinglePostView {
                                 .font(.headline)
                                 .foregroundColor(.secondary)
                         }
+                        .sheet(isPresented: $showingEditPostSheet) {
+                            EditPostSheet(post: post)
+                        }
                     }
                 }
                 HStack {
@@ -140,9 +144,6 @@ private extension SinglePostView {
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
         } .padding(5)
-            .sheet(isPresented: $showingEditPostSheet) {
-                EditPostSheet(post: post)
-            }
     }
     
     var postFooter: some View {

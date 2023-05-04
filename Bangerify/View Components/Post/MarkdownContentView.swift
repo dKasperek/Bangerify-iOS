@@ -10,7 +10,7 @@ import Kingfisher
 import MarkdownUI
 
 struct MarkdownContentView: View {
-    var post: PostObject
+    @ObservedObject var post: PostObject
     
     var body: some View {
         VStack {

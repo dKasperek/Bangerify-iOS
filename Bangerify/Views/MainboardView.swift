@@ -62,13 +62,7 @@ struct MainboardView: View {
                     })
                 }
             } else {
-                VStack {
-                    Image("icon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100)
-                        .padding(.bottom, 25)
-                    ProgressView()}
+                LoadingPlaceholderView()
             }
         }
     }

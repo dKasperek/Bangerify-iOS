@@ -57,6 +57,7 @@ public struct SinglePostView: View {
         .padding(.top, 10)
         .onAppear {
             if post.likes == nil {
+                print("Updating!")
                 post.updateLikes()
             }
             if post.comments == nil {

@@ -23,13 +23,11 @@ struct MainboardView: View {
                         
                         ForEach(posts, id: \.id) { post in
                             VStack(alignment: .leading) {
-                                Section() {
-                                    SinglePostView(post: post, onPostDeleted: {
-                                        if let index = postService.posts?.firstIndex(where: { $0.id == post.id }) {
-                                            postService.posts?.remove(at: index)
-                                        }
-                                    })
-                                }
+                                SinglePostView(post: post, onPostDeleted: {
+                                    if let index = postService.posts?.firstIndex(where: { $0.id == post.id }) {
+                                        postService.posts?.remove(at: index)
+                                    }
+                                })
                             }
                             .cardboardStyle()
                             .onAppear {
@@ -67,13 +65,13 @@ struct MainboardView: View {
         }
     }
     
-    func loadMorePosts() {
+    private func loadMorePosts() {
         guard !fetchMorePosts, let posts = postService.posts, let lastPostId = posts.last?.id else { return }
         
         fetchMorePosts = true
         
         postService.loadPosts(lastPostId: lastPostId) { newPosts in
-            DispatchQueue.main.async {
+            Task {
                 if let newPosts = newPosts {
                     self.postService.posts?.append(contentsOf: newPosts)
                 }
@@ -81,7 +79,7 @@ struct MainboardView: View {
             }
         }
     }
-
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

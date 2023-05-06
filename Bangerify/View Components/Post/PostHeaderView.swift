@@ -1,74 +1,19 @@
 //
-//  SinglePostView.swift
+//  PostHeaderView.swift
 //  Bangerify
 //
-//  Created by David Kasperek on 28/01/2023.
+//  Created by David Kasperek on 07/05/2023.
 //
 
-import Foundation
 import SwiftUI
-import MarkdownUI
 import Kingfisher
-import Combine
 
-public struct SinglePostView: View {
-    
-    @StateObject var post: PostObject
-    @EnvironmentObject var authenticationService: AuthenticationService
-    var username = AuthenticationService.shared.getUsername()
-    @State private var showAddCommentView = false
-    @State private var showingEditPostSheet = false
-    
+struct PostHeaderView: View {
+    @ObservedObject var post: PostObject
     let onPostDeleted: () -> Void
+    @Binding var showingEditPostSheet: Bool
     
-    public init(post: PostObject, onPostDeleted: @escaping () -> Void) {
-        _post = StateObject(wrappedValue: post)
-        self.onPostDeleted = onPostDeleted
-    }
-    
-    public var body: some View {
-        VStack {
-            // Post header
-            postHeader
-            
-            // Post content
-            
-            NavigationLink(destination: DetailPostView(post: post)) {
-                VStack {
-                    MarkdownContentView(post: post)
-                        .environmentObject(post)
-                    
-                    if let images = post.images, !images.isEmpty {
-                        ImageViewComponent(post: post, images: images)
-                    }
-                }
-            }.buttonStyle(PlainButtonStyle())
-            
-            // Post footer
-            postFooter
-            
-            // Post Comments
-            if post.comments != nil {
-                CommentListView(comList: post.comments!)
-                    .padding(.bottom, 5)
-            }
-        }
-        .padding(5)
-        .padding(.top, 10)
-        .onAppear {
-            if post.likes == nil {
-                print("Updating!")
-                post.updateLikes()
-            }
-            if post.comments == nil {
-                post.updateComments()
-            }
-        }
-    }
-}
-
-private extension SinglePostView {
-    var postHeader: some View {
+    var body: some View {
         HStack {
             NavigationLink(destination: ProfileView(username: post.username)) {
                 if let url = URL(string: post.profilePictureUrl ) {
@@ -147,63 +92,6 @@ private extension SinglePostView {
         } .padding(5)
     }
     
-    var postFooter: some View {
-        HStack {
-            // Post footer
-            Button(action: toggleLike) {
-                if (post.liked == 1) {
-                    Image(systemName: "heart.fill")
-                        .font(Font.system(.title3))
-                        .foregroundColor(.red)
-                } else {
-                    Image(systemName: "heart")
-                        .font(Font.system(.title3))
-                        .foregroundColor(.primary)
-                }
-            }
-            Text(String(post.likes ?? 0))
-                .font(Font.system(.title3))
-            
-            Spacer()
-            
-            Text(String(post.comments?.count ?? 0)).font(Font.system(.title3))
-                .foregroundColor(.primary)
-            Button(action: {
-                showAddCommentView.toggle()
-            }) {
-                if (post.comments?.isEmpty == false) {
-                    Image(systemName: "bubble.left.fill")
-                        .font(Font.system(.title3))
-                        .foregroundColor(Color(.systemBlue))
-                } else {
-                    Image(systemName: "bubble.left")
-                        .font(Font.system(.title3))
-                        .foregroundColor(.primary)
-                }
-            }
-            .sheet(isPresented: $showAddCommentView) {
-                AddCommentView(postObject: post)
-            }
-            
-        } .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(5)
-    }
-}
-
-private extension SinglePostView {
-    func toggleLike() {
-        LikeService.shared.setLike(for: post.id) {
-            if post.liked == 1 {
-                post.liked = 0
-                post.likes = (post.likes ?? 0) - 1
-            } else {
-                post.liked = 1
-                post.likes = (post.likes ?? 0) + 1
-            }
-        }
-    }
-    
-    
     func deletePost(completion: @escaping () -> Void) {
         PostService.shared.deletePost(postId: post.id) { result in
             switch result {
@@ -217,7 +105,8 @@ private extension SinglePostView {
     }
 }
 
-struct SinglePostView_Previews: PreviewProvider {
+struct PostHeaderView_Previews: PreviewProvider {
+    @State static var showingEditPostSheet = false
     static var post = PostObject(
         id: 138,
         text: "**Daily żarcik:**\n\nCo mówi młynarz widzący małpy w zoo?\n> dużo mąki",
@@ -231,12 +120,13 @@ struct SinglePostView_Previews: PreviewProvider {
         likes: 3,
         liked: 1
     )
-    
-    
+
     static var previews: some View {
-        let authenticationService = AuthenticationService()
-        return SinglePostView(post: post, onPostDeleted: {})
-            .environmentObject(authenticationService)
+        PostHeaderView(
+            post: post,
+            onPostDeleted: {},
+            showingEditPostSheet: $showingEditPostSheet
+        )
     }
 }
 

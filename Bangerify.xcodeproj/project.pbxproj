@@ -15,6 +15,7 @@
 		8E4C20AF29819EEB006917D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */; };
 		8E4C20B82981A67C006917D0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4C20B72981A67C006917D0 /* Post.swift */; };
 		8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8E4C20BB29829F59006917D0 /* SwiftyJSON */; };
+		8E60DDAD2A06A6A2004827E2 /* AddPostButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60DDAC2A06A6A2004827E2 /* AddPostButtonView.swift */; };
 		8E7793EF29D0D81F0016C66B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7793EE29D0D81F0016C66B /* PostViewModel.swift */; };
 		8E9404F2298710BD00F647C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9404F1298710BD00F647C8 /* ProfileView.swift */; };
 		8E9404F42987113F00F647C8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9404F32987113F00F647C8 /* Profile.swift */; };
@@ -58,6 +59,7 @@
 		8E4C20AC29819EEB006917D0 /* Bangerify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bangerify.entitlements; sourceTree = "<group>"; };
 		8E4C20AE29819EEB006917D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E4C20B72981A67C006917D0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8E60DDAC2A06A6A2004827E2 /* AddPostButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostButtonView.swift; sourceTree = "<group>"; };
 		8E7793EE29D0D81F0016C66B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		8E9404F1298710BD00F647C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8E9404F32987113F00F647C8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -147,6 +149,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8E60DDAE2A06A85E004827E2 /* Button Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E60DDAC2A06A6A2004827E2 /* AddPostButtonView.swift */,
+			);
+			path = "Button Views";
+			sourceTree = "<group>";
+		};
 		8E9BBA1029D349E200183ED1 /* Post */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 				8E9BBA1429D3500700183ED1 /* AddPostSheet.swift */,
 				8EB0E16D29D8C9D7001F65A6 /* AddPostView.swift */,
 				8E9BBA1829D38D6300183ED1 /* EditPostSheet.swift */,
+				8E60DDAE2A06A85E004827E2 /* Button Views */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -319,6 +330,7 @@
 				8E9BBA1229D34A6200183ED1 /* SingleCommentView.swift in Sources */,
 				8E0A82BB29D21B2D0094B6C3 /* AddCommentView.swift in Sources */,
 				8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */,
+				8E60DDAD2A06A6A2004827E2 /* AddPostButtonView.swift in Sources */,
 				8ECB358E2990295B00D0D3D8 /* CommentListView.swift in Sources */,
 				8E9BBA0F29D3485500183ED1 /* ImageViewComponent.swift in Sources */,
 				8E9CFDD629E5EB8700B7F9E3 /* PostObject.swift in Sources */,

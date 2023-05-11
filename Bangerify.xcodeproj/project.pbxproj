@@ -39,8 +39,8 @@
 		8ECB3590299029DA00D0D3D8 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB358F299029DA00D0D3D8 /* ViewHelper.swift */; };
 		8ECB359529902AE100D0D3D8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB359429902AE100D0D3D8 /* Comment.swift */; };
 		8ECB359729902C9100D0D3D8 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB359629902C9100D0D3D8 /* ProfileService.swift */; };
+		8ED8B72C2A0D51220099FC56 /* MarkdownText in Frameworks */ = {isa = PBXBuildFile; productRef = 8ED8B72B2A0D51220099FC56 /* MarkdownText */; };
 		8EDA179F2985783A0038F888 /* SinglePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA179E2985783A0038F888 /* SinglePostView.swift */; };
-		8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17A62985D8620038F888 /* MarkdownUI */; };
 		8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EDA17AC2985E1980038F888 /* Kingfisher */; };
 		8EE9CEEC29C35521004F5A42 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEEB29C35521004F5A42 /* CommentService.swift */; };
 		8EE9CEEE29C3AEAD004F5A42 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9CEED29C3AEAD004F5A42 /* LoginRegisterView.swift */; };
@@ -104,10 +104,10 @@
 			files = (
 				8EE9CF0329C65B90004F5A42 /* Alamofire in Frameworks */,
 				8EDA17AD2985E1980038F888 /* Kingfisher in Frameworks */,
+				8ED8B72C2A0D51220099FC56 /* MarkdownText in Frameworks */,
 				8EE9CF0629C65BBD004F5A42 /* JWTDecode in Frameworks */,
 				8E4C20BC29829F59006917D0 /* SwiftyJSON in Frameworks */,
 				8EE9CEF629C3C22A004F5A42 /* SwiftKeychainWrapper in Frameworks */,
-				8EDA17A72985D8620038F888 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,11 +267,11 @@
 			name = Bangerify;
 			packageProductDependencies = (
 				8E4C20BB29829F59006917D0 /* SwiftyJSON */,
-				8EDA17A62985D8620038F888 /* MarkdownUI */,
 				8EDA17AC2985E1980038F888 /* Kingfisher */,
 				8EE9CEF529C3C22A004F5A42 /* SwiftKeychainWrapper */,
 				8EE9CF0229C65B90004F5A42 /* Alamofire */,
 				8EE9CF0529C65BBD004F5A42 /* JWTDecode */,
+				8ED8B72B2A0D51220099FC56 /* MarkdownText */,
 			);
 			productName = Bangerify;
 			productReference = 8E4C20A329819EEB006917D0 /* Bangerify.app */;
@@ -303,11 +303,11 @@
 			mainGroup = 8E4C209A29819EEA006917D0;
 			packageReferences = (
 				8E4C20BA29829F59006917D0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8EE9CEF429C3C22A004F5A42 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				8EE9CF0129C65B90004F5A42 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8EE9CF0429C65BBD004F5A42 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				8ED8B72A2A0D51220099FC56 /* XCRemoteSwiftPackageReference "MarkdownText" */,
 			);
 			productRefGroup = 8E4C20A429819EEB006917D0 /* Products */;
 			projectDirPath = "";
@@ -608,12 +608,12 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+		8ED8B72A2A0D51220099FC56 /* XCRemoteSwiftPackageReference "MarkdownText" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			repositoryURL = "https://github.com/shaps80/MarkdownText";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 		8EDA17AB2985E1980038F888 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -656,10 +656,10 @@
 			package = 8E4C20BA29829F59006917D0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
-		8EDA17A62985D8620038F888 /* MarkdownUI */ = {
+		8ED8B72B2A0D51220099FC56 /* MarkdownText */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8EDA17A52985D8620038F888 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
+			package = 8ED8B72A2A0D51220099FC56 /* XCRemoteSwiftPackageReference "MarkdownText" */;
+			productName = MarkdownText;
 		};
 		8EDA17AC2985E1980038F888 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

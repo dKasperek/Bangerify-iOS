@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import MarkdownUI
 import Kingfisher
 
 public struct SinglePostView: View {

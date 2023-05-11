@@ -6,34 +6,30 @@
 //
 
 import SwiftUI
-import Kingfisher
-import MarkdownUI
+import MarkdownText
 
 struct MarkdownContentView: View {
     @ObservedObject var post: PostObject
     
     var body: some View {
         VStack {
-            ForEach(divideMarkdownTextToArray(rawString: post.text), id: \.self) { item in
-                if item.hasPrefix("!["){
-                    let startIndex = item.firstIndex(of: "(")
-                    let url = String(item[startIndex!...])
-                    KFImage(URL(string: String(url.dropFirst())))
-                        .placeholder {
-                            Image(systemName: "hourglass")
-                                .foregroundColor(.gray)
+            VStack(alignment: .leading) {
+                ForEach(divideMentionsFromText(rawString: post.text), id: \.self) { item in
+                    if item.hasPrefix("@") {
+                        let username = String(item.dropFirst())
+                        NavigationLink(destination: ProfileView(username: username)) {
+                            MarkdownText("@\(username)")
+                                .foregroundColor(.blue)
                         }
-                        .cancelOnDisappear(true)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    else {
+                        MarkdownText(item)
+                    }
                 }
-                else {
-                    Markdown(item)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }.id(post.id)
-                .padding(5)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .lineLimit(nil)
         }
+        .padding(5)
     }
 }

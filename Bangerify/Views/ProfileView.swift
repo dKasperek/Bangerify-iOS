@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MarkdownUI
 import Kingfisher
 import Network
 
@@ -123,7 +122,7 @@ struct ProfileView: View {
                         } .padding(5)
                     }
                     
-                    Markdown(profile.bio ?? "")
+                    Text(profile.bio ?? "") // TODO: Markdown
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(10)
                     

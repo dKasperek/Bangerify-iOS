@@ -68,7 +68,23 @@ public func makeAttributedText(rawString: String) -> AttributedString {
     do {
         text = try AttributedString(markdown: rawString)
     } catch {
-        print("Failed to create attributed string")
+        text = AttributedString(rawString)
     }
     return text
+}
+
+public func enableMentions(rawString: String) -> String {
+    let pattern = "(\\B@\\w+)"
+    let regex = try? NSRegularExpression(pattern: pattern, options: [])
+
+    let matches = regex?.matches(in: rawString, options: [], range: NSRange(location: 0, length: rawString.utf16.count))
+    var modifiedString = rawString
+
+    matches?.forEach { match in
+        guard let range = Range(match.range, in: rawString) else { return }
+        let username = String(rawString[range])
+        let link = "[\(username)](\(username.dropFirst()))"
+        modifiedString = modifiedString.replacingOccurrences(of: username, with: link)
+    }
+    return modifiedString
 }

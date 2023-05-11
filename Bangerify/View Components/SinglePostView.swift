@@ -29,9 +29,7 @@ public struct SinglePostView: View {
         VStack {
             PostHeaderView(post: post, onPostDeleted: onPostDeleted, showingEditPostSheet: $showingEditPostSheet)
             
-            NavigationLink(destination: DetailPostView(post: post)) {
-                PostContentView(post: post)
-            }.buttonStyle(PlainButtonStyle())
+            PostContentView(post: post)
             
             PostFooterView(post: post, showAddCommentView: $showAddCommentView, toggleLike: toggleLike)
             

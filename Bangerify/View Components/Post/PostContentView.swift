@@ -12,8 +12,10 @@ struct PostContentView: View {
     
     var body: some View {
         VStack {
-            MarkdownContentView(post: post)
-                .environmentObject(post)
+            NavigationLink(destination: DetailPostView(post: post)) {
+                MarkdownContentView(post: post)
+                    .environmentObject(post)
+            }.buttonStyle(PlainButtonStyle())
             
             if let images = post.images, !images.isEmpty {
                 ImageViewComponent(post: post, images: images)

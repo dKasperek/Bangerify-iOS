@@ -27,6 +27,9 @@ struct BangerifyApp: App {
                 }
             }
             .environmentObject(authenticationService)
+            .onOpenURL{url in
+                print("Launching main view from deep link")
+            }
         }
     }
 }

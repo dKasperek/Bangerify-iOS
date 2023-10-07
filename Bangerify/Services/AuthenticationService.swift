@@ -37,7 +37,7 @@ class AuthenticationService: ObservableObject {
     }
     
     func login(username: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/auth/login") else {
+        guard let url = URL(string: "http://144.24.165.119:8080/api/auth/login") else {
             completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
@@ -95,7 +95,7 @@ class AuthenticationService: ObservableObject {
     }
     
     func register(username: String, email: String, password: String, completion: @escaping (Result<RegisterResponse, Error>) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/auth/register") else {
+        guard let url = URL(string: "http://144.24.165.119:8080/api/auth/register") else {
             completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
@@ -154,7 +154,7 @@ class AuthenticationService: ObservableObject {
     func refreshAccessToken(completion: @escaping (String?) -> Void) {
         if let refreshToken = self.getRefreshToken() {
             let parameters = ["token": refreshToken]
-            AF.request("http://3.71.193.242:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            AF.request("http://144.24.165.119:8080/api/token/refresh", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                 .responseData { response in
                     if let data = response.data, let string = String(data: data, encoding: .utf8) {
                         print("Response content: \(string)")
@@ -247,7 +247,7 @@ class AuthenticationService: ObservableObject {
                 "Authorization": "Bearer \(accessToken)"
             ]
 
-            AF.request("http://3.71.193.242:8080/api/auth/isLogged", method: .get, headers: headers).responseDecodable(of: IsLoggedResponse.self) { response in
+            AF.request("http://144.24.165.119:8080/api/auth/isLogged", method: .get, headers: headers).responseDecodable(of: IsLoggedResponse.self) { response in
                 switch response.result {
                 case .success(let data):
                     if data.isLogged {

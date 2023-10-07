@@ -22,7 +22,7 @@ class PostService: ObservableObject {
     static let shared = PostService()
     
     func loadPosts(lastPostId: Int? = nil, completion: @escaping ([PostObject]?) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/getPosts") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/getPosts") else { fatalError("Missing URL") }
         
         let parameters: [String: Any] = lastPostId != nil ? ["lastPostId": lastPostId!] : [:]
 
@@ -42,7 +42,7 @@ class PostService: ObservableObject {
 
     
     func loadUserPosts(author: String, completion: @escaping ([PostObject]?) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/getUserPosts") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/getUserPosts") else { fatalError("Missing URL") }
         
         let parameters: [String: Any] = ["author": author]
         
@@ -61,7 +61,7 @@ class PostService: ObservableObject {
     
     
     func createPost(postData: String, images: [String], completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/createPost") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/createPost") else { fatalError("Missing URL") }
         
         authenticationService.getValidAccessToken { accessToken in
             guard let accessToken = accessToken else {
@@ -104,7 +104,7 @@ class PostService: ObservableObject {
     }
     
     func editPost(postId: Int, newText: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/savePost") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/savePost") else { fatalError("Missing URL") }
         
         authenticationService.getValidAccessToken { accessToken in
             guard let accessToken = accessToken else {
@@ -146,7 +146,7 @@ class PostService: ObservableObject {
     }
     
     func deletePost(postId: Int, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/deletePost") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/deletePost") else { fatalError("Missing URL") }
         
         authenticationService.getValidAccessToken { accessToken in
             guard let accessToken = accessToken else {

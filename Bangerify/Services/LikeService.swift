@@ -14,7 +14,7 @@ class LikeService {
     static let shared = LikeService()
     
     func loadLikes(for postId: Int, completion: @escaping (Int, Int?) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikes") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/loadLikes") else { fatalError("Missing URL") }
         
         authenticationService.getValidAccessToken { accessToken in
             let parameters: Parameters = [
@@ -36,7 +36,7 @@ class LikeService {
     
     
     //    func getLikeCount(for postId: Int, completion: @escaping (Int) -> Void) {
-    //        guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikes") else { fatalError("Missing URL") }
+    //        guard let url = URL(string: "http://144.24.165.119:8080/api/loadLikes") else { fatalError("Missing URL") }
     //
     //        var bodyData = URLComponents()
     //        bodyData.queryItems = [URLQueryItem(name: "postId", value: String(postId))]
@@ -67,7 +67,7 @@ class LikeService {
     //    }
     //
     //    func getLikeCountAuth(for postId: Int, completion: @escaping (AuthenticatedLikes) -> Void) {
-    //        guard let url = URL(string: "http://3.71.193.242:8080/api/loadLikesAuth") else { fatalError("Missing URL") }
+    //        guard let url = URL(string: "http://144.24.165.119:8080/api/loadLikesAuth") else { fatalError("Missing URL") }
     //
     //        authenticationService.getValidAccessToken { accessToken in
     //            guard let accessToken = accessToken else {
@@ -95,7 +95,7 @@ class LikeService {
     //    }
     
     func setLike(for postId: Int, completion: @escaping () -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/setLike") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/setLike") else { fatalError("Missing URL") }
         
         authenticationService.getValidAccessToken { accessToken in
             guard let accessToken = accessToken else {

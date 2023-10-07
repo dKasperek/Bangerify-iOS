@@ -15,7 +15,7 @@ class CommentService {
     static let shared = CommentService()
     
     func loadComments(for postId: Int, completion: @escaping ([Comment]) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/loadComments") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/loadComments") else { fatalError("Missing URL") }
         
         var bodyData = URLComponents()
         bodyData.queryItems = [URLQueryItem(name: "postId", value: String(postId))]
@@ -50,7 +50,7 @@ class CommentService {
     }
     
     func sendComment(postId: Int, text: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let url = URL(string: "http://3.71.193.242:8080/api/commentPost") else { fatalError("Missing URL") }
+        guard let url = URL(string: "http://144.24.165.119:8080/api/commentPost") else { fatalError("Missing URL") }
         
         authenticationService.getValidAccessToken { accessToken in
             guard let accessToken = accessToken else {
